@@ -1,8 +1,7 @@
 import { z } from 'zod'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
-const prisma = new PrismaClient()
 
 const INDIAN_PHONE_REGEX = /^[6-9]\d{9}$/
 

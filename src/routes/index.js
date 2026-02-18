@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import authenticate from '../middlewares/auth.js'
+import { apiLimiter } from '../middlewares/rateLimiter.js'
 import authRoutes from './authRoutes.js'
 import schoolRoutes from './schoolRoutes.js'
 import studentRoutes from './studentRoutes.js'
@@ -17,21 +19,27 @@ import feeRoutes from './feeRoutes.js'
 
 const router = Router()
 
+// Global rate limiter for all API routes
+router.use(apiLimiter)
+
+// ── Public routes (no auth required) ──────────────────────
 router.use('/auth', authRoutes)
-router.use('/schools', schoolRoutes)
-router.use('/students', studentRoutes)
-router.use('/teachers', teacherRoutes)
-router.use('/attendance', attendanceRoutes)
-router.use('/marks', marksRoutes)
-router.use('/events', eventRoutes)
-router.use('/announcements', announcementRoutes)
-router.use('/exams', examRoutes)
-router.use('/achievements', achievementRoutes)
-router.use('/sports', sportRoutes)
-router.use('/classes', classRoutes)
-router.use('/sections', sectionRoutes)
 router.use('/portal', portalRoutes)
-router.use('/fees', feeRoutes)
+
+// ── Protected routes (JWT required) ───────────────────────
+router.use('/schools', authenticate, schoolRoutes)
+router.use('/students', authenticate, studentRoutes)
+router.use('/teachers', authenticate, teacherRoutes)
+router.use('/attendance', authenticate, attendanceRoutes)
+router.use('/marks', authenticate, marksRoutes)
+router.use('/events', authenticate, eventRoutes)
+router.use('/announcements', authenticate, announcementRoutes)
+router.use('/exams', authenticate, examRoutes)
+router.use('/achievements', authenticate, achievementRoutes)
+router.use('/sports', authenticate, sportRoutes)
+router.use('/classes', authenticate, classRoutes)
+router.use('/sections', authenticate, sectionRoutes)
+router.use('/fees', authenticate, feeRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })

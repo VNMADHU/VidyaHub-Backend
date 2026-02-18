@@ -1,52 +1,59 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import morgan from 'morgan'
-import dotenv from 'dotenv'
-import apiRouter from './routes/index.js'
-import errorHandler from './middlewares/errorHandler.js'
-import notFound from './middlewares/notFound.js'
-import requestResponseLogger from './middlewares/requestResponseLogger.js'
+import 'dotenv/config' // Side-effect import — loads env vars before all other modules
+
+import app from './app.js'
 import { logInfo, logError } from './utils/logHelpers.js'
 
-dotenv.config()
+// ── Environment validation ──────────────────────────────────
+const REQUIRED_ENV = ['DATABASE_URL', 'JWT_SECRET']
+const missing = REQUIRED_ENV.filter((key) => !process.env[key])
+if (missing.length > 0) {
+  console.error(`❌ Missing required env vars: ${missing.join(', ')}`)
+  process.exit(1)
+}
 
-const app = express()
-
-app.use(helmet())
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN || '*',
-    credentials: true,
-  }),
-)
-app.use(express.json({ limit: '1mb' }))
-app.use(requestResponseLogger)
-app.use(morgan('dev'))
-
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', service: 'vidya-hub-backend' })
-})
-
-app.use('/api', apiRouter)
-
-app.use(notFound)
-app.use(errorHandler)
-
-const port = process.env.PORT || 5000
-app.listen(port, () => {
-  logInfo(`Vidya Hub API running on port ${port}`, {
+// ── Start server ────────────────────────────────────────────
+const port = process.env.PORT || 5001
+const server = app.listen(port, () => {
+  logInfo(`Vidya Hub API running on port ${port} [${process.env.NODE_ENV || 'development'}]`, {
     filename: 'index.js',
-    line: 34,
+    line: 55,
     schoolId: 'system',
   })
 })
 
-process.on('unhandledRejection', (reason, promise) => {
-  logError(`Unhandled Rejection at ${promise}: ${reason}`, {
+// ── Graceful shutdown ───────────────────────────────────────
+const shutdown = (signal) => {
+  logInfo(`${signal} received — shutting down gracefully`, {
     filename: 'index.js',
-    line: 40,
+    line: 63,
+    schoolId: 'system',
+  })
+  server.close(() => {
+    logInfo('HTTP server closed', { filename: 'index.js', line: 68, schoolId: 'system' })
+    process.exit(0)
+  })
+  // Force exit after 10s if connections won't close
+  setTimeout(() => process.exit(1), 10000)
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'))
+process.on('SIGINT', () => shutdown('SIGINT'))
+
+process.on('unhandledRejection', (reason, promise) => {
+  logError(`Unhandled Rejection: ${reason}`, {
+    filename: 'index.js',
+    line: 78,
     schoolId: 'system',
     stack: reason?.stack,
   })
+})
+
+process.on('uncaughtException', (error) => {
+  logError(`Uncaught Exception: ${error.message}`, {
+    filename: 'index.js',
+    line: 86,
+    schoolId: 'system',
+    stack: error.stack,
+  })
+  process.exit(1)
 })

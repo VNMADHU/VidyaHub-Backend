@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import portalAuthenticate from '../middlewares/portalAuth.js'
 import {
   studentLogin,
   teacherLogin,
@@ -8,12 +9,12 @@ import {
 
 const router = Router()
 
-// Login routes (no password)
+// Login routes — public (no auth required)
 router.post('/student-login', studentLogin)
 router.post('/teacher-login', teacherLogin)
 
-// Profile routes
-router.get('/student/:studentId', getStudentProfile)
-router.get('/teacher/:teacherId', getTeacherProfile)
+// Profile routes — protected by portal JWT
+router.get('/student/:studentId', portalAuthenticate, getStudentProfile)
+router.get('/teacher/:teacherId', portalAuthenticate, getTeacherProfile)
 
 export default router

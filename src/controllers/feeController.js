@@ -1,8 +1,7 @@
 import { z } from 'zod'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
-const prisma = new PrismaClient()
 
 const feeSchema = z.object({
   studentId: z.preprocess((val) => Number(val), z.number().int()),

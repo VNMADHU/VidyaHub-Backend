@@ -1,10 +1,16 @@
 // prisma/seed.js
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
+const SALT_ROUNDS = 12
 
 async function main() {
   console.log('Seeding database...')
+
+  // Hash passwords
+  const hashedPassword = await bcrypt.hash('password123', SALT_ROUNDS)
+  console.log('✓ Passwords hashed with bcrypt')
 
   // Create school
   const school = await prisma.school.upsert({
@@ -22,13 +28,13 @@ async function main() {
 
   console.log('School:', school)
 
-  // Create test users
+  // Create test users with hashed passwords
   const adminUser = await prisma.user.upsert({
     where: { email: 'admin@vidyahub.edu' },
-    update: {},
+    update: { password: hashedPassword },
     create: {
       email: 'admin@vidyahub.edu',
-      password: 'password123', // In production, this should be hashed
+      password: hashedPassword,
       role: 'school-admin',
       schoolId: school.id,
       profile: {
@@ -43,10 +49,10 @@ async function main() {
 
   const teacherUser = await prisma.user.upsert({
     where: { email: 'teacher@vidyahub.edu' },
-    update: {},
+    update: { password: hashedPassword },
     create: {
       email: 'teacher@vidyahub.edu',
-      password: 'password123',
+      password: hashedPassword,
       role: 'teacher',
       schoolId: school.id,
       profile: {
@@ -61,10 +67,10 @@ async function main() {
 
   const studentUser = await prisma.user.upsert({
     where: { email: 'student@vidyahub.edu' },
-    update: {},
+    update: { password: hashedPassword },
     create: {
       email: 'student@vidyahub.edu',
-      password: 'password123',
+      password: hashedPassword,
       role: 'student',
       schoolId: school.id,
       profile: {

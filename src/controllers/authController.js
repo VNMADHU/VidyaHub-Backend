@@ -1,9 +1,10 @@
 import { z } from 'zod'
-import { PrismaClient } from '@prisma/client'
-import crypto from 'crypto'
+import bcrypt from 'bcrypt'
+import prisma from '../utils/prisma.js'
+import { signToken } from '../utils/jwt.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
-const prisma = new PrismaClient()
+const SALT_ROUNDS = 12
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -13,7 +14,7 @@ const loginSchema = z.object({
 
 const registerSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
   schoolName: z.string().min(2),
 })
 
@@ -21,15 +22,12 @@ const otpSchema = z.object({
   email: z.string().email(),
 })
 
-// Generate a simple token (for production, use JWT)
-const generateToken = () => crypto.randomBytes(32).toString('hex')
-
 export const login = async (req, res, next) => {
   try {
     const payload = loginSchema.parse(req.body)
     logInfo(`Login attempt for email: ${payload.email}`, {
       filename: 'authController.js',
-      line: 30,
+      line: 28,
       schoolId: 'system',
     })
 
@@ -42,8 +40,9 @@ export const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Invalid email or password' })
     }
 
-    // Check password (plaintext comparison — use bcrypt in production)
-    if (user.password !== payload.password) {
+    // Compare hashed password
+    const passwordMatch = await bcrypt.compare(payload.password, user.password)
+    if (!passwordMatch) {
       return res.status(401).json({ message: 'Invalid email or password' })
     }
 
@@ -54,11 +53,17 @@ export const login = async (req, res, next) => {
       })
     }
 
-    const token = generateToken()
+    // Sign JWT
+    const token = signToken({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      schoolId: user.schoolId,
+    })
 
     logInfo(`Login successful for email: ${payload.email}`, {
       filename: 'authController.js',
-      line: 52,
+      line: 58,
       schoolId: user.schoolId || 'system',
     })
 
@@ -75,7 +80,7 @@ export const login = async (req, res, next) => {
   } catch (error) {
     logError(`Login error: ${error.message}`, {
       filename: 'authController.js',
-      line: 68,
+      line: 74,
       schoolId: req.body?.schoolId || 'system',
       stack: error.stack,
     })
@@ -83,20 +88,71 @@ export const login = async (req, res, next) => {
   }
 }
 
-export const register = (req, res, next) => {
+export const register = async (req, res, next) => {
   try {
     const schoolId = req.body?.schoolId || 'system'
     const payload = registerSchema.parse(req.body)
     logInfo(`Registration attempt for school: ${payload.schoolName}`, {
       filename: 'authController.js',
-      line: 41,
+      line: 88,
       schoolId,
     })
-    res.status(201).json({ message: 'Registration request received', payload })
+
+    // Check if user already exists
+    const existing = await prisma.user.findUnique({
+      where: { email: payload.email },
+    })
+    if (existing) {
+      return res.status(409).json({ message: 'An account with this email already exists.' })
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(payload.password, SALT_ROUNDS)
+
+    // Create school + user in a transaction
+    const result = await prisma.$transaction(async (tx) => {
+      const school = await tx.school.create({
+        data: {
+          name: payload.schoolName,
+          address: 'Not provided',
+          contact: 'Not provided',
+          principal: 'Not provided',
+          boardType: 'CBSE',
+          status: 'pending',
+        },
+      })
+
+      const user = await tx.user.create({
+        data: {
+          email: payload.email,
+          password: hashedPassword,
+          role: 'school-admin',
+          schoolId: school.id,
+          profile: {
+            create: {
+              firstName: 'Admin',
+              lastName: 'User',
+            },
+          },
+        },
+      })
+
+      return { school, user }
+    })
+
+    res.status(201).json({
+      message: 'Registration successful',
+      user: {
+        id: result.user.id,
+        email: result.user.email,
+        role: result.user.role,
+        schoolId: result.school.id,
+      },
+    })
   } catch (error) {
     logError(`Registration error: ${error.message}`, {
       filename: 'authController.js',
-      line: 47,
+      line: 135,
       schoolId: req.body?.schoolId || 'system',
       stack: error.stack,
     })

@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../utils/prisma.js'
+import { signToken } from '../utils/jwt.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
-const prisma = new PrismaClient()
-
-// Student login by Roll Number - no password needed
+// Student login by Roll Number — issues a JWT token
 export const studentLogin = async (req, res, next) => {
   try {
     const { rollNumber } = req.body
@@ -25,6 +24,14 @@ export const studentLogin = async (req, res, next) => {
       return res.status(404).json({ message: 'No student found with this Roll Number' })
     }
 
+    // Issue a JWT so the student portal is authenticated
+    const token = signToken({
+      id: student.id,
+      email: student.email || `student-${student.id}@portal`,
+      role: 'portal-student',
+      schoolId: student.schoolId,
+    })
+
     logInfo(`Student portal login: ${student.firstName} ${student.lastName} (Roll: ${rollNumber})`, {
       filename: 'portalController.js',
       line: 25,
@@ -34,6 +41,7 @@ export const studentLogin = async (req, res, next) => {
     res.json({
       message: 'Student login successful',
       data: student,
+      token,
       portalType: 'student',
     })
   } catch (error) {
@@ -46,7 +54,7 @@ export const studentLogin = async (req, res, next) => {
   }
 }
 
-// Teacher login by Teacher ID - no password needed
+// Teacher login by Teacher ID — issues a JWT token
 export const teacherLogin = async (req, res, next) => {
   try {
     const { teacherId } = req.body
@@ -67,6 +75,14 @@ export const teacherLogin = async (req, res, next) => {
       return res.status(404).json({ message: 'No teacher found with this Teacher ID' })
     }
 
+    // Issue a JWT so the teacher portal is authenticated
+    const token = signToken({
+      id: teacher.id,
+      email: teacher.email || `teacher-${teacher.id}@portal`,
+      role: 'portal-teacher',
+      schoolId: teacher.schoolId,
+    })
+
     logInfo(`Teacher portal login: ${teacher.firstName} ${teacher.lastName} (ID: ${teacherId})`, {
       filename: 'portalController.js',
       line: 65,
@@ -76,6 +92,7 @@ export const teacherLogin = async (req, res, next) => {
     res.json({
       message: 'Teacher login successful',
       data: teacher,
+      token,
       portalType: 'teacher',
     })
   } catch (error) {
