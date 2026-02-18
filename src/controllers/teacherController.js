@@ -4,14 +4,22 @@ import { logInfo, logError } from '../utils/logHelpers.js'
 
 const prisma = new PrismaClient()
 
+const INDIAN_PHONE_REGEX = /^[6-9]\d{9}$/
+
 const teacherSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
-  email: z.string().email(),
-  phoneNumber: z.string().optional(),
+  email: z.string().email('Invalid email address'),
+  phoneNumber: z.string()
+    .refine((val) => !val || INDIAN_PHONE_REGEX.test(val), {
+      message: 'Must be a valid 10-digit Indian mobile number (starting with 6-9)',
+    })
+    .optional(),
   subject: z.string().optional(),
   qualification: z.string().optional(),
   experience: z.string().optional(),
+  teacherId: z.string().optional(),
+  profilePic: z.string().optional(),
 })
 
 export const listTeachers = async (req, res, next) => {

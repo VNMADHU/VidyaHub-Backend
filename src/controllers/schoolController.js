@@ -4,10 +4,12 @@ import { logInfo, logError } from '../utils/logHelpers.js'
 
 const prisma = new PrismaClient()
 
+const INDIAN_PHONE_REGEX = /^[6-9]\d{9}$/
+
 const schoolSchema = z.object({
   name: z.string().min(2),
   address: z.string().min(5),
-  contact: z.string().min(6),
+  contact: z.string().regex(INDIAN_PHONE_REGEX, 'Must be a valid 10-digit Indian mobile number (starting with 6-9)'),
   principal: z.string().min(2),
   boardType: z.string().min(2),
 })

@@ -12,6 +12,8 @@ import achievementRoutes from './achievementRoutes.js'
 import sportRoutes from './sportRoutes.js'
 import classRoutes from './classRoutes.js'
 import sectionRoutes from './sectionRoutes.js'
+import portalRoutes from './portalRoutes.js'
+import feeRoutes from './feeRoutes.js'
 
 const router = Router()
 
@@ -28,6 +30,8 @@ router.use('/achievements', achievementRoutes)
 router.use('/sports', sportRoutes)
 router.use('/classes', classRoutes)
 router.use('/sections', sectionRoutes)
+router.use('/portal', portalRoutes)
+router.use('/fees', feeRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })

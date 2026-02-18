@@ -6,17 +6,28 @@ const prisma = new PrismaClient()
 
 const examSchema = z.object({
   name: z.string().min(1),
+  classId: z.number().optional().nullable(),
+  sectionId: z.number().optional().nullable(),
 })
 
 export const listExams = async (req, res, next) => {
   try {
+    const { classId, sectionId } = req.query
     logInfo('Listing all exams', {
       filename: 'examController.js',
       line: 14,
     })
+
+    const where = {}
+    if (classId) where.classId = parseInt(classId)
+    if (sectionId) where.sectionId = parseInt(sectionId)
+
     const exams = await prisma.exam.findMany({
+      where,
       include: {
         marks: true,
+        class: true,
+        section: true,
       },
     })
     res.json({ data: exams, message: 'List of exams' })
@@ -34,7 +45,15 @@ export const createExam = async (req, res, next) => {
     const payload = examSchema.parse(req.body)
     
     const exam = await prisma.exam.create({
-      data: payload,
+      data: {
+        name: payload.name,
+        classId: payload.classId || null,
+        sectionId: payload.sectionId || null,
+      },
+      include: {
+        class: true,
+        section: true,
+      },
     })
     
     logInfo(`Exam created: ${payload.name}`, {
@@ -56,9 +75,18 @@ export const updateExam = async (req, res, next) => {
     const { examId } = req.params
     const payload = examSchema.partial().parse(req.body)
     
+    const updateData = {}
+    if (payload.name !== undefined) updateData.name = payload.name
+    if (payload.classId !== undefined) updateData.classId = payload.classId || null
+    if (payload.sectionId !== undefined) updateData.sectionId = payload.sectionId || null
+
     const exam = await prisma.exam.update({
       where: { id: parseInt(examId) },
-      data: payload,
+      data: updateData,
+      include: {
+        class: true,
+        section: true,
+      },
     })
     
     logInfo(`Exam updated: ${examId}`, {

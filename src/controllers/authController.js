@@ -1,5 +1,9 @@
 import { z } from 'zod'
+import { PrismaClient } from '@prisma/client'
+import crypto from 'crypto'
 import { logInfo, logError } from '../utils/logHelpers.js'
+
+const prisma = new PrismaClient()
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -17,20 +21,61 @@ const otpSchema = z.object({
   email: z.string().email(),
 })
 
-export const login = (req, res, next) => {
+// Generate a simple token (for production, use JWT)
+const generateToken = () => crypto.randomBytes(32).toString('hex')
+
+export const login = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || 'system'
     const payload = loginSchema.parse(req.body)
     logInfo(`Login attempt for email: ${payload.email}`, {
       filename: 'authController.js',
-      line: 24,
-      schoolId,
+      line: 30,
+      schoolId: 'system',
     })
-    res.json({ message: 'Login request received', payload })
+
+    // Find user by email
+    const user = await prisma.user.findUnique({
+      where: { email: payload.email },
+    })
+
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password' })
+    }
+
+    // Check password (plaintext comparison — use bcrypt in production)
+    if (user.password !== payload.password) {
+      return res.status(401).json({ message: 'Invalid email or password' })
+    }
+
+    // Check role matches
+    if (user.role !== payload.role) {
+      return res.status(401).json({
+        message: `This account is not registered as "${payload.role}". Please select the correct role.`,
+      })
+    }
+
+    const token = generateToken()
+
+    logInfo(`Login successful for email: ${payload.email}`, {
+      filename: 'authController.js',
+      line: 52,
+      schoolId: user.schoolId || 'system',
+    })
+
+    res.json({
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        schoolId: user.schoolId,
+      },
+      token,
+    })
   } catch (error) {
     logError(`Login error: ${error.message}`, {
       filename: 'authController.js',
-      line: 30,
+      line: 68,
       schoolId: req.body?.schoolId || 'system',
       stack: error.stack,
     })

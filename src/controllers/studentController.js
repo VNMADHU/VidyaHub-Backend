@@ -4,13 +4,27 @@ import { logInfo, logError } from '../utils/logHelpers.js'
 
 const prisma = new PrismaClient()
 
+const INDIAN_PHONE_REGEX = /^[6-9]\d{9}$/
+
+const indianPhoneOptional = z.string()
+  .refine((val) => !val || INDIAN_PHONE_REGEX.test(val), {
+    message: 'Must be a valid 10-digit Indian mobile number (starting with 6-9)',
+  })
+  .optional()
+
 const studentSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
-  email: z.string().email(),
-  dateOfBirth: z.string().optional(),
+  email: z.string().email('Invalid email address'),
+  dateOfBirth: z.string()
+    .refine((val) => !val || new Date(val) <= new Date(), {
+      message: 'Date of birth cannot be a future date',
+    })
+    .optional(),
   gender: z.enum(['male', 'female', 'other']).optional(),
   admissionNumber: z.string().min(1),
+  rollNumber: z.string().optional(),
+  profilePic: z.string().optional(),
   classId: z.preprocess(
     (val) => (val === '' || val === null || val === undefined ? undefined : Number(val)),
     z.number().int().optional(),
@@ -22,10 +36,10 @@ const studentSchema = z.object({
   fatherName: z.string().optional(),
   motherName: z.string().optional(),
   guardianName: z.string().optional(),
-  fatherContact: z.string().optional(),
-  motherContact: z.string().optional(),
-  guardianContact: z.string().optional(),
-  parentEmail: z.string().email().optional(),
+  fatherContact: indianPhoneOptional,
+  motherContact: indianPhoneOptional,
+  guardianContact: indianPhoneOptional,
+  parentEmail: z.string().email('Invalid parent email address').optional().or(z.literal('')),
 })
 
 export const listStudents = async (req, res, next) => {

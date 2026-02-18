@@ -48,6 +48,7 @@ model School {
   events       Event[]
   announcements Announcement[]
   sports       Sport[]
+  fees         Fee[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -62,6 +63,8 @@ model Student {
   dateOfBirth DateTime?
   gender      String?
   admissionNumber String
+  rollNumber  String?
+  profilePic  String?
   classId     Int?
   class       Class?  @relation(fields: [classId], references: [id])
   sectionId   Int?
@@ -76,10 +79,12 @@ model Student {
   attendance  Attendance[]
   marks       Mark[]
   achievements Achievement[]
+  fees        Fee[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@unique([schoolId, admissionNumber])
+  @@unique([schoolId, rollNumber])
 }
 
 model Teacher {
@@ -93,6 +98,8 @@ model Teacher {
   subject       String?
   qualification String?
   experience    String?
+  teacherId     String?  @unique
+  profilePic    String?
   classes       Class[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -107,6 +114,7 @@ model Class {
   students   Student[]
   teachers   Teacher[]
   timetables Timetable[]
+  exams      Exam[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
@@ -119,6 +127,7 @@ model Section {
   class     Class   @relation(fields: [classId], references: [id])
   name      String  // e.g., "A", "B"
   students  Student[]
+  exams     Exam[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -146,6 +155,10 @@ model Attendance {
 model Exam {
   id        Int     @id @default(autoincrement())
   name      String  // Unit Test, Midterm, Final
+  classId   Int?
+  class     Class?  @relation(fields: [classId], references: [id])
+  sectionId Int?
+  section   Section? @relation(fields: [sectionId], references: [id])
   marks     Mark[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -208,6 +221,27 @@ model Sport {
   coachName   String
   schedule    String
   description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Fee {
+  id          Int      @id @default(autoincrement())
+  schoolId    Int
+  school      School   @relation(fields: [schoolId], references: [id])
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id])
+  feeType     String   // tuition, exam, transport, library, sports, lab, other
+  description String?
+  amount      Float
+  dueDate     DateTime
+  status      String   @default("pending") // pending, paid, overdue, partial
+  paidAmount  Float    @default(0)
+  paidDate    DateTime?
+  paymentMode String?  // cash, online, cheque, upi
+  transactionId String?
+  academicYear String?  // e.g., "2025-2026"
+  term        String?  // e.g., "Term 1", "Term 2", "Annual"
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
