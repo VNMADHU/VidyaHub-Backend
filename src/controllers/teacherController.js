@@ -19,11 +19,24 @@ const teacherSchema = z.object({
   experience: z.string().optional(),
   teacherId: z.string().optional(),
   profilePic: z.string().optional(),
+  dateOfBirth: z.string().optional(),
+  designation: z.string().optional(),
+  department: z.string().optional(),
+  joiningDate: z.string().optional(),
+  address: z.string().optional(),
+  aadhaarNumber: z.string().refine((val) => !val || /^\d{12}$/.test(val), {
+    message: 'Aadhaar must be a 12-digit number',
+  }).optional(),
+  panNumber: z.string().refine((val) => !val || /^[A-Z]{5}\d{4}[A-Z]$/.test(val), {
+    message: 'PAN must be in format: ABCDE1234F',
+  }).optional(),
+  gender: z.enum(['male', 'female', 'other']).optional(),
+  bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional(),
 })
 
 export const listTeachers = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all teachers', {
       filename: 'teacherController.js',
       line: 20,
@@ -37,7 +50,7 @@ export const listTeachers = async (req, res, next) => {
     logError(`List teachers error: ${error.message}`, {
       filename: 'teacherController.js',
       line: 30,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -46,7 +59,7 @@ export const listTeachers = async (req, res, next) => {
 export const getTeacher = async (req, res, next) => {
   try {
     const { teacherId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo(`Getting teacher: ${teacherId}`, {
       filename: 'teacherController.js',
       line: 37,
@@ -66,7 +79,7 @@ export const getTeacher = async (req, res, next) => {
     logError(`Get teacher error: ${error.message}`, {
       filename: 'teacherController.js',
       line: 53,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -74,13 +87,15 @@ export const getTeacher = async (req, res, next) => {
 
 export const createTeacher = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = teacherSchema.parse(req.body)
     
     const teacher = await prisma.teacher.create({
       data: {
         ...payload,
         schoolId: parseInt(schoolId),
+        dateOfBirth: payload.dateOfBirth ? new Date(payload.dateOfBirth) : undefined,
+        joiningDate: payload.joiningDate ? new Date(payload.joiningDate) : undefined,
       },
     })
     
@@ -94,7 +109,7 @@ export const createTeacher = async (req, res, next) => {
     logError(`Create teacher error: ${error.message}`, {
       filename: 'teacherController.js',
       line: 58,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -103,12 +118,16 @@ export const createTeacher = async (req, res, next) => {
 export const updateTeacher = async (req, res, next) => {
   try {
     const { teacherId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = teacherSchema.partial().parse(req.body)
     
     const teacher = await prisma.teacher.update({
       where: { id: parseInt(teacherId) },
-      data: payload,
+      data: {
+        ...payload,
+        dateOfBirth: payload.dateOfBirth ? new Date(payload.dateOfBirth) : undefined,
+        joiningDate: payload.joiningDate ? new Date(payload.joiningDate) : undefined,
+      },
     })
     
     logInfo(`Teacher updated: ${teacherId}`, {
@@ -121,7 +140,7 @@ export const updateTeacher = async (req, res, next) => {
     logError(`Update teacher error: ${error.message}`, {
       filename: 'teacherController.js',
       line: 82,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -130,7 +149,7 @@ export const updateTeacher = async (req, res, next) => {
 export const deleteTeacher = async (req, res, next) => {
   try {
     const { teacherId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.teacher.delete({
       where: { id: parseInt(teacherId) },
@@ -146,7 +165,7 @@ export const deleteTeacher = async (req, res, next) => {
     logError(`Delete teacher error: ${error.message}`, {
       filename: 'teacherController.js',
       line: 105,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

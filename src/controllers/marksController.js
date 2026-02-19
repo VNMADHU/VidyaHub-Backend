@@ -12,7 +12,7 @@ const marksSchema = z.object({
 
 export const listMarks = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all marks', {
       filename: 'marksController.js',
       line: 17,
@@ -31,7 +31,7 @@ export const listMarks = async (req, res, next) => {
     logError(`List marks error: ${error.message}`, {
       filename: 'marksController.js',
       line: 28,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -39,7 +39,7 @@ export const listMarks = async (req, res, next) => {
 
 export const createMarks = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = marksSchema.parse(req.body)
     
     const mark = await prisma.mark.create({
@@ -62,7 +62,7 @@ export const createMarks = async (req, res, next) => {
     logError(`Create marks error: ${error.message}`, {
       filename: 'marksController.js',
       line: 59,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -71,7 +71,7 @@ export const createMarks = async (req, res, next) => {
 export const updateMarks = async (req, res, next) => {
   try {
     const { markId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = marksSchema.partial().parse(req.body)
     
     const updateData = {}
@@ -96,7 +96,7 @@ export const updateMarks = async (req, res, next) => {
     logError(`Update marks error: ${error.message}`, {
       filename: 'marksController.js',
       line: 85,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -105,7 +105,7 @@ export const updateMarks = async (req, res, next) => {
 export const deleteMarks = async (req, res, next) => {
   try {
     const { markId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.mark.delete({
       where: { id: parseInt(markId) },
@@ -121,7 +121,7 @@ export const deleteMarks = async (req, res, next) => {
     logError(`Delete marks error: ${error.message}`, {
       filename: 'marksController.js',
       line: 108,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -129,7 +129,7 @@ export const deleteMarks = async (req, res, next) => {
 
 export const getMarksReport = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const { studentId } = req.query
     
     logInfo(`Marks report requested for student ${studentId}`, {
@@ -162,7 +162,7 @@ export const getMarksReport = async (req, res, next) => {
     logError(`Marks report error: ${error.message}`, {
       filename: 'marksController.js',
       line: 147,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

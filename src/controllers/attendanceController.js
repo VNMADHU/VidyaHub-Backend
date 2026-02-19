@@ -11,7 +11,7 @@ const attendanceSchema = z.object({
 
 export const listAttendance = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all attendance records', {
       filename: 'attendanceController.js',
       line: 17,
@@ -30,7 +30,7 @@ export const listAttendance = async (req, res, next) => {
     logError(`List attendance error: ${error.message}`, {
       filename: 'attendanceController.js',
       line: 28,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -38,7 +38,7 @@ export const listAttendance = async (req, res, next) => {
 
 export const createAttendance = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = attendanceSchema.parse(req.body)
     
     // Convert date string to Date object
@@ -62,7 +62,7 @@ export const createAttendance = async (req, res, next) => {
     logError(`Create attendance error: ${error.message}`, {
       filename: 'attendanceController.js',
       line: 55,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -71,7 +71,7 @@ export const createAttendance = async (req, res, next) => {
 export const updateAttendance = async (req, res, next) => {
   try {
     const { attendanceId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = attendanceSchema.partial().parse(req.body)
     
     const attendance = await prisma.attendance.update({
@@ -89,7 +89,7 @@ export const updateAttendance = async (req, res, next) => {
     logError(`Update attendance error: ${error.message}`, {
       filename: 'attendanceController.js',
       line: 79,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -98,7 +98,7 @@ export const updateAttendance = async (req, res, next) => {
 export const deleteAttendance = async (req, res, next) => {
   try {
     const { attendanceId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.attendance.delete({
       where: { id: parseInt(attendanceId) },
@@ -114,7 +114,7 @@ export const deleteAttendance = async (req, res, next) => {
     logError(`Delete attendance error: ${error.message}`, {
       filename: 'attendanceController.js',
       line: 102,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -122,7 +122,7 @@ export const deleteAttendance = async (req, res, next) => {
 
 export const getAttendanceSummary = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Attendance summary requested', {
       filename: 'attendanceController.js',
       line: 115,
@@ -149,7 +149,7 @@ export const getAttendanceSummary = async (req, res, next) => {
     logError(`Attendance summary error: ${error.message}`, {
       filename: 'attendanceController.js',
       line: 135,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

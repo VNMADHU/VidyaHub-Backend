@@ -9,7 +9,7 @@ const classSchema = z.object({
 
 export const listClasses = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all classes', {
       filename: 'classController.js',
       line: 17,
@@ -24,7 +24,7 @@ export const listClasses = async (req, res, next) => {
     logError(`List classes error: ${error.message}`, {
       filename: 'classController.js',
       line: 29,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -32,7 +32,7 @@ export const listClasses = async (req, res, next) => {
 
 export const createClass = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = classSchema.parse(req.body)
     
     const newClass = await prisma.class.create({
@@ -53,7 +53,7 @@ export const createClass = async (req, res, next) => {
     logError(`Create class error: ${error.message}`, {
       filename: 'classController.js',
       line: 56,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -62,7 +62,7 @@ export const createClass = async (req, res, next) => {
 export const updateClass = async (req, res, next) => {
   try {
     const { classId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = classSchema.partial().parse(req.body)
     
     const updatedClass = await prisma.class.update({
@@ -81,7 +81,7 @@ export const updateClass = async (req, res, next) => {
     logError(`Update class error: ${error.message}`, {
       filename: 'classController.js',
       line: 82,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -90,7 +90,7 @@ export const updateClass = async (req, res, next) => {
 export const deleteClass = async (req, res, next) => {
   try {
     const { classId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.class.delete({
       where: { id: parseInt(classId) },
@@ -106,7 +106,7 @@ export const deleteClass = async (req, res, next) => {
     logError(`Delete class error: ${error.message}`, {
       filename: 'classController.js',
       line: 107,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

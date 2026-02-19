@@ -10,7 +10,7 @@ const announcementSchema = z.object({
 
 export const listAnnouncements = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all announcements', {
       filename: 'announcementController.js',
       line: 16,
@@ -24,7 +24,7 @@ export const listAnnouncements = async (req, res, next) => {
     logError(`List announcements error: ${error.message}`, {
       filename: 'announcementController.js',
       line: 26,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -32,7 +32,7 @@ export const listAnnouncements = async (req, res, next) => {
 
 export const createAnnouncement = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = announcementSchema.parse(req.body)
     
     const announcement = await prisma.announcement.create({
@@ -52,7 +52,7 @@ export const createAnnouncement = async (req, res, next) => {
     logError(`Create announcement error: ${error.message}`, {
       filename: 'announcementController.js',
       line: 55,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -61,7 +61,7 @@ export const createAnnouncement = async (req, res, next) => {
 export const updateAnnouncement = async (req, res, next) => {
   try {
     const { announcementId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = announcementSchema.partial().parse(req.body)
     
     const announcement = await prisma.announcement.update({
@@ -79,7 +79,7 @@ export const updateAnnouncement = async (req, res, next) => {
     logError(`Update announcement error: ${error.message}`, {
       filename: 'announcementController.js',
       line: 79,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -88,7 +88,7 @@ export const updateAnnouncement = async (req, res, next) => {
 export const deleteAnnouncement = async (req, res, next) => {
   try {
     const { announcementId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.announcement.delete({
       where: { id: parseInt(announcementId) },
@@ -104,7 +104,7 @@ export const deleteAnnouncement = async (req, res, next) => {
     logError(`Delete announcement error: ${error.message}`, {
       filename: 'announcementController.js',
       line: 102,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

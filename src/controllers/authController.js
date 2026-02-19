@@ -180,3 +180,31 @@ export const requestOtp = (req, res, next) => {
     next(error)
   }
 }
+
+const changePasswordSchema = z.object({
+  currentPassword: z.string().min(1),
+  newPassword: z.string().min(8, 'New password must be at least 8 characters'),
+})
+
+export const changePassword = async (req, res, next) => {
+  try {
+    const payload = changePasswordSchema.parse(req.body)
+    const userId = req.user?.id
+    if (!userId) return res.status(401).json({ message: 'Not authenticated' })
+
+    const user = await prisma.user.findUnique({ where: { id: userId } })
+    if (!user) return res.status(404).json({ message: 'User not found' })
+
+    const match = await bcrypt.compare(payload.currentPassword, user.password)
+    if (!match) return res.status(401).json({ message: 'Current password is incorrect' })
+
+    const hashed = await bcrypt.hash(payload.newPassword, SALT_ROUNDS)
+    await prisma.user.update({ where: { id: userId }, data: { password: hashed } })
+
+    logInfo('Password changed', { filename: 'authController.js', userId })
+    res.json({ message: 'Password changed successfully' })
+  } catch (error) {
+    logError(`Change password error: ${error.message}`, { filename: 'authController.js' })
+    next(error)
+  }
+}

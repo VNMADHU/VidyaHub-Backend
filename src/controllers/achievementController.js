@@ -13,7 +13,7 @@ const achievementSchema = z.object({
 
 export const listAchievements = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all achievements', {
       filename: 'achievementController.js',
       line: 18,
@@ -32,7 +32,7 @@ export const listAchievements = async (req, res, next) => {
     logError(`List achievements error: ${error.message}`, {
       filename: 'achievementController.js',
       line: 30,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -40,7 +40,7 @@ export const listAchievements = async (req, res, next) => {
 
 export const createAchievement = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = achievementSchema.parse(req.body)
     
     const achievement = await prisma.achievement.create({
@@ -64,7 +64,7 @@ export const createAchievement = async (req, res, next) => {
     logError(`Create achievement error: ${error.message}`, {
       filename: 'achievementController.js',
       line: 65,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -73,7 +73,7 @@ export const createAchievement = async (req, res, next) => {
 export const updateAchievement = async (req, res, next) => {
   try {
     const { achievementId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = achievementSchema.partial().parse(req.body)
     
     const updateData = {}
@@ -98,7 +98,7 @@ export const updateAchievement = async (req, res, next) => {
     logError(`Update achievement error: ${error.message}`, {
       filename: 'achievementController.js',
       line: 94,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -107,7 +107,7 @@ export const updateAchievement = async (req, res, next) => {
 export const deleteAchievement = async (req, res, next) => {
   try {
     const { achievementId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.achievement.delete({
       where: { id: parseInt(achievementId) },
@@ -123,7 +123,7 @@ export const deleteAchievement = async (req, res, next) => {
     logError(`Delete achievement error: ${error.message}`, {
       filename: 'achievementController.js',
       line: 115,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

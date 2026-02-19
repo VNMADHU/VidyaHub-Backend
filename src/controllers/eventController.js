@@ -8,11 +8,13 @@ const eventSchema = z.object({
   description: z.string().optional(),
   eventDate: z.string(),
   eventTime: z.string().optional(),
+  location: z.string().optional(),
+  category: z.enum(['academic', 'sports', 'cultural', 'other']).optional(),
 })
 
 export const listEvents = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all events', {
       filename: 'eventController.js',
       line: 18,
@@ -26,7 +28,7 @@ export const listEvents = async (req, res, next) => {
     logError(`List events error: ${error.message}`, {
       filename: 'eventController.js',
       line: 28,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -34,7 +36,7 @@ export const listEvents = async (req, res, next) => {
 
 export const createEvent = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = eventSchema.parse(req.body)
     
     // Combine eventDate and eventTime into a date field
@@ -45,6 +47,8 @@ export const createEvent = async (req, res, next) => {
         title: payload.title,
         description: payload.description || '',
         date: new Date(dateTime),
+        location: payload.location || null,
+        category: payload.category || 'academic',
         schoolId: parseInt(schoolId),
       },
     })
@@ -59,7 +63,7 @@ export const createEvent = async (req, res, next) => {
     logError(`Create event error: ${error.message}`, {
       filename: 'eventController.js',
       line: 57,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -68,13 +72,15 @@ export const createEvent = async (req, res, next) => {
 export const updateEvent = async (req, res, next) => {
   try {
     const { eventId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = eventSchema.partial().parse(req.body)
     
     // Build update data, mapping eventDate/eventTime to date if provided
     const updateData = {}
     if (payload.title) updateData.title = payload.title
     if (payload.description) updateData.description = payload.description
+    if (payload.location !== undefined) updateData.location = payload.location
+    if (payload.category) updateData.category = payload.category
     
     // Combine eventDate and eventTime into date field if eventDate is provided
     if (payload.eventDate) {
@@ -97,7 +103,7 @@ export const updateEvent = async (req, res, next) => {
     logError(`Update event error: ${error.message}`, {
       filename: 'eventController.js',
       line: 95,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -106,7 +112,7 @@ export const updateEvent = async (req, res, next) => {
 export const deleteEvent = async (req, res, next) => {
   try {
     const { eventId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.event.delete({
       where: { id: parseInt(eventId) },
@@ -122,7 +128,7 @@ export const deleteEvent = async (req, res, next) => {
     logError(`Delete event error: ${error.message}`, {
       filename: 'eventController.js',
       line: 104,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

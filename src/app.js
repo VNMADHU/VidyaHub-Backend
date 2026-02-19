@@ -6,6 +6,7 @@ import apiRouter from './routes/index.js'
 import errorHandler from './middlewares/errorHandler.js'
 import notFound from './middlewares/notFound.js'
 import requestResponseLogger from './middlewares/requestResponseLogger.js'
+import schoolIdMiddleware from './middlewares/schoolId.js'
 import { setupSwagger } from './swagger.js'
 
 const app = express()
@@ -21,6 +22,9 @@ app.use(
   }),
 )
 app.use(express.json({ limit: '1mb' }))
+
+// ── School ID extraction ────────────────────────────────────
+app.use(schoolIdMiddleware)
 
 // Disable X-Powered-By for security
 app.disable('x-powered-by')

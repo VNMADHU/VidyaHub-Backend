@@ -32,6 +32,21 @@ const studentSchema = z.object({
     (val) => (val === '' || val === null || val === undefined ? undefined : Number(val)),
     z.number().int().optional(),
   ),
+  // Indian school specific fields
+  aadhaarNumber: z.string().refine((val) => !val || /^\d{12}$/.test(val), {
+    message: 'Aadhaar must be a 12-digit number',
+  }).optional(),
+  bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional().or(z.literal('')),
+  category: z.enum(['General', 'OBC', 'SC', 'ST', 'EWS']).optional().or(z.literal('')),
+  religion: z.string().optional(),
+  nationality: z.string().optional(),
+  address: z.string().optional(),
+  permanentAddress: z.string().optional(),
+  transportMode: z.string().optional(),
+  busRoute: z.string().optional(),
+  previousSchool: z.string().optional(),
+  tcNumber: z.string().optional(),
+  // Parent/Guardian details
   fatherName: z.string().optional(),
   motherName: z.string().optional(),
   guardianName: z.string().optional(),
@@ -43,7 +58,7 @@ const studentSchema = z.object({
 
 export const listStudents = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all students', {
       filename: 'studentController.js',
       line: 20,
@@ -57,7 +72,7 @@ export const listStudents = async (req, res, next) => {
     logError(`List students error: ${error.message}`, {
       filename: 'studentController.js',
       line: 30,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -66,7 +81,7 @@ export const listStudents = async (req, res, next) => {
 export const getStudent = async (req, res, next) => {
   try {
     const { studentId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo(`Getting student: ${studentId}`, {
       filename: 'studentController.js',
       line: 52,
@@ -90,7 +105,7 @@ export const getStudent = async (req, res, next) => {
     logError(`Get student error: ${error.message}`, {
       filename: 'studentController.js',
       line: 68,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -98,9 +113,7 @@ export const getStudent = async (req, res, next) => {
 
 export const createStudent = async (req, res, next) => {
   try {
-    console.log('📥 CREATE STUDENT REQUEST BODY:', req.body)
-    const schoolId = req.body?.schoolId || '1'
-    console.log('🏫 Using schoolId:', schoolId)
+    const schoolId = req.schoolId
     const payload = studentSchema.parse(req.body)
     
     const student = await prisma.student.create({
@@ -123,7 +136,7 @@ export const createStudent = async (req, res, next) => {
     logError(`Create student error: ${error.message}`, {
       filename: 'studentController.js',
       line: 58,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -132,7 +145,7 @@ export const createStudent = async (req, res, next) => {
 export const updateStudent = async (req, res, next) => {
   try {
     const { studentId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = studentSchema.partial().parse(req.body)
     
     const student = await prisma.student.update({
@@ -155,7 +168,7 @@ export const updateStudent = async (req, res, next) => {
     logError(`Update student error: ${error.message}`, {
       filename: 'studentController.js',
       line: 82,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -164,7 +177,7 @@ export const updateStudent = async (req, res, next) => {
 export const deleteStudent = async (req, res, next) => {
   try {
     const { studentId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const id = parseInt(studentId)
     
     // Delete related records first to avoid foreign key constraint errors
@@ -197,7 +210,7 @@ export const deleteStudent = async (req, res, next) => {
     logError(`Delete student error: ${error.message}`, {
       filename: 'studentController.js',
       line: 105,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

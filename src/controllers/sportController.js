@@ -12,7 +12,7 @@ const sportSchema = z.object({
 
 export const listSports = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     logInfo('Listing all sports', {
       filename: 'sportController.js',
       line: 17,
@@ -26,7 +26,7 @@ export const listSports = async (req, res, next) => {
     logError(`List sports error: ${error.message}`, {
       filename: 'sportController.js',
       line: 28,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -34,7 +34,7 @@ export const listSports = async (req, res, next) => {
 
 export const createSport = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = sportSchema.parse(req.body)
     
     const sport = await prisma.sport.create({
@@ -57,7 +57,7 @@ export const createSport = async (req, res, next) => {
     logError(`Create sport error: ${error.message}`, {
       filename: 'sportController.js',
       line: 57,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -66,7 +66,7 @@ export const createSport = async (req, res, next) => {
 export const updateSport = async (req, res, next) => {
   try {
     const { sportId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = sportSchema.partial().parse(req.body)
     
     const sport = await prisma.sport.update({
@@ -84,7 +84,7 @@ export const updateSport = async (req, res, next) => {
     logError(`Update sport error: ${error.message}`, {
       filename: 'sportController.js',
       line: 81,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -93,7 +93,7 @@ export const updateSport = async (req, res, next) => {
 export const deleteSport = async (req, res, next) => {
   try {
     const { sportId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     
     await prisma.sport.delete({
       where: { id: parseInt(sportId) },
@@ -109,7 +109,7 @@ export const deleteSport = async (req, res, next) => {
     logError(`Delete sport error: ${error.message}`, {
       filename: 'sportController.js',
       line: 104,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }

@@ -5472,3 +5472,1050 @@
 {"timestamp":"2026-02-19 10:06:18","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
 {"timestamp":"2026-02-19 10:06:18","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
 {"timestamp":"2026-02-19 10:06:18","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:01:21","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:19:25","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:19:32","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:19:37","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:20:20","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:20:28","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:22:41","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:22:55","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:36:30","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:36:31","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:36:35","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:36:38","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:36:40","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:36:46","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:37:29","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 11:37:29","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 11:37:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (121ms)"}
+{"timestamp":"2026-02-19 11:37:29","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 11:37:29","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 11:37:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (32ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (28ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (14ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (14ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:36","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (16ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (20ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (48ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:37:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:37:41","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 11:37:41","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 11:37:41","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 11:37:41","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 11:37:41","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 11:37:41","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (22ms)"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:37:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 11:38:21","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 11:38:21","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 11:38:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (16ms)"}
+{"timestamp":"2026-02-19 11:38:21","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 11:38:21","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 11:38:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (16ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:24","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (43ms)"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:38:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (19ms)"}
+{"timestamp":"2026-02-19 11:38:29","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/api/marks","line":328,"schoolId":"1","message":"[REQUEST] GET /api/marks"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"marksController.js","line":17,"schoolId":"1","message":"Listing all marks"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (23ms)"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (22ms)"}
+{"timestamp":"2026-02-19 11:38:30","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (40ms)"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (102ms)"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/api/marks","line":328,"schoolId":"1","message":"[REQUEST] GET /api/marks"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"marksController.js","line":17,"schoolId":"1","message":"Listing all marks"}
+{"timestamp":"2026-02-19 11:38:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (61ms)"}
+{"timestamp":"2026-02-19 11:38:34","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:38:35","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:38:40","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:38:45","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (16ms)"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (23ms)"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (83ms)"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 11:38:53","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 11:38:54","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (46ms)"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/api/fees","line":328,"schoolId":"1","message":"[REQUEST] GET /api/fees"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"feeController.js","line":30,"schoolId":"1","message":"Listing fees"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (26ms)"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/api/fees","line":328,"schoolId":"1","message":"[REQUEST] GET /api/fees"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"feeController.js","line":30,"schoolId":"1","message":"Listing fees"}
+{"timestamp":"2026-02-19 11:38:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-19 11:39:01","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 11:39:01","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 11:39:01","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 11:39:01","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 11:39:01","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 11:39:01","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 11:39:03","level":"INFO","filename":"/api/announcements","line":328,"schoolId":"1","message":"[REQUEST] GET /api/announcements"}
+{"timestamp":"2026-02-19 11:39:03","level":"INFO","filename":"announcementController.js","line":16,"schoolId":"1","message":"Listing all announcements"}
+{"timestamp":"2026-02-19 11:39:03","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 11:39:03","level":"INFO","filename":"/api/announcements","line":328,"schoolId":"1","message":"[REQUEST] GET /api/announcements"}
+{"timestamp":"2026-02-19 11:39:03","level":"INFO","filename":"announcementController.js","line":16,"schoolId":"1","message":"Listing all announcements"}
+{"timestamp":"2026-02-19 11:39:03","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (29ms)"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:39:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (19ms)"}
+{"timestamp":"2026-02-19 11:43:54","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:44:09","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 11:56:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 11:56:29","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 11:56:29","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 11:56:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 11:56:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (66ms)"}
+{"timestamp":"2026-02-19 11:56:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (65ms)"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (63ms)"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (70ms)"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:11:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (19ms)"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:11:33","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (24ms)"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (196ms)"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (197ms)"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:31:11","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (18ms)"}
+{"timestamp":"2026-02-19 12:32:47","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:32:47","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:33:34","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:33:37","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:33:51","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:33:52","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:34:00","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:34:08","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:34:26","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (114ms)"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (114ms)"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:52:06","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (17ms)"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (65ms)"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (63ms)"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (42ms)"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (26ms)"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (16ms)"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 12:52:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (47ms)"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (52ms)"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (26ms)"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:52:38","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (33ms)"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (189ms)"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (250ms)"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 12:53:25","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (48ms)"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:53:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (17ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/marks","line":328,"schoolId":"1","message":"[REQUEST] GET /api/marks"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"marksController.js","line":17,"schoolId":"1","message":"Listing all marks"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (26ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (23ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (75ms)"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/api/marks","line":328,"schoolId":"1","message":"[REQUEST] GET /api/marks"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"marksController.js","line":17,"schoolId":"1","message":"Listing all marks"}
+{"timestamp":"2026-02-19 12:53:28","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (50ms)"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (14ms)"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (52ms)"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 12:53:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (43ms)"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/api/fees","line":328,"schoolId":"1","message":"[REQUEST] GET /api/fees"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"feeController.js","line":30,"schoolId":"1","message":"Listing fees"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (20ms)"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (31ms)"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/api/fees","line":328,"schoolId":"1","message":"[REQUEST] GET /api/fees"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"feeController.js","line":30,"schoolId":"1","message":"Listing fees"}
+{"timestamp":"2026-02-19 12:53:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (10ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] GET /api/timetables"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Listing timetables"}
+{"timestamp":"2026-02-19 12:53:31","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 12:53:53","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] POST /api/timetables"}
+{"timestamp":"2026-02-19 12:53:53","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Timetable created: Monday P1"}
+{"timestamp":"2026-02-19 12:53:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] POST / - 201 (21ms)"}
+{"timestamp":"2026-02-19 12:53:53","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] GET /api/timetables"}
+{"timestamp":"2026-02-19 12:53:53","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Listing timetables"}
+{"timestamp":"2026-02-19 12:53:53","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 13:00:22","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 13:00:36","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:00:36","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 13:00:36","level":"INFO","filename":"/api/homework","line":328,"schoolId":"1","message":"[REQUEST] GET /api/homework"}
+{"timestamp":"2026-02-19 13:00:36","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (258ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (280ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"homeworkController.js","line":0,"schoolId":"1","message":"Listing homework"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (261ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (260ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/api/homework","line":328,"schoolId":"1","message":"[REQUEST] GET /api/homework"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"homeworkController.js","line":0,"schoolId":"1","message":"Listing homework"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 13:00:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 13:00:58","level":"INFO","filename":"index.js","line":63,"schoolId":"system","message":"SIGINT received — shutting down gracefully"}
+{"timestamp":"2026-02-19 13:04:41","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 13:05:23","level":"INFO","filename":"index.js","line":63,"schoolId":"system","message":"SIGINT received — shutting down gracefully"}
+{"timestamp":"2026-02-19 13:05:45","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 13:20:48","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 13:20:48","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:20:48","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 13:20:49","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 13:20:49","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:20:49","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (525ms)"}
+{"timestamp":"2026-02-19 13:20:49","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 13:59:21","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/auth/login","line":328,"schoolId":"1","message":"[REQUEST] POST /api/auth/login"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"authController.js","line":28,"schoolId":"system","message":"Login attempt for email: venkata7@gmail.com"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"authController.js","line":58,"schoolId":2,"message":"Login successful for email: venkata7@gmail.com"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/login","line":328,"schoolId":"1","message":"[RESPONSE] POST /login - 200 (299ms)"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (24ms)"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (10ms)"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 13:59:32","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (102ms)"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (106ms)"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 13:59:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-19 13:59:37","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:59:37","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:59:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 13:59:37","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 13:59:37","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 13:59:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 13:59:51","level":"INFO","filename":"/api/attendance-report","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance-report"}
+{"timestamp":"2026-02-19 13:59:51","level":"INFO","filename":"attendanceReportRoutes.js","line":0,"schoolId":"1","message":"Attendance report: class=1, month=2/2026"}
+{"timestamp":"2026-02-19 13:59:51","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (19ms)"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (83ms)"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (92ms)"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:00:12","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (48ms)"}
+{"timestamp":"2026-02-19 14:00:13","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:00:13","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:00:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:00:13","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:00:13","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:00:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/homework","line":328,"schoolId":"1","message":"[REQUEST] GET /api/homework"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (14ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"homeworkController.js","line":0,"schoolId":"1","message":"Listing homework"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/homework","line":328,"schoolId":"1","message":"[REQUEST] GET /api/homework"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"homeworkController.js","line":0,"schoolId":"1","message":"Listing homework"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:00:19","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (42ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] GET /api/timetables"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Listing timetables"}
+{"timestamp":"2026-02-19 14:01:13","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (24ms)"}
+{"timestamp":"2026-02-19 14:01:26","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] GET /api/timetables"}
+{"timestamp":"2026-02-19 14:01:26","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Listing timetables"}
+{"timestamp":"2026-02-19 14:01:26","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:02:10","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] GET /api/timetables"}
+{"timestamp":"2026-02-19 14:02:10","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Listing timetables"}
+{"timestamp":"2026-02-19 14:02:10","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:03:02","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:02","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:02","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-19 14:03:02","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:02","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:02","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 14:03:07","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:07","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:07","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (10ms)"}
+{"timestamp":"2026-02-19 14:03:10","level":"INFO","filename":"/api/report-card/1","line":328,"schoolId":"1","message":"[REQUEST] GET /api/report-card/1"}
+{"timestamp":"2026-02-19 14:03:10","level":"INFO","filename":"reportCardRoutes.js","line":0,"schoolId":"1","message":"Report card requested for student 1"}
+{"timestamp":"2026-02-19 14:03:10","level":"INFO","filename":"/1","line":328,"schoolId":"1","message":"[RESPONSE] GET /1 - 200 (26ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (10ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (57ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/attendance","line":328,"schoolId":"1","message":"[REQUEST] GET /api/attendance"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"attendanceController.js","line":17,"schoolId":"1","message":"Listing all attendance records"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (54ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:23","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/api/fees","line":328,"schoolId":"1","message":"[REQUEST] GET /api/fees"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"feeController.js","line":30,"schoolId":"1","message":"Listing fees"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (20ms)"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/api/fees","line":328,"schoolId":"1","message":"[REQUEST] GET /api/fees"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"feeController.js","line":30,"schoolId":"1","message":"Listing fees"}
+{"timestamp":"2026-02-19 14:03:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (18ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/marks","line":328,"schoolId":"1","message":"[REQUEST] GET /api/marks"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"marksController.js","line":17,"schoolId":"1","message":"Listing all marks"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (25ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (19ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (17ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (27ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (22ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (77ms)"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/api/marks","line":328,"schoolId":"1","message":"[REQUEST] GET /api/marks"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"marksController.js","line":17,"schoolId":"1","message":"Listing all marks"}
+{"timestamp":"2026-02-19 14:03:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (49ms)"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (29ms)"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/api/exams","line":328,"schoolId":"1","message":"[REQUEST] GET /api/exams"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"examController.js","line":14,"schoolId":"system","message":"Listing all exams"}
+{"timestamp":"2026-02-19 14:03:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (19ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/homework","line":328,"schoolId":"1","message":"[REQUEST] GET /api/homework"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"homeworkController.js","line":0,"schoolId":"1","message":"Listing homework"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/homework","line":328,"schoolId":"1","message":"[REQUEST] GET /api/homework"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"homeworkController.js","line":0,"schoolId":"1","message":"Listing homework"}
+{"timestamp":"2026-02-19 14:03:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 14:03:56","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 14:03:56","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 14:03:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (15ms)"}
+{"timestamp":"2026-02-19 14:03:56","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-19 14:03:56","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-19 14:03:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/api/schools","line":328,"schoolId":"1","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing all schools"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/api/schools","line":328,"schoolId":"1","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing all schools"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:04:00","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:04:03","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-19 14:04:03","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-19 14:04:03","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/subjects","line":328,"schoolId":"1","message":"[REQUEST] GET /api/subjects"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"subjectController.js","line":0,"schoolId":"system","message":"Listing subjects"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/api/timetables","line":328,"schoolId":"1","message":"[REQUEST] GET /api/timetables"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"timetableController.js","line":0,"schoolId":"system","message":"Listing timetables"}
+{"timestamp":"2026-02-19 14:04:27","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}

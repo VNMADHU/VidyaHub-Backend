@@ -21,7 +21,7 @@ const feeSchema = z.object({
 // List all fees (optionally filter by studentId)
 export const listFees = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const { studentId } = req.query
 
     const where = { schoolId: parseInt(schoolId) }
@@ -50,7 +50,7 @@ export const listFees = async (req, res, next) => {
     logError(`List fees error: ${error.message}`, {
       filename: 'feeController.js',
       line: 45,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -87,7 +87,7 @@ export const getFee = async (req, res, next) => {
 // Create a fee record
 export const createFee = async (req, res, next) => {
   try {
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = feeSchema.parse(req.body)
 
     const fee = await prisma.fee.create({
@@ -110,7 +110,7 @@ export const createFee = async (req, res, next) => {
     logError(`Create fee error: ${error.message}`, {
       filename: 'feeController.js',
       line: 100,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -120,7 +120,7 @@ export const createFee = async (req, res, next) => {
 export const updateFee = async (req, res, next) => {
   try {
     const { feeId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
     const payload = feeSchema.partial().parse(req.body)
 
     const updateData = { ...payload }
@@ -142,7 +142,7 @@ export const updateFee = async (req, res, next) => {
     logError(`Update fee error: ${error.message}`, {
       filename: 'feeController.js',
       line: 130,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
@@ -192,7 +192,7 @@ export const payFee = async (req, res, next) => {
 export const deleteFee = async (req, res, next) => {
   try {
     const { feeId } = req.params
-    const schoolId = req.body?.schoolId || '1'
+    const schoolId = req.schoolId
 
     await prisma.fee.delete({
       where: { id: parseInt(feeId) },
@@ -208,7 +208,7 @@ export const deleteFee = async (req, res, next) => {
     logError(`Delete fee error: ${error.message}`, {
       filename: 'feeController.js',
       line: 190,
-      schoolId: req.body?.schoolId || '1',
+      schoolId: req.schoolId,
     })
     next(error)
   }
