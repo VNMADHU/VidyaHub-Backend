@@ -5,8 +5,9 @@
  *     tags: [Portal]
  *     summary: Student portal login
  *     description: |
- *       Login by **roll number** only — no password required.
- *       Returns the full student object with class, section, and school info.
+ *       Login by **roll number** and **date of birth** — no password required.
+ *       The date of birth must match the stored record.
+ *       Returns the full student object with class, section, and school info, plus a JWT token.
  *     security: []
  *     requestBody:
  *       required: true
@@ -55,6 +56,14 @@
  *               $ref: '#/components/schemas/Error'
  *             example:
  *               message: Roll Number is required
+ *       401:
+ *         description: Date of Birth does not match
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *             example:
+ *               message: Date of Birth does not match our records
  *       404:
  *         description: No student found with this roll number
  *         content:
@@ -69,8 +78,9 @@
  *     tags: [Portal]
  *     summary: Teacher portal login
  *     description: |
- *       Login by **teacher ID** only — no password required.
- *       Returns the full teacher object with classes and school info.
+ *       Login by **teacher ID** and **date of birth** — no password required.
+ *       The date of birth must match the stored record.
+ *       Returns the full teacher object with classes and school info, plus a JWT token.
  *     security: []
  *     requestBody:
  *       required: true
@@ -119,6 +129,14 @@
  *               $ref: '#/components/schemas/Error'
  *             example:
  *               message: Teacher ID is required
+ *       401:
+ *         description: Date of Birth does not match
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *             example:
+ *               message: Date of Birth does not match our records
  *       404:
  *         description: No teacher found with this ID
  *         content:

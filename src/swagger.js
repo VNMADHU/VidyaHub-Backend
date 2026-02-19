@@ -489,16 +489,18 @@ const options = {
         // ── Portal ───────────────────────────────────────────
         StudentLoginRequest: {
           type: 'object',
-          required: ['rollNumber'],
+          required: ['rollNumber', 'dateOfBirth'],
           properties: {
             rollNumber: { type: 'string', example: 'R001' },
+            dateOfBirth: { type: 'string', format: 'date', example: '2010-05-15' },
           },
         },
         TeacherLoginRequest: {
           type: 'object',
-          required: ['teacherId'],
+          required: ['teacherId', 'dateOfBirth'],
           properties: {
             teacherId: { type: 'string', example: 'TCH-001' },
+            dateOfBirth: { type: 'string', format: 'date', example: '1985-03-20' },
           },
         },
 

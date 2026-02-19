@@ -94,6 +94,7 @@ model Teacher {
   firstName     String
   lastName      String
   email         String  @unique
+  dateOfBirth   DateTime?
   phoneNumber   String?
   subject       String?
   qualification String?

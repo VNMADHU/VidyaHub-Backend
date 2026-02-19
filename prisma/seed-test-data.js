@@ -117,6 +117,7 @@ async function main() {
         firstName: t.firstName,
         lastName: t.lastName,
         email: `${t.firstName.toLowerCase()}.${t.lastName.toLowerCase()}@vidyahub.edu`,
+        dateOfBirth: randomDate(new Date('1975-01-01'), new Date('1995-12-31')),
         phoneNumber: `98${randomInt(10000000, 99999999)}`,
         subject: t.subject,
         qualification: t.qualification,

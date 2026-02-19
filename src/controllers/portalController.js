@@ -2,13 +2,16 @@ import prisma from '../utils/prisma.js'
 import { signToken } from '../utils/jwt.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
-// Student login by Roll Number — issues a JWT token
+// Student login by Roll Number + Date of Birth — issues a JWT token
 export const studentLogin = async (req, res, next) => {
   try {
-    const { rollNumber } = req.body
+    const { rollNumber, dateOfBirth } = req.body
 
     if (!rollNumber || !rollNumber.trim()) {
       return res.status(400).json({ message: 'Roll Number is required' })
+    }
+    if (!dateOfBirth) {
+      return res.status(400).json({ message: 'Date of Birth is required' })
     }
 
     const student = await prisma.student.findFirst({
@@ -22,6 +25,16 @@ export const studentLogin = async (req, res, next) => {
 
     if (!student) {
       return res.status(404).json({ message: 'No student found with this Roll Number' })
+    }
+
+    // Verify Date of Birth matches
+    const inputDob = new Date(dateOfBirth).toISOString().slice(0, 10)
+    const storedDob = student.dateOfBirth
+      ? new Date(student.dateOfBirth).toISOString().slice(0, 10)
+      : null
+
+    if (!storedDob || inputDob !== storedDob) {
+      return res.status(401).json({ message: 'Date of Birth does not match our records' })
     }
 
     // Issue a JWT so the student portal is authenticated
@@ -54,13 +67,16 @@ export const studentLogin = async (req, res, next) => {
   }
 }
 
-// Teacher login by Teacher ID — issues a JWT token
+// Teacher login by Teacher ID + Date of Birth — issues a JWT token
 export const teacherLogin = async (req, res, next) => {
   try {
-    const { teacherId } = req.body
+    const { teacherId, dateOfBirth } = req.body
 
     if (!teacherId || !teacherId.trim()) {
       return res.status(400).json({ message: 'Teacher ID is required' })
+    }
+    if (!dateOfBirth) {
+      return res.status(400).json({ message: 'Date of Birth is required' })
     }
 
     const teacher = await prisma.teacher.findFirst({
@@ -73,6 +89,16 @@ export const teacherLogin = async (req, res, next) => {
 
     if (!teacher) {
       return res.status(404).json({ message: 'No teacher found with this Teacher ID' })
+    }
+
+    // Verify Date of Birth matches
+    const inputDob = new Date(dateOfBirth).toISOString().slice(0, 10)
+    const storedDob = teacher.dateOfBirth
+      ? new Date(teacher.dateOfBirth).toISOString().slice(0, 10)
+      : null
+
+    if (!storedDob || inputDob !== storedDob) {
+      return res.status(401).json({ message: 'Date of Birth does not match our records' })
     }
 
     // Issue a JWT so the teacher portal is authenticated
