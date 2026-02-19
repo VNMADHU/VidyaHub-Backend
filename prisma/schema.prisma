@@ -52,6 +52,7 @@ model School {
   sports       Sport[]
   fees         Fee[]
   homework     Homework[]
+  periods      Period[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -276,16 +277,33 @@ model Fee {
   updatedAt   DateTime @updatedAt
 }
 
+model Period {
+  id         Int     @id @default(autoincrement())
+  schoolId   Int
+  school     School  @relation(fields: [schoolId], references: [id])
+  name       String  // e.g. "Period 1", "Lunch", "Zero Period"
+  startTime  String  // e.g. "08:00"
+  endTime    String  // e.g. "08:45"
+  sortOrder  Int     @default(0)
+  isBreak    Boolean @default(false) // Lunch, recess, etc.
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([schoolId, name])
+  @@unique([schoolId, sortOrder])
+}
+
 model Timetable {
-  id        Int     @id @default(autoincrement())
-  classId   Int
-  class     Class   @relation(fields: [classId], references: [id])
-  day       String  // Monday, Tuesday, etc
-  period    Int
-  subject   String
-  teacher   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  classId       Int
+  class         Class    @relation(fields: [classId], references: [id])
+  day           String   // Monday, Tuesday, etc
+  periodId      Int      @default(0) // References Period
+  subject       String
+  teacher       String
+  effectiveFrom DateTime @default(now()) // Date from which this timetable is effective
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Homework {

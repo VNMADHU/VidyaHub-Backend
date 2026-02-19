@@ -7,24 +7,44 @@ const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 const timetableSchema = z.object({
   classId: z.number({ coerce: true }).int().positive(),
   day: z.enum(DAYS),
-  period: z.number({ coerce: true }).int().min(1).max(10),
+  periodId: z.number({ coerce: true }).int().positive(),
   subject: z.string().min(1),
   teacher: z.string().min(1),
+  effectiveFrom: z.string().optional(),
 })
 
 export const listTimetables = async (req, res, next) => {
   try {
-    const { classId } = req.query
+    const { classId, date } = req.query
     const where = {}
     if (classId) where.classId = parseInt(classId)
+
+    // If a date is provided, show entries effective on/before that date
+    if (date) {
+      where.effectiveFrom = { lte: new Date(date) }
+    }
 
     const timetables = await prisma.timetable.findMany({
       where,
       include: { class: true },
-      orderBy: [{ day: 'asc' }, { period: 'asc' }],
+      orderBy: [{ day: 'asc' }, { periodId: 'asc' }],
     })
-    logInfo('Listing timetables', { filename: 'timetableController.js', classId })
-    res.json({ data: timetables, message: 'List of timetable entries' })
+
+    // If date is provided, keep only the latest effective entry per class+day+period
+    let result = timetables
+    if (date) {
+      const latest = {}
+      for (const t of timetables) {
+        const key = `${t.classId}-${t.day}-${t.periodId}`
+        if (!latest[key] || new Date(t.effectiveFrom) > new Date(latest[key].effectiveFrom)) {
+          latest[key] = t
+        }
+      }
+      result = Object.values(latest)
+    }
+
+    logInfo('Listing timetables', { filename: 'timetableController.js', classId, date })
+    res.json({ data: result, message: 'List of timetable entries' })
   } catch (error) {
     logError(`List timetables error: ${error.message}`, { filename: 'timetableController.js' })
     next(error)
@@ -34,23 +54,34 @@ export const listTimetables = async (req, res, next) => {
 export const createTimetable = async (req, res, next) => {
   try {
     const payload = timetableSchema.parse(req.body)
+    const effectiveFrom = payload.effectiveFrom ? new Date(payload.effectiveFrom) : new Date()
 
-    // Check for conflicts: same class, same day, same period
+    // Check for conflicts: same class, same day, same period, same effectiveFrom date
     const existing = await prisma.timetable.findFirst({
       where: {
         classId: payload.classId,
         day: payload.day,
-        period: payload.period,
+        periodId: payload.periodId,
+        effectiveFrom,
       },
     })
     if (existing) {
       return res.status(409).json({
-        message: `Period ${payload.period} on ${payload.day} is already assigned to ${existing.subject}`,
+        message: `This period on ${payload.day} already has an entry for the selected effective date`,
       })
     }
 
-    const entry = await prisma.timetable.create({ data: payload })
-    logInfo(`Timetable created: ${payload.day} P${payload.period}`, { filename: 'timetableController.js' })
+    const entry = await prisma.timetable.create({
+      data: {
+        classId: payload.classId,
+        day: payload.day,
+        periodId: payload.periodId,
+        subject: payload.subject,
+        teacher: payload.teacher,
+        effectiveFrom,
+      },
+    })
+    logInfo(`Timetable created: ${payload.day} periodId=${payload.periodId}`, { filename: 'timetableController.js' })
     res.status(201).json({ message: 'Timetable entry created', data: entry })
   } catch (error) {
     logError(`Create timetable error: ${error.message}`, { filename: 'timetableController.js' })
@@ -61,28 +92,33 @@ export const createTimetable = async (req, res, next) => {
 export const updateTimetable = async (req, res, next) => {
   try {
     const { id } = req.params
-    const payload = timetableSchema.partial().parse(req.body)
+    const raw = timetableSchema.partial().parse(req.body)
+    const payload = { ...raw }
+    if (payload.effectiveFrom) {
+      payload.effectiveFrom = new Date(payload.effectiveFrom)
+    }
 
-    // If day/period/classId changed, check conflicts
-    if (payload.day || payload.period || payload.classId) {
+    if (payload.day || payload.periodId || payload.classId) {
       const current = await prisma.timetable.findUnique({ where: { id: parseInt(id) } })
       if (!current) return res.status(404).json({ message: 'Timetable entry not found' })
 
       const checkDay = payload.day || current.day
-      const checkPeriod = payload.period || current.period
+      const checkPeriod = payload.periodId || current.periodId
       const checkClass = payload.classId || current.classId
+      const checkDate = payload.effectiveFrom || current.effectiveFrom
 
       const conflict = await prisma.timetable.findFirst({
         where: {
           classId: checkClass,
           day: checkDay,
-          period: checkPeriod,
+          periodId: checkPeriod,
+          effectiveFrom: checkDate,
           NOT: { id: parseInt(id) },
         },
       })
       if (conflict) {
         return res.status(409).json({
-          message: `Period ${checkPeriod} on ${checkDay} is already assigned to ${conflict.subject}`,
+          message: `This period on ${checkDay} already has an entry for the selected effective date`,
         })
       }
     }
