@@ -20,7 +20,7 @@ const studentSchema = z.object({
       message: 'Date of birth cannot be a future date',
     })
     .optional(),
-  gender: z.enum(['male', 'female', 'other']).optional(),
+  gender: z.preprocess((val) => (typeof val === 'string' ? val.toLowerCase() : val), z.enum(['male', 'female', 'other']).optional()),
   admissionNumber: z.string().min(1),
   rollNumber: z.string().optional(),
   profilePic: z.string().optional(),

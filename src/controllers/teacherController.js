@@ -30,7 +30,7 @@ const teacherSchema = z.object({
   panNumber: z.string().refine((val) => !val || /^[A-Z]{5}\d{4}[A-Z]$/.test(val), {
     message: 'PAN must be in format: ABCDE1234F',
   }).optional(),
-  gender: z.enum(['male', 'female', 'other']).optional(),
+  gender: z.preprocess((val) => (typeof val === 'string' ? val.toLowerCase() : val), z.enum(['male', 'female', 'other']).optional()),
   bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional(),
 })
 

@@ -10554,3 +10554,341 @@
 {"timestamp":"2026-02-20 00:10:03","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
 {"timestamp":"2026-02-20 00:10:03","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
 {"timestamp":"2026-02-20 00:10:03","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-02-20 00:13:44","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:15:00","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:15:16","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:16:02","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:16:02","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:16:32","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:16:33","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:18:09","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:18:09","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:18:19","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:18:27","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:39:14","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (43ms)"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/api/teachers","line":328,"schoolId":"1","message":"[REQUEST] GET /api/teachers"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"teacherController.js","line":20,"schoolId":"1","message":"Listing all teachers"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/api/events","line":328,"schoolId":"1","message":"[REQUEST] GET /api/events"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"eventController.js","line":18,"schoolId":"1","message":"Listing all events"}
+{"timestamp":"2026-02-20 00:40:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (59ms)"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (70ms)"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (10ms)"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (70ms)"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:40:09","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (5ms)"}
+{"timestamp":"2026-02-20 00:40:29","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:40:29","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:40:29","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (16ms)"}
+{"timestamp":"2026-02-20 00:40:43","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:40:43","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (5ms)"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:40:54","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 00:40:56","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-20 00:40:56","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-20 00:40:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-20 00:41:20","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[REQUEST] PATCH /api/students/1"}
+{"timestamp":"2026-02-20 00:41:20","level":"ERROR","filename":"studentController.js","line":82,"schoolId":"1","message":"Update student error: [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]"}
+{"timestamp":"2026-02-20 00:41:20","level":"ERROR","filename":"errorHandler.js","line":0,"schoolId":2,"message":"[PATCH] /api/students/1 → [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]","stack":"ZodError: [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]\n    at get error (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/node_modules/zod/v3/types.js:39:31)\n    at ZodObject.parse (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/node_modules/zod/v3/types.js:114:22)\n    at updateStudent (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/src/controllers/studentController.js:149:45)\n    at Layer.handle [as handle_request] (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:284:15\n    at param (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:365:14)\n    at param (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:376:14)"}
+{"timestamp":"2026-02-20 00:41:20","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[RESPONSE] PATCH /api/students/1 - 400 (5ms)"}
+{"timestamp":"2026-02-20 00:41:24","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[REQUEST] PATCH /api/students/1"}
+{"timestamp":"2026-02-20 00:41:24","level":"ERROR","filename":"studentController.js","line":82,"schoolId":"1","message":"Update student error: [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]"}
+{"timestamp":"2026-02-20 00:41:24","level":"ERROR","filename":"errorHandler.js","line":0,"schoolId":2,"message":"[PATCH] /api/students/1 → [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]","stack":"ZodError: [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]\n    at get error (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/node_modules/zod/v3/types.js:39:31)\n    at ZodObject.parse (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/node_modules/zod/v3/types.js:114:22)\n    at updateStudent (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/src/controllers/studentController.js:149:45)\n    at Layer.handle [as handle_request] (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:284:15\n    at param (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:365:14)\n    at param (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:376:14)"}
+{"timestamp":"2026-02-20 00:41:24","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[RESPONSE] PATCH /api/students/1 - 400 (4ms)"}
+{"timestamp":"2026-02-20 00:41:38","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[REQUEST] PATCH /api/students/1"}
+{"timestamp":"2026-02-20 00:41:38","level":"ERROR","filename":"studentController.js","line":82,"schoolId":"1","message":"Update student error: [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]"}
+{"timestamp":"2026-02-20 00:41:38","level":"ERROR","filename":"errorHandler.js","line":0,"schoolId":2,"message":"[PATCH] /api/students/1 → [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]","stack":"ZodError: [\n  {\n    \"received\": \"Male\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"male\",\n      \"female\",\n      \"other\"\n    ],\n    \"path\": [\n      \"gender\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'male' | 'female' | 'other', received 'Male'\"\n  }\n]\n    at get error (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/node_modules/zod/v3/types.js:39:31)\n    at ZodObject.parse (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/node_modules/zod/v3/types.js:114:22)\n    at updateStudent (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/src/controllers/studentController.js:149:45)\n    at Layer.handle [as handle_request] (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:284:15\n    at param (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:365:14)\n    at param (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/express/lib/router/index.js:376:14)"}
+{"timestamp":"2026-02-20 00:41:38","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[RESPONSE] PATCH /api/students/1 - 400 (6ms)"}
+{"timestamp":"2026-02-20 00:43:16","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:44:01","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[REQUEST] PATCH /api/students/1"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"studentController.js","line":76,"schoolId":"1","message":"Student updated: 1"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"/1","line":328,"schoolId":"1","message":"[RESPONSE] PATCH /1 - 200 (53ms)"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:44:09","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (14ms)"}
+{"timestamp":"2026-02-20 00:45:21","level":"INFO","filename":"/api/sections","line":328,"schoolId":"1","message":"[REQUEST] GET /api/sections"}
+{"timestamp":"2026-02-20 00:45:21","level":"INFO","filename":"sectionController.js","line":16,"schoolId":"system","message":"Listing all sections"}
+{"timestamp":"2026-02-20 00:45:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"/api/students/1","line":328,"schoolId":"1","message":"[REQUEST] PATCH /api/students/1"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"studentController.js","line":76,"schoolId":"1","message":"Student updated: 1"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"/1","line":328,"schoolId":"1","message":"[RESPONSE] PATCH /1 - 200 (13ms)"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-20 00:45:37","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (41ms)"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (49ms)"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (11ms)"}
+{"timestamp":"2026-02-20 00:45:50","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:45:59","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:45:59","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:45:59","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-20 00:46:08","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:46:08","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (6ms)"}
+{"timestamp":"2026-02-20 00:46:53","level":"INFO","filename":"/api-docs/","line":328,"schoolId":"system","message":"[REQUEST] GET /api-docs/"}
+{"timestamp":"2026-02-20 00:46:53","level":"INFO","filename":"/api-docs/swagger-ui.css","line":328,"schoolId":"system","message":"[REQUEST] GET /api-docs/swagger-ui.css"}
+{"timestamp":"2026-02-20 00:46:53","level":"INFO","filename":"/api-docs/swagger-ui-bundle.js","line":328,"schoolId":"system","message":"[REQUEST] GET /api-docs/swagger-ui-bundle.js"}
+{"timestamp":"2026-02-20 00:46:53","level":"INFO","filename":"/api-docs/swagger-ui-standalone-preset.js","line":328,"schoolId":"system","message":"[REQUEST] GET /api-docs/swagger-ui-standalone-preset.js"}
+{"timestamp":"2026-02-20 00:46:53","level":"INFO","filename":"/api-docs/swagger-ui-init.js","line":328,"schoolId":"system","message":"[REQUEST] GET /api-docs/swagger-ui-init.js"}
+{"timestamp":"2026-02-20 00:46:53","level":"INFO","filename":"/api-docs/favicon-32x32.png","line":328,"schoolId":"system","message":"[REQUEST] GET /api-docs/favicon-32x32.png"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 00:47:15","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (31ms)"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (10ms)"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (23ms)"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (8ms)"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:47:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-20 00:47:24","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:47:24","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:47:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-02-20 00:47:28","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:47:28","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (4ms)"}
+{"timestamp":"2026-02-20 00:48:12","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"system","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:48:12","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"system","message":"[RESPONSE] GET /recipients-count - 401 (1ms)"}
+{"timestamp":"2026-02-20 00:48:12","level":"INFO","filename":"/favicon.ico","line":328,"schoolId":"system","message":"[REQUEST] GET /favicon.ico"}
+{"timestamp":"2026-02-20 00:48:12","level":"INFO","filename":"/favicon.ico","line":328,"schoolId":"system","message":"[RESPONSE] GET /favicon.ico - 404 (1ms)"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (227ms)"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (215ms)"}
+{"timestamp":"2026-02-20 00:52:22","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (230ms)"}
+{"timestamp":"2026-02-20 00:52:41","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 00:52:41","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 00:52:41","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (41ms)"}
+{"timestamp":"2026-02-20 00:52:45","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 00:52:45","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (19ms)"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"/api/notifications/send","line":328,"schoolId":"1","message":"[REQUEST] POST /api/notifications/send"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email transporter in DEV mode (no SMTP configured — emails will be logged only)"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"[DEV EMAIL] To: venkatan847@gmail.com | Subject: Test"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email sent: dev-1771528985170 → venkatan847@gmail.com"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"notificationController.js","line":0,"schoolId":1,"message":"Notification #1 sent: 1 ok, 0 failed"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"/send","line":328,"schoolId":"1","message":"[RESPONSE] POST /send - 200 (31ms)"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 00:53:05","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-20 00:56:55","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:59:10","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 00:59:45","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 01:00:08","level":"INFO","filename":"/api/auth/login","line":328,"schoolId":"system","message":"[REQUEST] POST /api/auth/login"}
+{"timestamp":"2026-02-20 01:00:08","level":"INFO","filename":"authController.js","line":28,"schoolId":"system","message":"Login attempt for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-20 01:00:08","level":"INFO","filename":"authController.js","line":58,"schoolId":1,"message":"Login successful for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-20 01:00:08","level":"INFO","filename":"/login","line":328,"schoolId":"system","message":"[RESPONSE] POST /login - 200 (259ms)"}
+{"timestamp":"2026-02-20 01:00:21","level":"INFO","filename":"/api/auth/login","line":328,"schoolId":"system","message":"[REQUEST] POST /api/auth/login"}
+{"timestamp":"2026-02-20 01:00:21","level":"INFO","filename":"authController.js","line":28,"schoolId":"system","message":"Login attempt for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-20 01:00:21","level":"INFO","filename":"authController.js","line":58,"schoolId":1,"message":"Login successful for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-20 01:00:21","level":"INFO","filename":"/login","line":328,"schoolId":"system","message":"[RESPONSE] POST /login - 200 (233ms)"}
+{"timestamp":"2026-02-20 01:00:41","level":"INFO","filename":"/api/notifications/send","line":328,"schoolId":"1","message":"[REQUEST] POST /api/notifications/send"}
+{"timestamp":"2026-02-20 01:00:41","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email transporter in DEV mode (no SMTP configured — emails will be logged only)"}
+{"timestamp":"2026-02-20 01:00:41","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"[DEV EMAIL] To: venkatan847@gmail.com | Subject: Test Email from Vidya Hub"}
+{"timestamp":"2026-02-20 01:00:41","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email sent: dev-1771529441726 → venkatan847@gmail.com"}
+{"timestamp":"2026-02-20 01:00:41","level":"INFO","filename":"notificationController.js","line":0,"schoolId":1,"message":"Notification #2 sent: 1 ok, 0 failed"}
+{"timestamp":"2026-02-20 01:00:41","level":"INFO","filename":"/send","line":328,"schoolId":"1","message":"[RESPONSE] POST /send - 200 (29ms)"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (40ms)"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (37ms)"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (63ms)"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (11ms)"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (6ms)"}
+{"timestamp":"2026-02-20 01:09:30","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 01:09:35","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 01:09:35","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 01:09:35","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (67ms)"}
+{"timestamp":"2026-02-20 01:09:43","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:09:43","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (6ms)"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"/api/notifications/send","line":328,"schoolId":"1","message":"[REQUEST] POST /api/notifications/send"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"[DEV EMAIL] To: venkatan847@gmail.com | Subject: Test"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email sent: dev-1771529994750 → venkatan847@gmail.com"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"notificationController.js","line":0,"schoolId":1,"message":"Notification #3 sent: 1 ok, 0 failed"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"/send","line":328,"schoolId":"1","message":"[RESPONSE] POST /send - 200 (36ms)"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:09:54","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-02-20 01:10:28","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (29ms)"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (23ms)"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (29ms)"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (15ms)"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (13ms)"}
+{"timestamp":"2026-02-20 01:10:39","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (7ms)"}
+{"timestamp":"2026-02-20 01:10:44","level":"INFO","filename":"/api/students","line":328,"schoolId":"1","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-20 01:10:44","level":"INFO","filename":"studentController.js","line":20,"schoolId":"1","message":"Listing all students"}
+{"timestamp":"2026-02-20 01:10:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (57ms)"}
+{"timestamp":"2026-02-20 01:10:49","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:10:49","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (4ms)"}
+{"timestamp":"2026-02-20 01:10:59","level":"INFO","filename":"/api/notifications/send","line":328,"schoolId":"1","message":"[REQUEST] POST /api/notifications/send"}
+{"timestamp":"2026-02-20 01:10:59","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email transporter configured (AWS SES)"}
+{"timestamp":"2026-02-20 01:11:00","level":"ERROR","filename":"emailService.js","line":0,"schoolId":"system","message":"Email send failed: Message failed: 554 Message rejected: Email address is not verified. The following identities failed the check in region AP-SOUTH-1: noreply@yourdomain.com, Vidya Hub <noreply@yourdomain.com>","stack":"Error: Message failed: 554 Message rejected: Email address is not verified. The following identities failed the check in region AP-SOUTH-1: noreply@yourdomain.com, Vidya Hub <noreply@yourdomain.com>\n    at SMTPConnection._formatError (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)\n    at SMTPConnection._actionSMTPStream (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/nodemailer/lib/smtp-connection/index.js:1864:34)\n    at SMTPConnection.<anonymous> (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/nodemailer/lib/smtp-connection/index.js:1320:22)\n    at SMTPConnection._processResponse (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)\n    at SMTPConnection._onData (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)\n    at SMTPConnection._onSocketData (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)\n    at TLSSocket.emit (node:events:518:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)"}
+{"timestamp":"2026-02-20 01:11:00","level":"INFO","filename":"notificationController.js","line":0,"schoolId":1,"message":"Notification #4 sent: 0 ok, 1 failed"}
+{"timestamp":"2026-02-20 01:11:00","level":"INFO","filename":"/send","line":328,"schoolId":"1","message":"[RESPONSE] POST /send - 200 (782ms)"}
+{"timestamp":"2026-02-20 01:11:00","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:11:00","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 01:13:16","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-02-20 01:13:42","level":"INFO","filename":"/api/auth/login","line":328,"schoolId":"system","message":"[REQUEST] POST /api/auth/login"}
+{"timestamp":"2026-02-20 01:13:42","level":"INFO","filename":"authController.js","line":28,"schoolId":"system","message":"Login attempt for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-20 01:13:42","level":"INFO","filename":"authController.js","line":58,"schoolId":1,"message":"Login successful for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-20 01:13:42","level":"INFO","filename":"/login","line":328,"schoolId":"system","message":"[RESPONSE] POST /login - 200 (346ms)"}
+{"timestamp":"2026-02-20 01:13:42","level":"INFO","filename":"/api/notifications/send","line":328,"schoolId":"1","message":"[REQUEST] POST /api/notifications/send"}
+{"timestamp":"2026-02-20 01:13:42","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email transporter configured (AWS SES)"}
+{"timestamp":"2026-02-20 01:13:43","level":"INFO","filename":"emailService.js","line":0,"schoolId":"system","message":"Email sent: <862d93ff-f0dc-ad9a-6635-b6f070713c2e@gmail.com> → venkatan847@gmail.com"}
+{"timestamp":"2026-02-20 01:13:43","level":"INFO","filename":"notificationController.js","line":0,"schoolId":1,"message":"Notification #5 sent: 1 ok, 0 failed"}
+{"timestamp":"2026-02-20 01:13:43","level":"INFO","filename":"/send","line":328,"schoolId":"1","message":"[RESPONSE] POST /send - 200 (1177ms)"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (40ms)"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (41ms)"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (38ms)"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 01:14:24","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (4ms)"}
+{"timestamp":"2026-02-20 02:22:41","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 02:22:41","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 02:22:41","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 02:22:43","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 02:22:43","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (2012ms)"}
+{"timestamp":"2026-02-20 02:22:43","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 02:22:43","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2914ms)"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2452ms)"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (579ms)"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (252ms)"}
+{"timestamp":"2026-02-20 02:22:44","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (214ms)"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (156ms)"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (154ms)"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (194ms)"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-20 11:08:56","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (5ms)"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (11ms)"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (2ms)"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (39ms)"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 11:09:21","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (158ms)"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (172ms)"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"1","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"1","message":"[RESPONSE] GET /recipients-count - 200 (3ms)"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (234ms)"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/api/classes","line":328,"schoolId":"1","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"classController.js","line":17,"schoolId":"1","message":"Listing all classes"}
+{"timestamp":"2026-02-20 11:57:58","level":"INFO","filename":"/","line":328,"schoolId":"1","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-02-21 00:32:38","level":"INFO","filename":"/api/auth/login","line":328,"schoolId":"system","message":"[REQUEST] POST /api/auth/login"}
+{"timestamp":"2026-02-21 00:32:38","level":"INFO","filename":"authController.js","line":28,"schoolId":"system","message":"Login attempt for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-21 00:32:39","level":"INFO","filename":"authController.js","line":58,"schoolId":1,"message":"Login successful for email: admin@vidyahub.edu"}
+{"timestamp":"2026-02-21 00:32:39","level":"INFO","filename":"/login","line":328,"schoolId":"system","message":"[RESPONSE] POST /login - 200 (569ms)"}
+{"timestamp":"2026-02-21 00:32:40","level":"INFO","filename":"/api/students","line":328,"schoolId":"system","message":"[REQUEST] GET /api/students"}
+{"timestamp":"2026-02-21 00:32:40","level":"INFO","filename":"studentController.js","line":20,"schoolId":"system","message":"Listing all students"}
+{"timestamp":"2026-02-21 00:32:40","level":"ERROR","filename":"studentController.js","line":30,"schoolId":"system","message":"List students error: \nInvalid `prisma.student.findMany()` invocation:\n\n{\n  where: {\n+   schoolId: {\n+     equals: Int | IntFieldRefInput,\n+     in: Int[] | ListIntFieldRefInput,\n+     notIn: Int[] | ListIntFieldRefInput,\n+     lt: Int | IntFieldRefInput,\n+     lte: Int | IntFieldRefInput,\n+     gt: Int | IntFieldRefInput,\n+     gte: Int | IntFieldRefInput,\n+     not: Int | NestedIntFilter\n+   }\n  }\n}\n\nArgument `schoolId` is missing."}
+{"timestamp":"2026-02-21 00:32:40","level":"ERROR","filename":"errorHandler.js","line":0,"schoolId":"system","message":"[GET] /api/students → \nInvalid `prisma.student.findMany()` invocation:\n\n{\n  where: {\n+   schoolId: {\n+     equals: Int | IntFieldRefInput,\n+     in: Int[] | ListIntFieldRefInput,\n+     notIn: Int[] | ListIntFieldRefInput,\n+     lt: Int | IntFieldRefInput,\n+     lte: Int | IntFieldRefInput,\n+     gt: Int | IntFieldRefInput,\n+     gte: Int | IntFieldRefInput,\n+     not: Int | NestedIntFilter\n+   }\n  }\n}\n\nArgument `schoolId` is missing.","stack":"PrismaClientValidationError: \nInvalid `prisma.student.findMany()` invocation:\n\n{\n  where: {\n+   schoolId: {\n+     equals: Int | IntFieldRefInput,\n+     in: Int[] | ListIntFieldRefInput,\n+     notIn: Int[] | ListIntFieldRefInput,\n+     lt: Int | IntFieldRefInput,\n+     lte: Int | IntFieldRefInput,\n+     gt: Int | IntFieldRefInput,\n+     gte: Int | IntFieldRefInput,\n+     not: Int | NestedIntFilter\n+   }\n  }\n}\n\nArgument `schoolId` is missing.\n    at Nn (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/@prisma/client/runtime/library.js:29:1363)\n    at ei.handleRequestError (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/@prisma/client/runtime/library.js:121:6911)\n    at ei.handleAndLogRequestError (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/@prisma/client/runtime/library.js:121:6593)\n    at ei.request (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/@prisma/client/runtime/library.js:121:6300)\n    at async a (/Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/node_modules/@prisma/client/runtime/library.js:130:9551)\n    at async listStudents (file:///Users/venkatadirisala/Desktop/Vidya%20Hub/vidya-hub-backend/src/controllers/studentController.js:67:22)"}
+{"timestamp":"2026-02-21 00:32:40","level":"INFO","filename":"/api/students","line":328,"schoolId":"system","message":"[RESPONSE] GET /api/students - 500 (34ms)"}
