@@ -171,7 +171,7 @@ export const getStudentProfile = async (req, res, next) => {
       orderBy: { dueDate: 'desc' },
     })
 
-    // Get events and announcements for the school
+    // Get events, announcements, sports, timetable, homework for the school/class
     const [events, announcements, sports] = await Promise.all([
       prisma.event.findMany({
         where: { schoolId: student.schoolId },
@@ -188,6 +188,35 @@ export const getStudentProfile = async (req, res, next) => {
       }),
     ])
 
+    // Fetch timetable for the student's class
+    let timetable = []
+    let periods = []
+    if (student.classId) {
+      [timetable, periods] = await Promise.all([
+        prisma.timetable.findMany({
+          where: { classId: student.classId },
+          orderBy: [{ day: 'asc' }, { periodId: 'asc' }],
+        }),
+        prisma.period.findMany({
+          where: { schoolId: student.schoolId },
+          orderBy: { sortOrder: 'asc' },
+        }),
+      ])
+    }
+
+    // Fetch homework for the student's class
+    let homework = []
+    if (student.classId) {
+      homework = await prisma.homework.findMany({
+        where: {
+          classId: student.classId,
+          ...(student.sectionId ? { OR: [{ sectionId: student.sectionId }, { sectionId: null }] } : {}),
+        },
+        orderBy: { dueDate: 'desc' },
+        take: 50,
+      })
+    }
+
     res.json({
       data: {
         student,
@@ -198,6 +227,9 @@ export const getStudentProfile = async (req, res, next) => {
         events,
         announcements,
         sports,
+        timetable,
+        periods,
+        homework,
       },
     })
   } catch (error) {
@@ -232,7 +264,10 @@ export const getTeacherProfile = async (req, res, next) => {
       return res.status(404).json({ message: 'Teacher not found' })
     }
 
-    // Get events and announcements for the school
+    // Get class IDs for the teacher
+    const classIds = (teacher.classes || []).map(c => c.id)
+
+    // Get events, announcements, sports
     const [events, announcements, sports] = await Promise.all([
       prisma.event.findMany({
         where: { schoolId: teacher.schoolId },
@@ -249,12 +284,64 @@ export const getTeacherProfile = async (req, res, next) => {
       }),
     ])
 
+    // Fetch timetable and periods for teacher's classes
+    let timetable = []
+    let periods = []
+    if (classIds.length > 0) {
+      [timetable, periods] = await Promise.all([
+        prisma.timetable.findMany({
+          where: { classId: { in: classIds } },
+          include: { class: { select: { id: true, name: true } } },
+          orderBy: [{ day: 'asc' }, { periodId: 'asc' }],
+        }),
+        prisma.period.findMany({
+          where: { schoolId: teacher.schoolId },
+          orderBy: { sortOrder: 'asc' },
+        }),
+      ])
+    }
+
+    // Fetch homework assigned by this teacher or for teacher's classes
+    let homework = []
+    if (classIds.length > 0) {
+      homework = await prisma.homework.findMany({
+        where: { classId: { in: classIds } },
+        include: {
+          class: { select: { id: true, name: true } },
+          section: { select: { id: true, name: true } },
+        },
+        orderBy: { dueDate: 'desc' },
+        take: 50,
+      })
+    }
+
+    // Fetch attendance for teacher's classes (last 30 days)
+    let attendance = []
+    if (classIds.length > 0) {
+      const thirtyDaysAgo = new Date()
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
+      attendance = await prisma.attendance.findMany({
+        where: {
+          student: { classId: { in: classIds } },
+          date: { gte: thirtyDaysAgo },
+        },
+        include: {
+          student: { select: { id: true, firstName: true, lastName: true, rollNumber: true, classId: true } },
+        },
+        orderBy: { date: 'desc' },
+      })
+    }
+
     res.json({
       data: {
         teacher,
         events,
         announcements,
         sports,
+        timetable,
+        periods,
+        homework,
+        attendance,
       },
     })
   } catch (error) {

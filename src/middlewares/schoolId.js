@@ -4,7 +4,7 @@
  * Falls back to req.body.schoolId (for backward compat) then defaults to '1'.
  */
 const schoolIdMiddleware = (req, res, next) => {
-  req.schoolId = req.headers['x-school-id'] || req.body?.schoolId || '1'
+  req.schoolId = req.headers['x-school-id'] || req.user?.schoolId || req.body?.schoolId || '1'
   next()
 }
 
