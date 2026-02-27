@@ -23,6 +23,13 @@ import attendanceReportRoutes from './attendanceReportRoutes.js'
 import homeworkRoutes from './homeworkRoutes.js'
 import periodRoutes from './periodRoutes.js'
 import notificationRoutes from './notificationRoutes.js'
+import libraryRoutes from './libraryRoutes.js'
+import transportRoutes from './transportRoutes.js'
+import expenseRoutes from './expenseRoutes.js'
+import supportRoutes from './supportRoutes.js'
+import leaveRoutes from './leaveRoutes.js'
+import holidayRoutes from './holidayRoutes.js'
+import staffRoutes from './staffRoutes.js'
 
 const router = Router()
 
@@ -54,6 +61,13 @@ router.use('/attendance-report', authenticate, attendanceReportRoutes)
 router.use('/homework', authenticate, homeworkRoutes)
 router.use('/periods', authenticate, periodRoutes)
 router.use('/notifications', authenticate, notificationRoutes)
+router.use('/library', authenticate, libraryRoutes)
+router.use('/transport', authenticate, transportRoutes)
+router.use('/expenses', authenticate, expenseRoutes)
+router.use('/support', authenticate, supportRoutes)
+router.use('/leaves', authenticate, leaveRoutes)
+router.use('/holidays', authenticate, holidayRoutes)
+router.use('/staff', authenticate, staffRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })

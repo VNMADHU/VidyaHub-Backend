@@ -63,6 +63,9 @@ async function main() {
   await prisma.event.deleteMany({})
   await prisma.announcement.deleteMany({})
   await prisma.sport.deleteMany({})
+  await prisma.leave.deleteMany({})
+  await prisma.holiday.deleteMany({})
+  await prisma.staff.deleteMany({})
   console.log('✅ Old data cleaned')
 
   // --- Create Classes: LKG, UKG, 1-10 ---
@@ -403,6 +406,166 @@ async function main() {
   }
   console.log(`✅ ${feeCount} fee records created`)
 
+  // --- Create Holidays ---
+  console.log('\n🏖️ Creating holidays...')
+  const holidays = [
+    { title: 'Republic Day', date: '2026-01-26', type: 'national', description: 'National holiday celebrating the adoption of the Indian Constitution.' },
+    { title: 'Maha Shivaratri', date: '2026-02-26', type: 'religious', description: 'Hindu festival dedicated to Lord Shiva.' },
+    { title: 'Holi', date: '2026-03-17', type: 'religious', description: 'Festival of colours celebrating the arrival of spring.' },
+    { title: 'Good Friday', date: '2026-04-03', type: 'religious', description: 'Christian holiday commemorating the crucifixion of Jesus Christ.' },
+    { title: 'Ugadi', date: '2026-03-29', type: 'regional', description: 'Telugu New Year celebration.' },
+    { title: 'Labour Day', date: '2026-05-01', type: 'national', description: 'International Workers Day.' },
+    { title: 'Eid ul-Fitr', date: '2026-03-21', type: 'religious', description: 'Islamic holiday marking the end of Ramadan.' },
+    { title: 'Independence Day', date: '2026-08-15', type: 'national', description: 'National holiday celebrating India\'s independence.' },
+    { title: 'Ganesh Chaturthi', date: '2026-08-27', type: 'religious', description: 'Hindu festival celebrating the birth of Lord Ganesha.' },
+    { title: 'Gandhi Jayanti', date: '2026-10-02', type: 'national', description: 'Birth anniversary of Mahatma Gandhi.' },
+    { title: 'Dussehra', date: '2026-10-12', type: 'religious', description: 'Hindu festival celebrating the victory of good over evil.' },
+    { title: 'Diwali', date: '2026-11-01', toDate: '2026-11-03', type: 'religious', description: 'Festival of lights - three-day holiday.' },
+    { title: 'Christmas', date: '2026-12-25', type: 'religious', description: 'Christian holiday celebrating the birth of Jesus Christ.' },
+    { title: 'Summer Vacation', date: '2026-05-15', toDate: '2026-06-14', type: 'school', description: 'Annual summer vacation break for all students and staff.' },
+    { title: 'Dasara Vacation', date: '2026-10-10', toDate: '2026-10-19', type: 'school', description: 'Dasara vacation break.' },
+    { title: 'Sankranti', date: '2026-01-14', toDate: '2026-01-16', type: 'seasonal', description: 'Harvest festival celebrated across India.' },
+  ]
+
+  for (const h of holidays) {
+    await prisma.holiday.create({
+      data: {
+        schoolId: school.id,
+        title: h.title,
+        date: new Date(h.date),
+        toDate: h.toDate ? new Date(h.toDate) : null,
+        type: h.type,
+        description: h.description,
+      },
+    })
+  }
+  console.log(`✅ ${holidays.length} holidays created`)
+
+  // --- Create Leave Records ---
+  console.log('\n📋 Creating leave records...')
+  const leaveTypes = ['sick', 'casual', 'annual', 'emergency']
+  const leaveStatuses = ['pending', 'approved', 'rejected']
+  let leaveCount = 0
+
+  // Teacher leaves
+  for (let i = 0; i < Math.min(10, createdTeachers.length); i++) {
+    const teacher = createdTeachers[i]
+    const lt = leaveTypes[randomInt(0, leaveTypes.length - 1)]
+    const fromDate = randomDate(new Date('2026-01-05'), new Date('2026-02-20'))
+    const daysOff = randomInt(1, 5)
+    const toDate = new Date(fromDate)
+    toDate.setDate(toDate.getDate() + daysOff - 1)
+    const status = leaveStatuses[randomInt(0, 2)]
+
+    await prisma.leave.create({
+      data: {
+        schoolId: school.id,
+        employeeType: 'teacher',
+        employeeId: teacher.id,
+        employeeName: `${teacher.firstName} ${teacher.lastName}`,
+        leaveType: lt,
+        fromDate,
+        toDate,
+        days: daysOff,
+        reason: lt === 'sick' ? 'Feeling unwell, need rest' : lt === 'casual' ? 'Personal work at home' : lt === 'annual' ? 'Family vacation planned' : 'Urgent family matter',
+        status,
+        approvedBy: status !== 'pending' ? 'Dr. Ramesh Krishnamurthy' : null,
+        remarks: status === 'rejected' ? 'Insufficient leave balance' : status === 'approved' ? 'Approved. Arrange substitute.' : null,
+      },
+    })
+    leaveCount++
+  }
+
+  // Driver leaves
+  const driverNames = ['Raju Yadav', 'Suresh Goud', 'Venkatesh Reddy', 'Manoj Kumar', 'Srinivas Rao']
+  for (let i = 0; i < driverNames.length; i++) {
+    const lt = leaveTypes[randomInt(0, leaveTypes.length - 1)]
+    const fromDate = randomDate(new Date('2026-01-10'), new Date('2026-02-25'))
+    const daysOff = randomInt(1, 3)
+    const toDate = new Date(fromDate)
+    toDate.setDate(toDate.getDate() + daysOff - 1)
+    const status = leaveStatuses[randomInt(0, 2)]
+
+    await prisma.leave.create({
+      data: {
+        schoolId: school.id,
+        employeeType: 'driver',
+        employeeId: null,
+        employeeName: driverNames[i],
+        leaveType: lt,
+        fromDate,
+        toDate,
+        days: daysOff,
+        reason: lt === 'sick' ? 'Down with fever' : lt === 'casual' ? 'Family function' : lt === 'annual' ? 'Going to hometown' : 'Vehicle accident - need recovery time',
+        status,
+        approvedBy: status !== 'pending' ? 'Dr. Ramesh Krishnamurthy' : null,
+        remarks: status === 'rejected' ? 'No backup driver available' : status === 'approved' ? 'Approved. Route reassigned.' : null,
+      },
+    })
+    leaveCount++
+  }
+
+  // Staff leaves
+  const staffNames = ['Lakshmi Devi (Peon)', 'Ramaiah (Watchman)', 'Padma (Clerk)', 'Sridhar (Lab Assistant)', 'Bhagyamma (Ayah)']
+  for (let i = 0; i < staffNames.length; i++) {
+    const lt = leaveTypes[randomInt(0, leaveTypes.length - 1)]
+    const fromDate = randomDate(new Date('2026-01-15'), new Date('2026-02-22'))
+    const daysOff = randomInt(1, 4)
+    const toDate = new Date(fromDate)
+    toDate.setDate(toDate.getDate() + daysOff - 1)
+    const status = leaveStatuses[randomInt(0, 2)]
+
+    await prisma.leave.create({
+      data: {
+        schoolId: school.id,
+        employeeType: 'staff',
+        employeeId: null,
+        employeeName: staffNames[i],
+        leaveType: lt,
+        fromDate,
+        toDate,
+        days: daysOff,
+        reason: lt === 'sick' ? 'Medical checkup and rest' : lt === 'casual' ? 'Daughter\'s wedding preparation' : lt === 'annual' ? 'Annual village visit' : 'Emergency hospital visit',
+        status,
+        approvedBy: status !== 'pending' ? 'Dr. Ramesh Krishnamurthy' : null,
+        remarks: status === 'approved' ? 'Approved' : status === 'rejected' ? 'Please reschedule' : null,
+      },
+    })
+    leaveCount++
+  }
+  console.log(`✅ ${leaveCount} leave records created (teachers, drivers, staff)`)
+
+  // --- Create Non-Teaching Staff ---
+  console.log('\n🧹 Creating non-teaching staff...')
+  const staffData = [
+    { firstName: 'Ramu', lastName: 'Naidu', staffId: 'STF001', designation: 'Watchman', department: 'Security', phoneNumber: '9876543210', gender: 'male', status: 'active' },
+    { firstName: 'Shyamu', lastName: 'Yadav', staffId: 'STF002', designation: 'Watchman', department: 'Security', phoneNumber: '9876543211', gender: 'male', status: 'active' },
+    { firstName: 'Lakshmi', lastName: 'Devi', staffId: 'STF003', designation: 'Cleaning Staff', department: 'Housekeeping', phoneNumber: '9876543212', gender: 'female', status: 'active' },
+    { firstName: 'Padma', lastName: 'Reddy', staffId: 'STF004', designation: 'Cleaning Staff', department: 'Housekeeping', phoneNumber: '9876543213', gender: 'female', status: 'active' },
+    { firstName: 'Srinivas', lastName: 'Rao', staffId: 'STF005', designation: 'Lab Assistant', department: 'Laboratory', phoneNumber: '9876543214', gender: 'male', status: 'active' },
+    { firstName: 'Ramaiah', lastName: 'Goud', staffId: 'STF006', designation: 'Peon', department: 'Office', phoneNumber: '9876543215', gender: 'male', status: 'active' },
+    { firstName: 'Sita', lastName: 'Sharma', staffId: 'STF007', designation: 'Receptionist', department: 'Office', phoneNumber: '9876543216', gender: 'female', status: 'active' },
+    { firstName: 'Mohan', lastName: 'Das', staffId: 'STF008', designation: 'Accountant', department: 'Office', phoneNumber: '9876543217', gender: 'male', status: 'active' },
+    { firstName: 'Bhagyamma', lastName: 'Pillai', staffId: 'STF009', designation: 'Cook', department: 'Kitchen', phoneNumber: '9876543218', gender: 'female', status: 'active' },
+    { firstName: 'Suresh', lastName: 'Patel', staffId: 'STF010', designation: 'Gardener', department: 'Maintenance', phoneNumber: '9876543219', gender: 'male', status: 'active' },
+    { firstName: 'Venkat', lastName: 'Krishna', staffId: 'STF011', designation: 'Electrician', department: 'Maintenance', phoneNumber: '9876543220', gender: 'male', status: 'active' },
+    { firstName: 'Anitha', lastName: 'Kumari', staffId: 'STF012', designation: 'Nurse', department: 'Office', phoneNumber: '9876543221', gender: 'female', status: 'active' },
+  ]
+
+  let createdStaff = []
+  for (const s of staffData) {
+    const member = await prisma.staff.create({
+      data: {
+        schoolId: school.id,
+        ...s,
+        joiningDate: randomDate(new Date('2018-01-01'), new Date('2024-12-31')),
+        salary: randomInt(8000, 35000),
+      },
+    })
+    createdStaff.push(member)
+  }
+  console.log(`✅ ${createdStaff.length} staff members created`)
+
   // --- Summary ---
   console.log('\n' + '='.repeat(50))
   console.log('🎉 TEST DATA SEEDING COMPLETE!')
@@ -419,6 +582,9 @@ async function main() {
   console.log(`  ⚽ Sports:         ${sports.length}`)
   console.log(`  🏆 Achievements:   ${achievementCount}`)
   console.log(`  💰 Fee Records:    ${feeCount}`)
+  console.log(`  🏖️ Holidays:       ${holidays.length}`)
+  console.log(`  📋 Leave Records:  ${leaveCount}`)
+  console.log(`  🧹 Staff Members:  ${createdStaff.length}`)
   console.log('='.repeat(50))
 }
 
