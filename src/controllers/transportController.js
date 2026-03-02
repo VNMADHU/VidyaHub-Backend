@@ -52,6 +52,22 @@ export const listVehicles = async (req, res, next) => {
   }
 }
 
+export const getVehicle = async (req, res, next) => {
+  try {
+    const { vehicleId } = req.params
+    logInfo('Getting vehicle', { filename: 'transportController.js', vehicleId })
+    const vehicle = await prisma.vehicle.findUnique({
+      where: { id: parseInt(vehicleId) },
+      include: { driver: true },
+    })
+    if (!vehicle) return res.status(404).json({ message: 'Vehicle not found' })
+    res.json({ data: vehicle, message: 'Vehicle details' })
+  } catch (error) {
+    logError(`Get vehicle error: ${error.message}`, { filename: 'transportController.js' })
+    next(error)
+  }
+}
+
 export const createVehicle = async (req, res, next) => {
   try {
     const schoolId = req.schoolId
@@ -117,6 +133,22 @@ export const listDrivers = async (req, res, next) => {
     res.json({ data: drivers, message: 'List of drivers' })
   } catch (error) {
     logError(`List drivers error: ${error.message}`, { filename: 'transportController.js' })
+    next(error)
+  }
+}
+
+export const getDriver = async (req, res, next) => {
+  try {
+    const { driverId } = req.params
+    logInfo('Getting driver', { filename: 'transportController.js', driverId })
+    const driver = await prisma.driver.findUnique({
+      where: { id: parseInt(driverId) },
+      include: { vehicles: true },
+    })
+    if (!driver) return res.status(404).json({ message: 'Driver not found' })
+    res.json({ data: driver, message: 'Driver details' })
+  } catch (error) {
+    logError(`Get driver error: ${error.message}`, { filename: 'transportController.js' })
     next(error)
   }
 }

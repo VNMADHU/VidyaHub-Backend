@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -62,9 +62,6 @@ model School {
   leaves        Leave[]
   holidays      Holiday[]
   staff         Staff[]
-  hostels       Hostel[]
-  hostelRooms   HostelRoom[]
-  hostelAllotments HostelAllotment[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -516,67 +513,6 @@ model Holiday {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
-// ── Hostel Management ────────────────────────────────────
-model Hostel {
-  id             Int       @id @default(autoincrement())
-  schoolId       Int
-  school         School    @relation(fields: [schoolId], references: [id])
-  name           String    // e.g., "Boys Hostel Block A"
-  type           String    @default("boys") // boys, girls, mixed
-  totalCapacity  Int       @default(0)
-  wardenName     String?
-  wardenPhone    String?
-  wardenEmail    String?
-  address        String?   // block / building address
-  description    String?
-  status         String    @default("active") // active, inactive
-  rooms          HostelRoom[]
-  allotments     HostelAllotment[]
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-}
-
-model HostelRoom {
-  id          Int       @id @default(autoincrement())
-  schoolId    Int
-  school      School    @relation(fields: [schoolId], references: [id])
-  hostelId    Int
-  hostel      Hostel    @relation(fields: [hostelId], references: [id], onDelete: Cascade)
-  roomNumber  String    // e.g., "101", "A-202"
-  floor       String?   // "Ground", "1st", "2nd"
-  type        String    @default("double") // single, double, triple, dormitory
-  capacity    Int       @default(2)
-  amenities   String?   // comma-separated: AC, Attached Bathroom, TV, WiFi
-  status      String    @default("available") // available, occupied, maintenance
-  allotments  HostelAllotment[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@unique([hostelId, roomNumber])
-}
-
-model HostelAllotment {
-  id              Int        @id @default(autoincrement())
-  schoolId        Int
-  school          School     @relation(fields: [schoolId], references: [id])
-  hostelId        Int
-  hostel          Hostel     @relation(fields: [hostelId], references: [id])
-  roomId          Int
-  room            HostelRoom @relation(fields: [roomId], references: [id])
-  studentId       Int?
-  studentName     String
-  admissionNumber String?
-  allotmentDate   DateTime   @default(now())
-  vacatingDate    DateTime?
-  roomFee         Float?     // monthly room fee
-  messFee         Float?     // monthly mess fee
-  emergencyContact String?
-  remarks         String?
-  status          String     @default("active") // active, vacated
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-}
-
 // ── Support Tickets ───────────────────────────────────────
 model SupportTicket {
   id          Int      @id @default(autoincrement())

@@ -12,7 +12,7 @@ if (missing.length > 0) {
 }
 
 // ── Start server ────────────────────────────────────────────
-const port = process.env.PORT || 5001
+const port = parseInt(process.env.PORT) || 5002
 const server = app.listen(port, () => {
   logInfo(`Vidya Hub API running on port ${port} [${process.env.NODE_ENV || 'development'}]`, {
     filename: 'index.js',

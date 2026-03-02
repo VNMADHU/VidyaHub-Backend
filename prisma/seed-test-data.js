@@ -56,6 +56,14 @@ async function main() {
   await prisma.achievement.deleteMany({})
   await prisma.fee.deleteMany({})
   await prisma.exam.deleteMany({})
+  await prisma.bookIssue.deleteMany({})
+  await prisma.book.deleteMany({})
+  await prisma.homework.deleteMany({})
+  await prisma.timetable.deleteMany({})
+  await prisma.period.deleteMany({})
+  await prisma.expense.deleteMany({})
+  await prisma.vehicle.deleteMany({})
+  await prisma.driver.deleteMany({})
   await prisma.student.deleteMany({})
   await prisma.teacher.deleteMany({})
   await prisma.section.deleteMany({})
@@ -566,7 +574,257 @@ async function main() {
   }
   console.log(`✅ ${createdStaff.length} staff members created`)
 
-  // --- Summary ---
+  // --- Create Periods (school timetable slots) ---
+  console.log('\n🕐 Creating periods...')
+  const periodData = [
+    { name: 'Period 1', startTime: '08:00', endTime: '08:45', sortOrder: 1, isBreak: false },
+    { name: 'Period 2', startTime: '08:45', endTime: '09:30', sortOrder: 2, isBreak: false },
+    { name: 'Period 3', startTime: '09:30', endTime: '10:15', sortOrder: 3, isBreak: false },
+    { name: 'Short Break', startTime: '10:15', endTime: '10:30', sortOrder: 4, isBreak: true },
+    { name: 'Period 4', startTime: '10:30', endTime: '11:15', sortOrder: 5, isBreak: false },
+    { name: 'Period 5', startTime: '11:15', endTime: '12:00', sortOrder: 6, isBreak: false },
+    { name: 'Lunch Break', startTime: '12:00', endTime: '12:40', sortOrder: 7, isBreak: true },
+    { name: 'Period 6', startTime: '12:40', endTime: '13:25', sortOrder: 8, isBreak: false },
+    { name: 'Period 7', startTime: '13:25', endTime: '14:10', sortOrder: 9, isBreak: false },
+    { name: 'Period 8', startTime: '14:10', endTime: '14:55', sortOrder: 10, isBreak: false },
+  ]
+  const createdPeriods = []
+  for (const p of periodData) {
+    const period = await prisma.period.create({ data: { schoolId: school.id, ...p } })
+    createdPeriods.push(period)
+  }
+  const teachingPeriods = createdPeriods.filter(p => !p.isBreak)
+  console.log(`✅ ${createdPeriods.length} periods created (${teachingPeriods.length} teaching + 2 breaks)`)
+
+  // --- Create Timetable entries for Class 1A as sample ---
+  console.log('\n📅 Creating timetable entries...')
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+  const timetableSubjects = ['English', 'Mathematics', 'Science', 'Hindi', 'Social Studies', 'Computer Science', 'Art', 'Physical Education']
+  const teacherNames = createdTeachers.map(t => `${t.firstName} ${t.lastName}`)
+  let timetableCount = 0
+
+  // Create timetable for first 3 classes
+  for (const cls of createdClasses.slice(0, 3)) {
+    for (const day of days) {
+      for (let pi = 0; pi < teachingPeriods.length; pi++) {
+        const period = teachingPeriods[pi]
+        const subject = timetableSubjects[pi % timetableSubjects.length]
+        const teacher = teacherNames[pi % teacherNames.length]
+        await prisma.timetable.create({
+          data: {
+            classId: cls.id,
+            day,
+            periodId: period.id,
+            subject,
+            teacher,
+          },
+        })
+        timetableCount++
+      }
+    }
+  }
+  console.log(`✅ ${timetableCount} timetable entries created (${createdClasses.slice(0,3).map(c=>c.name).join(', ')})`)
+
+  // --- Create Homework ---
+  console.log('\n📓 Creating homework assignments...')
+  const homeworkData = [
+    { subject: 'Mathematics', title: 'Chapter 5 - Fractions Exercise', description: 'Complete exercise 5.1 (Q1-Q10) from NCERT textbook. Show all working steps.' },
+    { subject: 'English', title: 'Write a letter to your friend', description: 'Write a 150-word informal letter to your friend about your summer vacation plans. Use proper format.' },
+    { subject: 'Science', title: 'Draw and label the parts of a flower', description: 'Draw a neat diagram of a flower and label: petal, sepal, stamen, pistil, receptacle.' },
+    { subject: 'Hindi', title: 'निबंध लेखन - मेरा प्रिय त्योहार', description: '200 शब्दों में अपने प्रिय त्योहार पर निबंध लिखें। शुद्ध हिंदी में लिखें।' },
+    { subject: 'Social Studies', title: 'Map Activity - Indian States', description: 'On the outline map of India, mark and label all states and their capitals. Use different colours.' },
+    { subject: 'Mathematics', title: 'Algebra - Linear Equations', description: 'Solve problems 1-15 from Chapter 7. Show step-by-step working for each problem.' },
+    { subject: 'English', title: 'Book Review - Any Story Book', description: 'Read any story book and write a 200-word review covering: plot, characters, and your opinion.' },
+    { subject: 'Science', title: 'Experiment Report - Water Evaporation', description: 'Perform the evaporation experiment and write a report with: aim, materials, procedure, observations, and conclusion.' },
+    { subject: 'Computer Science', title: 'Create a PowerPoint Presentation', description: 'Create a 5-slide presentation on "Uses of Computers in Daily Life" using MS PowerPoint.' },
+    { subject: 'Mathematics', title: 'Practice Test - Geometry', description: 'Complete the practice test paper provided in class. All 20 questions must be attempted.' },
+  ]
+
+  let homeworkCount = 0
+  for (let i = 0; i < homeworkData.length; i++) {
+    const cls = createdClasses[i % createdClasses.length]
+    const sec = createdSections[cls.id][0]
+    const dueDate = new Date('2026-02-18')
+    dueDate.setDate(dueDate.getDate() + randomInt(2, 14))
+    const teacher = createdTeachers[i % createdTeachers.length]
+
+    await prisma.homework.create({
+      data: {
+        schoolId: school.id,
+        classId: cls.id,
+        sectionId: sec.id,
+        subject: homeworkData[i].subject,
+        title: homeworkData[i].title,
+        description: homeworkData[i].description,
+        dueDate,
+        assignedBy: `${teacher.firstName} ${teacher.lastName}`,
+        status: 'active',
+      },
+    })
+    homeworkCount++
+  }
+  console.log(`✅ ${homeworkCount} homework assignments created`)
+
+  // --- Create Library Books ---
+  console.log('\n📚 Creating library books...')
+  const booksData = [
+    { title: 'NCERT Mathematics Class 8', author: 'NCERT', isbn: '9788174505071', category: 'textbook', publisher: 'NCERT', totalCopies: 30, shelfLocation: 'Rack A-1' },
+    { title: 'NCERT Science Class 8', author: 'NCERT', isbn: '9788174505118', category: 'textbook', publisher: 'NCERT', totalCopies: 30, shelfLocation: 'Rack A-2' },
+    { title: 'NCERT English Honeydew Class 8', author: 'NCERT', isbn: '9788174505262', category: 'textbook', publisher: 'NCERT', totalCopies: 25, shelfLocation: 'Rack A-3' },
+    { title: 'NCERT Social Science Class 8', author: 'NCERT', isbn: '9788174505194', category: 'textbook', publisher: 'NCERT', totalCopies: 25, shelfLocation: 'Rack A-4' },
+    { title: 'Harry Potter and the Philosopher\'s Stone', author: 'J.K. Rowling', isbn: '9780439708180', category: 'fiction', publisher: 'Bloomsbury', totalCopies: 5, shelfLocation: 'Rack B-1' },
+    { title: 'The Alchemist', author: 'Paulo Coelho', isbn: '9780062315007', category: 'fiction', publisher: 'HarperCollins', totalCopies: 4, shelfLocation: 'Rack B-1' },
+    { title: 'Wings of Fire', author: 'A.P.J. Abdul Kalam', isbn: '9788173711466', category: 'biography', publisher: 'Universities Press', totalCopies: 6, shelfLocation: 'Rack B-2' },
+    { title: 'The Jungle Book', author: 'Rudyard Kipling', isbn: '9780141325293', category: 'fiction', publisher: 'Penguin Classics', totalCopies: 4, shelfLocation: 'Rack B-2' },
+    { title: 'Panchatantra Stories', author: 'Vishnu Sharma', isbn: '9788126400881', category: 'fiction', publisher: 'Children Book Trust', totalCopies: 8, shelfLocation: 'Rack B-3' },
+    { title: 'Malgudi Days', author: 'R.K. Narayan', isbn: '9780140120806', category: 'fiction', publisher: 'Penguin', totalCopies: 3, shelfLocation: 'Rack B-3' },
+    { title: 'Oxford Dictionary of English', author: 'Oxford University Press', isbn: '9780199571123', category: 'reference', publisher: 'Oxford', totalCopies: 5, shelfLocation: 'Rack C-1' },
+    { title: 'General Knowledge 2026', author: 'Manohar Pandey', isbn: '9789313196847', category: 'reference', publisher: 'Arihant', totalCopies: 10, shelfLocation: 'Rack C-2' },
+    { title: 'Atlas of India', author: 'TTK Healthcare', isbn: '9788173388459', category: 'reference', publisher: 'TTK', totalCopies: 6, shelfLocation: 'Rack C-3' },
+    { title: 'Diary of a Wimpy Kid', author: 'Jeff Kinney', isbn: '9780810993136', category: 'fiction', publisher: 'Amulet Books', totalCopies: 3, shelfLocation: 'Rack D-1' },
+    { title: 'Tinkle Digest Vol. 1', author: 'Anant Pai', isbn: '9788189999001', category: 'magazine', publisher: 'ACK Media', totalCopies: 8, shelfLocation: 'Rack D-2' },
+    { title: 'Physics: Principles with Applications', author: 'Douglas Giancoli', isbn: '9780321625922', category: 'reference', publisher: 'Pearson', totalCopies: 4, shelfLocation: 'Rack C-1' },
+    { title: 'Godan', author: 'Munshi Premchand', isbn: '9788126704088', category: 'fiction', publisher: 'Rajkamal Prakashan', totalCopies: 4, shelfLocation: 'Rack B-4' },
+    { title: 'Discovery of India', author: 'Jawaharlal Nehru', isbn: '9780143031031', category: 'non-fiction', publisher: 'Penguin', totalCopies: 3, shelfLocation: 'Rack B-5' },
+    { title: 'The Secret', author: 'Rhonda Byrne', isbn: '9781582701707', category: 'non-fiction', publisher: 'Atria', totalCopies: 2, shelfLocation: 'Rack D-3' },
+    { title: 'Competitive Exams Mathematics', author: 'R.S. Aggarwal', isbn: '9789352534807', category: 'reference', publisher: 'S. Chand', totalCopies: 12, shelfLocation: 'Rack C-4' },
+  ]
+
+  const createdBooks = []
+  for (const book of booksData) {
+    const availableCopies = book.totalCopies - randomInt(0, Math.min(3, book.totalCopies - 1))
+    const b = await prisma.book.create({
+      data: {
+        schoolId: school.id,
+        title: book.title,
+        author: book.author,
+        isbn: book.isbn,
+        category: book.category,
+        publisher: book.publisher,
+        edition: '2025-26',
+        language: 'English',
+        totalCopies: book.totalCopies,
+        availableCopies,
+        shelfLocation: book.shelfLocation,
+        status: availableCopies > 0 ? 'available' : 'all-issued',
+      },
+    })
+    createdBooks.push(b)
+  }
+  console.log(`✅ ${createdBooks.length} library books created`)
+
+  // --- Create Book Issues (some students have borrowed books) ---
+  console.log('\n📖 Creating book issues...')
+  let issueCount = 0
+  const studentsToIssue = createdStudents.slice(0, 20)
+  for (let i = 0; i < studentsToIssue.length; i++) {
+    const book = createdBooks[i % createdBooks.length]
+    const issueDate = randomDate(new Date('2026-01-10'), new Date('2026-02-10'))
+    const dueDate = new Date(issueDate)
+    dueDate.setDate(dueDate.getDate() + 14)
+    const isReturned = Math.random() > 0.5
+    const returnDate = isReturned ? randomDate(issueDate, new Date('2026-02-18')) : null
+
+    await prisma.bookIssue.create({
+      data: {
+        bookId: book.id,
+        studentId: studentsToIssue[i].id,
+        issueDate,
+        dueDate,
+        returnDate,
+        status: isReturned ? 'returned' : (dueDate < new Date('2026-02-18') ? 'overdue' : 'issued'),
+        fine: !isReturned && dueDate < new Date('2026-02-18') ? randomInt(5, 50) : 0,
+      },
+    })
+    issueCount++
+  }
+  console.log(`✅ ${issueCount} book issues created`)
+
+  // --- Create Transport (Drivers + Vehicles) ---
+  console.log('\n🚌 Creating transport data...')
+  const driverData = [
+    { firstName: 'Raju', lastName: 'Yadav', phoneNumber: '9876501001', licenseNumber: 'TS-0620150012345', experience: '12 years', aadhaarNumber: '123456789012', bloodGroup: 'B+' },
+    { firstName: 'Suresh', lastName: 'Goud', phoneNumber: '9876501002', licenseNumber: 'TS-0520140023456', experience: '8 years', aadhaarNumber: '234567890123', bloodGroup: 'O+' },
+    { firstName: 'Venkatesh', lastName: 'Reddy', phoneNumber: '9876501003', licenseNumber: 'TS-0720160034567', experience: '15 years', aadhaarNumber: '345678901234', bloodGroup: 'A+' },
+    { firstName: 'Manoj', lastName: 'Kumar', phoneNumber: '9876501004', licenseNumber: 'AP-0820130045678', experience: '10 years', aadhaarNumber: '456789012345', bloodGroup: 'AB+' },
+    { firstName: 'Srinivas', lastName: 'Rao', phoneNumber: '9876501005', licenseNumber: 'TS-0920170056789', experience: '6 years', aadhaarNumber: '567890123456', bloodGroup: 'O-' },
+  ]
+  const createdDrivers = []
+  for (const d of driverData) {
+    const driver = await prisma.driver.create({
+      data: {
+        schoolId: school.id,
+        ...d,
+        licenseType: 'HMV',
+        licenseExpiry: new Date('2028-12-31'),
+        emergencyContact: `98765${randomInt(10000, 99999)}`,
+        status: 'active',
+      },
+    })
+    createdDrivers.push(driver)
+  }
+
+  const vehicleData = [
+    { vehicleNumber: 'TS 09 EA 1234', vehicleType: 'bus', capacity: 40, routeName: 'Route 1 - Kukatpally', routeStops: 'Kukatpally, KPHB, Balkampet, School' },
+    { vehicleNumber: 'TS 09 FB 5678', vehicleType: 'bus', capacity: 45, routeName: 'Route 2 - Miyapur', routeStops: 'Miyapur, Chandanagar, Kondapur, School' },
+    { vehicleNumber: 'TS 09 GC 9012', vehicleType: 'bus', capacity: 35, routeName: 'Route 3 - Jubilee Hills', routeStops: 'Jubilee Hills, Banjara Hills, Punjagutta, School' },
+    { vehicleNumber: 'TS 09 HD 3456', vehicleType: 'van', capacity: 12, routeName: 'Route 4 - Gachibowli', routeStops: 'Gachibowli, Manikonda, Nanakramguda, School' },
+    { vehicleNumber: 'TS 09 IE 7890', vehicleType: 'bus', capacity: 50, routeName: 'Route 5 - LB Nagar', routeStops: 'LB Nagar, Kothapet, Dilsukhnagar, Malakpet, School' },
+  ]
+  const createdVehicles = []
+  for (let i = 0; i < vehicleData.length; i++) {
+    const vehicle = await prisma.vehicle.create({
+      data: {
+        schoolId: school.id,
+        ...vehicleData[i],
+        driverId: createdDrivers[i].id,
+        insuranceExpiry: new Date('2027-03-31'),
+        fitnessExpiry: new Date('2026-09-30'),
+        permitExpiry: new Date('2027-06-30'),
+        status: 'active',
+      },
+    })
+    createdVehicles.push(vehicle)
+  }
+  console.log(`✅ ${createdDrivers.length} drivers and ${createdVehicles.length} vehicles created`)
+
+  // --- Create Expenses ---
+  console.log('\n💸 Creating expense records...')
+  const expenseData = [
+    { title: 'School Building Maintenance', category: 'maintenance', amount: 45000, paidTo: 'Ramesh Constructions', paymentMode: 'cheque', receiptNo: 'REC-2026-001', description: 'Annual painting and minor repairs of school building', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-01-10' },
+    { title: 'January Salary - Teaching Staff', category: 'salary', amount: 385000, paidTo: 'Teaching Staff Account', paymentMode: 'online', receiptNo: 'SAL-2026-JAN-01', description: 'Monthly salary for 15 teaching staff', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-01-31' },
+    { title: 'Stationery & Office Supplies', category: 'supplies', amount: 8500, paidTo: 'Krishna Stationery', paymentMode: 'cash', receiptNo: 'REC-2026-002', description: 'Chalk, markers, registers, pens, paper for office and classrooms', approvedBy: 'Mohan Das', date: '2026-01-15' },
+    { title: 'Bus Fuel & Maintenance', category: 'transport', amount: 22000, paidTo: 'HP Petrol Pump', paymentMode: 'upi', receiptNo: 'REC-2026-003', description: 'Monthly diesel and minor maintenance for 5 school buses', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-01-20' },
+    { title: 'Electricity Bill - January', category: 'utility', amount: 12500, paidTo: 'TSSPDCL', paymentMode: 'online', receiptNo: 'EB-JAN-2026', description: 'Monthly electricity bill for school premises', approvedBy: 'Mohan Das', date: '2026-01-25' },
+    { title: 'Science Lab Equipment', category: 'infrastructure', amount: 35000, paidTo: 'Scientific Instruments Ltd', paymentMode: 'cheque', receiptNo: 'REC-2026-004', description: 'New microscopes, beakers, test tubes, and chemicals for science lab', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-01-28' },
+    { title: 'Annual Sports Day Expenses', category: 'events', amount: 18000, paidTo: 'Various Vendors', paymentMode: 'cash', receiptNo: 'REC-2026-005', description: 'Trophies, medals, food, decoration, and sound system for Sports Day', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-02-05' },
+    { title: 'February Salary - Teaching Staff', category: 'salary', amount: 385000, paidTo: 'Teaching Staff Account', paymentMode: 'online', receiptNo: 'SAL-2026-FEB-01', description: 'Monthly salary for 15 teaching staff', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-02-28' },
+    { title: 'Water Purifier AMC', category: 'maintenance', amount: 6000, paidTo: 'Aquaguard Service Centre', paymentMode: 'upi', receiptNo: 'REC-2026-006', description: 'Annual maintenance contract for 4 water purifiers in school', approvedBy: 'Mohan Das', date: '2026-02-08' },
+    { title: 'Library Book Purchase', category: 'supplies', amount: 15000, paidTo: 'Crossword Bookstores', paymentMode: 'cheque', receiptNo: 'REC-2026-007', description: 'Purchase of 200 new books for school library — fiction and reference', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-02-10' },
+    { title: 'Internet & Broadband Bill', category: 'utility', amount: 3500, paidTo: 'Airtel Business', paymentMode: 'online', receiptNo: 'NET-FEB-2026', description: 'Monthly broadband internet bill for school office and computer lab', approvedBy: 'Mohan Das', date: '2026-02-12' },
+    { title: 'CCTV System Installation', category: 'infrastructure', amount: 55000, paidTo: 'Securitas India', paymentMode: 'cheque', receiptNo: 'REC-2026-008', description: 'Installation of 16 CCTV cameras covering classrooms, corridors, and gates', approvedBy: 'Dr. Ramesh Krishnamurthy', date: '2026-02-15' },
+  ]
+
+  let expenseCount = 0
+  for (const exp of expenseData) {
+    await prisma.expense.create({
+      data: {
+        schoolId: school.id,
+        title: exp.title,
+        category: exp.category,
+        amount: exp.amount,
+        date: new Date(exp.date),
+        paidTo: exp.paidTo,
+        paymentMode: exp.paymentMode,
+        receiptNo: exp.receiptNo,
+        description: exp.description,
+        approvedBy: exp.approvedBy,
+        status: 'approved',
+      },
+    })
+    expenseCount++
+  }
+  console.log(`✅ ${expenseCount} expense records created`)
   console.log('\n' + '='.repeat(50))
   console.log('🎉 TEST DATA SEEDING COMPLETE!')
   console.log('='.repeat(50))
@@ -585,6 +843,14 @@ async function main() {
   console.log(`  🏖️ Holidays:       ${holidays.length}`)
   console.log(`  📋 Leave Records:  ${leaveCount}`)
   console.log(`  🧹 Staff Members:  ${createdStaff.length}`)
+  console.log(`  🕐 Periods:        ${createdPeriods.length}`)
+  console.log(`  📅 Timetable:      ${timetableCount} entries`)
+  console.log(`  📓 Homework:       ${homeworkCount}`)
+  console.log(`  📚 Library Books:  ${createdBooks.length}`)
+  console.log(`  📖 Book Issues:    ${issueCount}`)
+  console.log(`  🚌 Drivers:        ${createdDrivers.length}`)
+  console.log(`  🚌 Vehicles:       ${createdVehicles.length}`)
+  console.log(`  💸 Expenses:       ${expenseCount}`)
   console.log('='.repeat(50))
 }
 

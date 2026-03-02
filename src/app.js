@@ -2,12 +2,17 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import { fileURLToPath } from 'url'
+import path from 'path'
+import fs from 'fs'
 import apiRouter from './routes/index.js'
 import errorHandler from './middlewares/errorHandler.js'
 import notFound from './middlewares/notFound.js'
 import requestResponseLogger from './middlewares/requestResponseLogger.js'
 import schoolIdMiddleware from './middlewares/schoolId.js'
 import { setupSwagger } from './swagger.js'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const app = express()
 
@@ -50,6 +55,17 @@ app.use('/api', apiRouter)
 
 // ── Swagger docs ────────────────────────────────────────────
 setupSwagger(app)
+
+// ── Serve built React frontend (desktop/offline mode) ────────
+// DIST_PATH env var is set by Electron; fall back to the conventional path
+const distPath = process.env.DIST_PATH || path.resolve(__dirname, '../../dist')
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath))
+  // All non-API routes → serve React app (handles React Router)
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'))
+  })
+}
 
 // ── 404 & Error handling ────────────────────────────────────
 app.use(notFound)

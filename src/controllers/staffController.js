@@ -52,6 +52,21 @@ export const listStaff = async (req, res, next) => {
   }
 }
 
+export const getStaff = async (req, res, next) => {
+  try {
+    const { staffId } = req.params
+    logInfo('Getting staff member', { filename: 'staffController.js', staffId })
+    const member = await prisma.staff.findUnique({
+      where: { id: parseInt(staffId) },
+    })
+    if (!member) return res.status(404).json({ message: 'Staff member not found' })
+    res.json({ data: member, message: 'Staff member details' })
+  } catch (error) {
+    logError(`Get staff error: ${error.message}`, { filename: 'staffController.js' })
+    next(error)
+  }
+}
+
 export const createStaff = async (req, res, next) => {
   try {
     const schoolId = req.schoolId

@@ -30,6 +30,7 @@ import supportRoutes from './supportRoutes.js'
 import leaveRoutes from './leaveRoutes.js'
 import holidayRoutes from './holidayRoutes.js'
 import staffRoutes from './staffRoutes.js'
+import hostelRoutes from './hostelRoutes.js'
 
 const router = Router()
 
@@ -68,6 +69,7 @@ router.use('/support', authenticate, supportRoutes)
 router.use('/leaves', authenticate, leaveRoutes)
 router.use('/holidays', authenticate, holidayRoutes)
 router.use('/staff', authenticate, staffRoutes)
+router.use('/hostel', authenticate, hostelRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })
