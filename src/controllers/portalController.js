@@ -301,11 +301,19 @@ export const getTeacherProfile = async (req, res, next) => {
       ])
     }
 
-    // Fetch homework assigned by this teacher or for teacher's classes
+    // All classes for this school (used in homework form dropdown so any teacher can assign)
+    const allClasses = await prisma.class.findMany({
+      where: { schoolId: teacher.schoolId },
+      include: { sections: { select: { id: true, name: true } } },
+      orderBy: { name: 'asc' },
+    })
+
+    // Fetch homework — use teacher's assigned classes if available, else all school classes
+    const hwClassIds = classIds.length > 0 ? classIds : allClasses.map(c => c.id)
     let homework = []
-    if (classIds.length > 0) {
+    if (hwClassIds.length > 0) {
       homework = await prisma.homework.findMany({
-        where: { classId: { in: classIds } },
+        where: { classId: { in: hwClassIds } },
         include: {
           class: { select: { id: true, name: true } },
           section: { select: { id: true, name: true } },
@@ -342,6 +350,7 @@ export const getTeacherProfile = async (req, res, next) => {
         periods,
         homework,
         attendance,
+        allClasses,
       },
     })
   } catch (error) {
@@ -351,5 +360,107 @@ export const getTeacherProfile = async (req, res, next) => {
       stack: error.stack,
     })
     next(error)
+  }
+}
+
+// ── Portal Homework Management (teacher portal) ───────────────────────────────
+export const createPortalHomework = async (req, res, next) => {
+  try {
+    const teacherId = parseInt(req.portalUser.id)
+    const schoolId = parseInt(req.portalUser.schoolId)
+    const { classId, sectionId, subject, title, description, dueDate } = req.body
+
+    if (!classId || !subject || !title || !dueDate) {
+      return res.status(400).json({ message: 'classId, subject, title and dueDate are required.' })
+    }
+
+    const teacher = await prisma.teacher.findUnique({ where: { id: teacherId } })
+    if (!teacher) return res.status(404).json({ message: 'Teacher not found.' })
+
+    // Verify class belongs to the same school
+    const cls = await prisma.class.findFirst({ where: { id: parseInt(classId), schoolId: teacher.schoolId } })
+    if (!cls) return res.status(403).json({ message: 'Class not found in your school.' })
+
+    const homework = await prisma.homework.create({
+      data: {
+        schoolId,
+        classId: parseInt(classId),
+        sectionId: sectionId ? parseInt(sectionId) : null,
+        subject,
+        title,
+        description: description || '',
+        dueDate: new Date(dueDate),
+        assignedBy: `${teacher.firstName} ${teacher.lastName}`,
+      },
+      include: {
+        class: { select: { id: true, name: true } },
+        section: { select: { id: true, name: true } },
+      },
+    })
+
+    res.status(201).json({ message: 'Homework created', data: homework })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const updatePortalHomework = async (req, res, next) => {
+  try {
+    const teacherId = parseInt(req.portalUser.id)
+    const { id } = req.params
+    const { subject, title, description, dueDate, sectionId } = req.body
+
+    const existing = await prisma.homework.findUnique({ where: { id: parseInt(id) } })
+    if (!existing) return res.status(404).json({ message: 'Homework not found.' })
+
+    const teacher = await prisma.teacher.findUnique({ where: { id: teacherId } })
+    if (!teacher) return res.status(404).json({ message: 'Teacher not found.' })
+
+    // Verify the homework belongs to the same school
+    if (existing.schoolId !== teacher.schoolId) {
+      return res.status(403).json({ message: 'You can only edit homework in your school.' })
+    }
+
+    const updateData = {}
+    if (subject !== undefined) updateData.subject = subject
+    if (title !== undefined) updateData.title = title
+    if (description !== undefined) updateData.description = description
+    if (dueDate !== undefined) updateData.dueDate = new Date(dueDate)
+    if (sectionId !== undefined) updateData.sectionId = sectionId ? parseInt(sectionId) : null
+
+    const homework = await prisma.homework.update({
+      where: { id: parseInt(id) },
+      data: updateData,
+      include: {
+        class: { select: { id: true, name: true } },
+        section: { select: { id: true, name: true } },
+      },
+    })
+    res.json({ message: 'Homework updated', data: homework })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const deletePortalHomework = async (req, res, next) => {
+  try {
+    const teacherId = parseInt(req.portalUser.id)
+    const { id } = req.params
+
+    const existing = await prisma.homework.findUnique({ where: { id: parseInt(id) } })
+    if (!existing) return res.status(404).json({ message: 'Homework not found.' })
+
+    const teacher = await prisma.teacher.findUnique({ where: { id: teacherId } })
+    if (!teacher) return res.status(404).json({ message: 'Teacher not found.' })
+
+    // Verify the homework belongs to the same school
+    if (existing.schoolId !== teacher.schoolId) {
+      return res.status(403).json({ message: 'You can only delete homework in your school.' })
+    }
+
+    await prisma.homework.delete({ where: { id: parseInt(id) } })
+    res.json({ message: 'Homework deleted' })
+  } catch (err) {
+    next(err)
   }
 }
