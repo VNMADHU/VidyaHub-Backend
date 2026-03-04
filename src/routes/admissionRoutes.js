@@ -5,11 +5,12 @@ import {
   updateAdmission,
   deleteAdmission,
 } from '../controllers/admissionController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = Router()
 
 router.get('/',                     listAdmissions)
-router.post('/',                    createAdmission)
+router.post('/',                    trialLimit('admission'), createAdmission)
 router.patch('/:admissionId',       updateAdmission)
 router.delete('/:admissionId',      deleteAdmission)
 

@@ -5,11 +5,12 @@ import {
   updateAchievement,
   deleteAchievement,
 } from '../controllers/achievementController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = express.Router()
 
 router.get('/', listAchievements)
-router.post('/', createAchievement)
+router.post('/', trialLimit('achievement'), createAchievement)
 router.patch('/:achievementId', updateAchievement)
 router.delete('/:achievementId', deleteAchievement)
 

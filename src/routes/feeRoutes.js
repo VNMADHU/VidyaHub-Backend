@@ -8,12 +8,13 @@ import {
   deleteFee,
   getStudentFees,
 } from '../controllers/feeController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = Router()
 
 router.get('/', listFees)
 router.get('/:feeId', getFee)
-router.post('/', createFee)
+router.post('/', trialLimit('fee'), createFee)
 router.patch('/:feeId', updateFee)
 router.post('/:feeId/pay', payFee)
 router.delete('/:feeId', deleteFee)

@@ -9,12 +9,13 @@ import {
   returnBook,
   deleteBookIssue,
 } from '../controllers/libraryController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = express.Router()
 
 // Books
 router.get('/books', listBooks)
-router.post('/books', createBook)
+router.post('/books', trialLimit('book'), createBook)
 router.patch('/books/:bookId', updateBook)
 router.delete('/books/:bookId', deleteBook)
 

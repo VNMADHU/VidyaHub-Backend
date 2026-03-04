@@ -6,11 +6,12 @@ import {
   deleteMarks,
   getMarksReport,
 } from '../controllers/marksController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = Router()
 
 router.get('/', listMarks)
-router.post('/', createMarks)
+router.post('/', trialLimit('mark'), createMarks)
 router.patch('/:markId', updateMarks)
 router.delete('/:markId', deleteMarks)
 router.get('/report', getMarksReport)

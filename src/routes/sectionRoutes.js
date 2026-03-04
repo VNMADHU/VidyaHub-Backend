@@ -5,11 +5,12 @@ import {
   updateSection,
   deleteSection,
 } from '../controllers/sectionController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = express.Router()
 
 router.get('/', listSections)
-router.post('/', createSection)
+router.post('/', trialLimit('section'), createSection)
 router.patch('/:sectionId', updateSection)
 router.delete('/:sectionId', deleteSection)
 

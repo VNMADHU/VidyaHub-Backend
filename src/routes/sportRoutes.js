@@ -5,11 +5,12 @@ import {
   updateSport,
   deleteSport,
 } from '../controllers/sportController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = express.Router()
 
 router.get('/', listSports)
-router.post('/', createSport)
+router.post('/', trialLimit('sport'), createSport)
 router.patch('/:sportId', updateSport)
 router.delete('/:sportId', deleteSport)
 

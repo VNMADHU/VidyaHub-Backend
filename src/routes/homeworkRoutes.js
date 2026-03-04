@@ -5,11 +5,12 @@ import {
   updateHomework,
   deleteHomework,
 } from '../controllers/homeworkController.js'
+import trialLimit from '../middlewares/trialLimit.js'
 
 const router = Router()
 
 router.get('/', listHomework)
-router.post('/', createHomework)
+router.post('/', trialLimit('homework'), createHomework)
 router.patch('/:id', updateHomework)
 router.delete('/:id', deleteHomework)
 

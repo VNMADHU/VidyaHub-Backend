@@ -6,6 +6,7 @@ import { logInfo, logError } from '../utils/logHelpers.js'
 const announcementSchema = z.object({
   title: z.string().min(1),
   message: z.string().min(1),
+  targetAudience: z.string().optional().default('All'),
 })
 
 export const listAnnouncements = async (req, res, next) => {
