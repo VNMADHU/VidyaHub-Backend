@@ -2,7 +2,8 @@
 // Learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows", "darwin", "darwin-arm64"]
 }
 
 datasource db {
@@ -62,6 +63,10 @@ model School {
   leaves        Leave[]
   holidays      Holiday[]
   staff         Staff[]
+  hostels       Hostel[]
+  hostelRooms   HostelRoom[]
+  hostelAllotments HostelAllotment[]
+  admissions    Admission[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -528,4 +533,88 @@ model SupportTicket {
   createdBy   String   // email of the user who created
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+// ── Hostel ───────────────────────────────────────────────────────────────
+model Hostel {
+  id             Int       @id @default(autoincrement())
+  schoolId       Int
+  school         School    @relation(fields: [schoolId], references: [id])
+  name           String
+  type           String    @default("boys") // boys, girls, mixed
+  totalCapacity  Int       @default(0)
+  wardenName     String?
+  wardenPhone    String?
+  wardenEmail    String?
+  address        String?
+  description    String?
+  status         String    @default("active") // active, inactive
+  rooms          HostelRoom[]
+  allotments     HostelAllotment[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model HostelRoom {
+  id          Int       @id @default(autoincrement())
+  schoolId    Int
+  school      School    @relation(fields: [schoolId], references: [id])
+  hostelId    Int
+  hostel      Hostel    @relation(fields: [hostelId], references: [id], onDelete: Cascade)
+  roomNumber  String
+  floor       String?
+  type        String    @default("double") // single, double, triple, dormitory
+  capacity    Int       @default(2)
+  amenities   String?
+  status      String    @default("available") // available, occupied, maintenance
+  allotments  HostelAllotment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([hostelId, roomNumber])
+}
+
+model HostelAllotment {
+  id              Int        @id @default(autoincrement())
+  schoolId        Int
+  school          School     @relation(fields: [schoolId], references: [id])
+  hostelId        Int
+  hostel          Hostel     @relation(fields: [hostelId], references: [id])
+  roomId          Int
+  room            HostelRoom @relation(fields: [roomId], references: [id])
+  studentId       Int?
+  studentName     String
+  admissionNumber String?
+  allotmentDate   DateTime   @default(now())
+  vacatingDate    DateTime?
+  roomFee         Float?
+  messFee         Float?
+  emergencyContact String?
+  remarks         String?
+  status          String     @default("active") // active, vacated
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}
+
+model Admission {
+  id               Int      @id @default(autoincrement())
+  schoolId         Int
+  school           School   @relation(fields: [schoolId], references: [id])
+  applicationNo    String   // auto-generated e.g. ADM-2026-001
+  applicantName    String
+  dateOfBirth      DateTime?
+  gender           String?  // Male, Female, Other
+  applyingForClass String   // "Class 1", "Class 6", etc.
+  academicYear     String   @default("2025-26")
+  guardianName     String
+  guardianPhone    String
+  guardianEmail    String?
+  address          String?
+  previousSchool   String?
+  previousClass    String?
+  category         String?  // General, OBC, SC, ST, EWS
+  status           String   @default("pending") // pending, shortlisted, approved, rejected, enrolled
+  interviewDate    DateTime?
+  remarks          String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

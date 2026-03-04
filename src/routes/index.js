@@ -31,6 +31,8 @@ import leaveRoutes from './leaveRoutes.js'
 import holidayRoutes from './holidayRoutes.js'
 import staffRoutes from './staffRoutes.js'
 import hostelRoutes from './hostelRoutes.js'
+import admissionRoutes from './admissionRoutes.js'
+import demoRequestRoutes from './demoRequestRoutes.js'
 
 const router = Router()
 
@@ -40,6 +42,7 @@ router.use(apiLimiter)
 // ── Public routes (no auth required) ──────────────────────
 router.use('/auth', authRoutes)
 router.use('/portal', portalRoutes)
+router.use('/demo-request', demoRequestRoutes)
 
 // ── Protected routes (JWT required) ───────────────────────
 router.use('/schools', authenticate, schoolRoutes)
@@ -70,6 +73,7 @@ router.use('/leaves', authenticate, leaveRoutes)
 router.use('/holidays', authenticate, holidayRoutes)
 router.use('/staff', authenticate, staffRoutes)
 router.use('/hostel', authenticate, hostelRoutes)
+router.use('/admissions', authenticate, admissionRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })

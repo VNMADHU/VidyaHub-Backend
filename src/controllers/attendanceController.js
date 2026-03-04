@@ -120,6 +120,58 @@ export const deleteAttendance = async (req, res, next) => {
   }
 }
 
+export const bulkUpsertAttendance = async (req, res, next) => {
+  try {
+    const schoolId = req.schoolId
+    const { date, status, toCreate = [], toUpdate = [] } = req.body
+
+    if (!date || !status) {
+      return res.status(400).json({ message: 'date and status are required' })
+    }
+    if (!['present', 'absent', 'late'].includes(status)) {
+      return res.status(400).json({ message: 'status must be present, absent, or late' })
+    }
+
+    const dateObj = new Date(date)
+    const createIds = toCreate.map(Number).filter(n => !isNaN(n))
+    const updateIds = toUpdate.map(Number).filter(n => !isNaN(n))
+
+    const ops = []
+    if (updateIds.length > 0) {
+      ops.push(
+        prisma.attendance.updateMany({
+          where: { id: { in: updateIds } },
+          data: { status },
+        })
+      )
+    }
+    if (createIds.length > 0) {
+      ops.push(
+        prisma.attendance.createMany({
+          data: createIds.map(studentId => ({ studentId, date: dateObj, status })),
+          skipDuplicates: true,
+        })
+      )
+    }
+
+    if (ops.length > 0) {
+      await prisma.$transaction(ops)
+    }
+
+    logInfo(`Bulk attendance: ${createIds.length} created, ${updateIds.length} updated`, {
+      filename: 'attendanceController.js',
+      schoolId,
+    })
+    res.json({ message: 'Bulk attendance updated', created: createIds.length, updated: updateIds.length })
+  } catch (error) {
+    logError(`Bulk attendance error: ${error.message}`, {
+      filename: 'attendanceController.js',
+      schoolId: req.schoolId,
+    })
+    next(error)
+  }
+}
+
 export const getAttendanceSummary = async (req, res, next) => {
   try {
     const schoolId = req.schoolId

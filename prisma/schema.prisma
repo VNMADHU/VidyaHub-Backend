@@ -65,6 +65,7 @@ model School {
   hostels       Hostel[]
   hostelRooms   HostelRoom[]
   hostelAllotments HostelAllotment[]
+  admissions    Admission[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -592,4 +593,28 @@ model SupportTicket {
   createdBy   String   // email of the user who created
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Admission {
+  id               Int      @id @default(autoincrement())
+  schoolId         Int
+  school           School   @relation(fields: [schoolId], references: [id])
+  applicationNo    String   // auto-generated e.g. ADM-2026-001
+  applicantName    String
+  dateOfBirth      DateTime?
+  gender           String?  // Male, Female, Other
+  applyingForClass String   // "Class 1", "Class 6", etc.
+  academicYear     String   @default("2025-26")
+  guardianName     String
+  guardianPhone    String
+  guardianEmail    String?
+  address          String?
+  previousSchool   String?
+  previousClass    String?
+  category         String?  // General, OBC, SC, ST, EWS
+  status           String   @default("pending") // pending, shortlisted, approved, rejected, enrolled
+  interviewDate    DateTime?
+  remarks          String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

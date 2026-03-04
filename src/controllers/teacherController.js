@@ -31,7 +31,7 @@ const teacherSchema = z.object({
     message: 'PAN must be in format: ABCDE1234F',
   }).optional(),
   gender: z.preprocess((val) => (typeof val === 'string' ? val.toLowerCase() : val), z.enum(['male', 'female', 'other']).optional()),
-  bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional(),
+  bloodGroup: z.preprocess((val) => (val === '' ? undefined : val), z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional()),
 })
 
 export const listTeachers = async (req, res, next) => {
