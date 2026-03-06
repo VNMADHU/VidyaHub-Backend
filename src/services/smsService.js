@@ -1,6 +1,15 @@
 import { logInfo, logError } from '../utils/logHelpers.js'
 
 /**
+ * Build the OTP SMS message from the template in .env.
+ * SAPTELE_OTP_TEMPLATE must contain {code} as the placeholder.
+ */
+export const buildOtpSms = (code) => {
+  const tpl = process.env.SAPTELE_OTP_TEMPLATE || 'Dear InstaBee user,  {code} is your verification code for availing InstaBee Services. Please contact us on +91 7793982828 for assistance.'
+  return tpl.replace('{code}', code)
+}
+
+/**
  * SMS Service — placeholder until provider credentials are configured.
  *
  * Supports a plug-in architecture:
@@ -53,6 +62,36 @@ export const sendSMS = async ({ to, message }) => {
         const text = await res.text()
         logInfo(`SMS sent via MSG91: ${text}`, { filename: 'smsService.js', schoolId: 'system' })
         return { success: true, messageId: text }
+      }
+
+      // ── Saptele (GreenAds Global) ─────────────────────────
+      // Set: SMS_PROVIDER=saptele
+      //      SAPTELE_API_KEY, SAPTELE_SENDER_NAME
+      //      SAPTELE_TRANSACTIONAL_TEMPLATE_ID  (DLT template ID)
+      //      SAPTELE_BASE_URL  (optional)
+      case 'saptele': {
+        const fetch = globalThis.fetch || (await import('node-fetch')).default
+        const apiKey     = process.env.SAPTELE_API_KEY
+        const sender     = process.env.SAPTELE_SENDER_NAME || 'INSTBE'
+        const templateId = process.env.SAPTELE_TRANSACTIONAL_TEMPLATE_ID || ''
+        const baseUrl    = process.env.SAPTELE_BASE_URL || 'https://sapteleservices.com/SMS_API/sendsms.php'
+        if (!apiKey) throw new Error('SAPTELE_API_KEY not set in .env')
+        const results = []
+        for (const phone of toList) {
+          const mobile = phone.replace(/^\+91/, '').replace(/\D/g, '').slice(-10)
+          const url = new URL(baseUrl)
+          url.searchParams.set('apikey',     apiKey)
+          url.searchParams.set('mobile',     mobile)
+          url.searchParams.set('sendername', sender)
+          url.searchParams.set('message',    message)
+          url.searchParams.set('routetype',  '1')
+          if (templateId) url.searchParams.set('tid', templateId)
+          const res  = await fetch(url.toString())
+          const text = await res.text()
+          results.push(text.trim())
+        }
+        logInfo(`SMS sent via Saptele: ${results.join(', ')}`, { filename: 'smsService.js', schoolId: 'system' })
+        return { success: true, messageId: results.join(', ') }
       }
 
       // ── No provider configured (dev mode) ──────────────

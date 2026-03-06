@@ -29,15 +29,25 @@ const authenticate = async (req, res, next) => {
     // Verify the user still exists in DB (handles deleted / deactivated users)
     const user = await prisma.user.findUnique({
       where: { id: decoded.sub },
-      select: { id: true, email: true, role: true, schoolId: true },
+      select: { id: true, email: true, role: true, schoolId: true, modulePermissions: true, activeSessionId: true },
     })
 
     if (!user) {
       return res.status(401).json({ message: 'User no longer exists. Please log in again.' })
     }
 
-    // Attach user to request
-    req.user = user
+    // Per-request session validation — catch revoked / replaced sessions immediately
+    // (rather than waiting for the 30-second polling interval on the client)
+    if (user.activeSessionId && decoded.sessionId && user.activeSessionId !== decoded.sessionId) {
+      return res.status(401).json({
+        message: 'Session invalidated. Please log in again.',
+        sessionInvalidated: true,
+      })
+    }
+
+    // Attach user to request (exclude activeSessionId from downstream code)
+    const { activeSessionId: _sid, ...userFields } = user
+    req.user = { ...userFields, sessionId: decoded.sessionId ?? null }
     next()
   } catch (error) {
     logError(`Auth middleware error: ${error.message}`, {

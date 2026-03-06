@@ -1,4 +1,5 @@
 import { verifyToken } from '../utils/jwt.js'
+import prisma from '../utils/prisma.js'
 import { logError } from '../utils/logHelpers.js'
 
 /**
@@ -7,10 +8,10 @@ import { logError } from '../utils/logHelpers.js'
  *
  * Unlike the main `authenticate` middleware this does NOT look up a User row
  * because portal tokens are issued against Student / Teacher records, not the
- * User table.  It simply verifies the JWT signature & expiry and attaches the
- * decoded payload to `req.portalUser`.
+ * User table.  It verifies the JWT signature/expiry AND confirms the
+ * student/teacher record still exists in the DB (handles deleted records).
  */
-const portalAuthenticate = (req, res, next) => {
+const portalAuthenticate = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization
 
@@ -35,6 +36,23 @@ const portalAuthenticate = (req, res, next) => {
       return res.status(403).json({ message: 'Access denied. This endpoint requires a portal login.' })
     }
 
+    // Verify the underlying Student / Teacher record still exists in the DB
+    // (handles records that were deleted after the token was issued)
+    const entityId = decoded.sub
+    let entityExists = false
+
+    if (decoded.role === 'portal-student') {
+      const student = await prisma.student.findUnique({ where: { id: entityId }, select: { id: true } })
+      entityExists = !!student
+    } else if (decoded.role === 'portal-teacher') {
+      const teacher = await prisma.teacher.findUnique({ where: { id: entityId }, select: { id: true } })
+      entityExists = !!teacher
+    }
+
+    if (!entityExists) {
+      return res.status(401).json({ message: 'Account no longer exists. Please contact your school administrator.' })
+    }
+
     // Attach decoded token data to request
     req.portalUser = {
       id: decoded.sub,
@@ -47,7 +65,7 @@ const portalAuthenticate = (req, res, next) => {
   } catch (error) {
     logError(`Portal auth middleware error: ${error.message}`, {
       filename: 'portalAuth.js',
-      line: 45,
+      line: 65,
       schoolId: 'system',
       stack: error.stack,
     })

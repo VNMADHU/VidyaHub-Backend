@@ -1,7 +1,9 @@
 import rateLimit from 'express-rate-limit'
 
-const AUTH_WINDOW = Number(process.env.AUTH_RATE_LIMIT_WINDOW_MS) || 1 * 60 * 1000
-const AUTH_MAX = Number(process.env.AUTH_RATE_LIMIT_MAX) || 10
+// Auth window: 15 minutes, max 5 attempts — prevents OTP brute force
+// (5 attempts × 5 OTP tries per attempt = 25 guesses per 15-min window)
+const AUTH_WINDOW = Number(process.env.AUTH_RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000
+const AUTH_MAX = Number(process.env.AUTH_RATE_LIMIT_MAX) || 5
 const API_WINDOW = Number(process.env.API_RATE_LIMIT_WINDOW_MS) || 1 * 60 * 1000
 const API_MAX = Number(process.env.API_RATE_LIMIT_MAX) || 200
 

@@ -15,11 +15,15 @@ const schoolSchema = z.object({
 
 export const listSchools = async (req, res, next) => {
   try {
-    logInfo('Listing all schools', {
+    // Super-admins see all schools; school-admins see only their own school
+    const isSuperAdmin = req.user?.role === 'super-admin'
+    const where = isSuperAdmin ? {} : { id: parseInt(req.user?.schoolId) }
+
+    logInfo(`Listing schools (role=${req.user?.role})`, {
       filename: 'schoolController.js',
       line: 16,
     })
-    const schools = await prisma.school.findMany()
+    const schools = await prisma.school.findMany({ where })
     res.json({ data: schools, message: 'List of schools' })
   } catch (error) {
     logError(`List schools error: ${error.message}`, {

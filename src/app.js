@@ -18,9 +18,20 @@ const app = express()
 
 // ── Security ────────────────────────────────────────────────
 app.use(helmet())
+
+// CORS — only the origins listed in CORS_ORIGIN (comma-separated) are allowed.
+// Never fall back to wildcard '*' in production; use localhost for dev only.
+const rawOrigins = process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:3000'
+const allowedOrigins = rawOrigins.split(',').map((o) => o.trim()).filter(Boolean)
+
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Electron, curl in dev)
+      if (!origin) return callback(null, true)
+      if (allowedOrigins.includes(origin)) return callback(null, true)
+      return callback(new Error(`CORS: origin '${origin}' is not allowed`))
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-School-Id'],

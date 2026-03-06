@@ -12,15 +12,31 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  password String
-  role     String  // super-admin, school-admin, teacher, student, parent
-  schoolId Int?
-  school   School? @relation(fields: [schoolId], references: [id])
-  profile  Profile?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                  Int       @id @default(autoincrement())
+  email               String    @unique
+  password            String
+  role                String    // super-admin, school-admin
+  phone               String?   // for OTP delivery via SMS
+  isEmailVerified     Boolean   @default(false)
+  isPhoneVerified     Boolean   @default(false)
+  emailVerifyCode     String?   // code sent to email during registration
+  emailVerifyExpiry   DateTime?
+  otpCode             String?   // current pending login OTP
+  otpExpiry           DateTime?
+  otpAttempts         Int       @default(0) // failed OTP attempts counter
+  otpResendCount      Int       @default(0) // number of OTPs resent in current flow
+  accountLockedUntil  DateTime? // set to now+1h after 3 wrong OTPs or 3 resends
+  activeSessionId     String?   // single-session enforcement
+  passwordResetCode   String?
+  passwordResetExpiry DateTime?
+  lastLoginIp         String?
+  lastLoginAt         DateTime?
+  modulePermissions   String?   // JSON array: '["students","fees"]' — null means all modules
+  schoolId            Int?
+  school              School?   @relation(fields: [schoolId], references: [id])
+  profile             Profile?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 }
 
 model Profile {
@@ -44,6 +60,7 @@ model School {
   academicYear String?  @default("2025-26")
   logo         String?
   status       String  @default("pending") // pending, active, blocked
+  isFreeTrail  Boolean @default(true)       // free trial or paid
   users        User[]
   students     Student[]
   teachers     Teacher[]

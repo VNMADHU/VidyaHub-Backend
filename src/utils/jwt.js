@@ -10,7 +10,7 @@ const getSecret = () => {
 
 /**
  * Sign a JWT token with user payload
- * @param {{ id: number, email: string, role: string, schoolId: number|null }} payload
+ * @param {{ id: number, email: string, role: string, schoolId: number|null, modulePermissions?: string|null }} payload
  * @returns {string}
  */
 export const signToken = (payload) => {
@@ -20,9 +20,11 @@ export const signToken = (payload) => {
       email: payload.email,
       role: payload.role,
       schoolId: payload.schoolId,
+      modulePermissions: payload.modulePermissions ?? null,
+      sessionId: payload.sessionId ?? null,
     },
     getSecret(),
-    { expiresIn: process.env.JWT_EXPIRES_IN || '7d' },
+    { expiresIn: process.env.JWT_EXPIRES_IN || '8h' },
   )
 }
 
