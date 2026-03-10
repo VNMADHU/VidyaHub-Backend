@@ -17,6 +17,8 @@ const feeSchema = z.object({
   transactionId: z.string().optional().nullable(),
   academicYear: z.string().optional(),
   term: z.string().optional(),
+  classId: z.preprocess((val) => (val === '' || val === null || val === undefined ? undefined : Number(val)), z.number().int().optional()),
+  sectionId: z.preprocess((val) => (val === '' || val === null || val === undefined ? undefined : Number(val)), z.number().int().optional()),
 })
 
 // List all fees (optionally filter by studentId)

@@ -73,7 +73,7 @@ async function addSuperAdmin() {
   console.log(`\n✅ School  : ${school.name} (id: ${school.id})`)
 
   // Step 2 — Upsert super-admin user
-  const existing = await prisma.user.findUnique({ where: { email: CONFIG.email } })
+  const existing = await prisma.user.findFirst({ where: { email: CONFIG.email } })
 
   let user
   if (existing) {
@@ -135,7 +135,7 @@ async function deleteSuperAdmin() {
   console.log('   Vidya Hub — Delete Super Admin')
   console.log('══════════════════════════════════════════')
 
-  const user = await prisma.user.findUnique({ where: { email: CONFIG.email } })
+  const user = await prisma.user.findFirst({ where: { email: CONFIG.email } })
 
   if (!user) {
     console.log(`⚠️  No user found with email: ${CONFIG.email}`)

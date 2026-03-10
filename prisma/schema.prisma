@@ -182,6 +182,7 @@ model Class {
   timetables Timetable[]
   exams      Exam[]
   homework   Homework[]
+  fees       Fee[]   @relation("FeeClass")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
@@ -196,6 +197,7 @@ model Section {
   students  Student[]
   exams     Exam[]
   homework  Homework[]
+  fees      Fee[]   @relation("FeeSection")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -314,6 +316,10 @@ model Fee {
   transactionId String?
   academicYear String?  // e.g., "2025-2026"
   term        String?  // e.g., "Term 1", "Term 2", "Annual"
+  classId     Int?     // class this fee belongs to
+  class       Class?   @relation("FeeClass", fields: [classId], references: [id])
+  sectionId   Int?     // section this fee belongs to
+  section     Section? @relation("FeeSection", fields: [sectionId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

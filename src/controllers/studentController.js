@@ -26,7 +26,7 @@ const studentSchema = z.object({
   profilePic: z.string().optional(),
   classId: z.preprocess(
     (val) => (val === '' || val === null || val === undefined ? undefined : Number(val)),
-    z.number().int().optional(),
+    z.number().int(),
   ),
   sectionId: z.preprocess(
     (val) => (val === '' || val === null || val === undefined ? undefined : Number(val)),

@@ -290,7 +290,12 @@ export const updateAdmin = async (req, res, next) => {
     }
 
     logInfo(`Admin updated: ${id}`, { filename: 'adminController.js' })
-    res.json({ message: 'Admin updated successfully' })
+
+    const updatedUser = await prisma.user.findUnique({
+      where: { id },
+      include: { profile: true, school: { select: { id: true, name: true } } },
+    })
+    res.json(formatAdmin(updatedUser))
   } catch (error) {
     logError(`Update admin error: ${error.message}`, { filename: 'adminController.js' })
     next(error)
