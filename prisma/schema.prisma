@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id                  Int       @id @default(autoincrement())
-  email               String    @unique
+  email               String    // not globally unique — same email allowed in different schools
   password            String
   role                String    // super-admin, school-admin
   phone               String?   // for OTP delivery via SMS
@@ -33,12 +33,16 @@ model User {
   modulePermissions   String?   // JSON array: '["students","fees"]' — null means all modules
   mfaEmail            Boolean   @default(true)  // send OTP to email on login
   mfaPhone            Boolean   @default(false) // send OTP to phone on login
+  feeCanEdit          Boolean   @default(false) // allow admin to edit fee records
+  feeCanDelete        Boolean   @default(false) // allow admin to delete fee records
   accountStatus       String    @default("active") // active, suspended
   schoolId            Int?
   school              School?   @relation(fields: [schoolId], references: [id])
   profile             Profile?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+
+  @@unique([email, schoolId]) // same email allowed across schools, not within same school
 }
 
 model Profile {
@@ -301,6 +305,7 @@ model Fee {
   feeType     String   // tuition, exam, transport, library, sports, lab, other
   description String?
   amount      Float
+  discount    Float    @default(0)  // discount applied to this fee
   dueDate     DateTime
   status      String   @default("pending") // pending, paid, overdue, partial
   paidAmount  Float    @default(0)
@@ -547,6 +552,7 @@ model Hostel {
   name           String    // e.g., "Boys Hostel Block A"
   type           String    @default("boys") // boys, girls, mixed
   totalCapacity  Int       @default(0)
+  numberOfRooms  Int       @default(0)
   wardenName     String?
   wardenPhone    String?
   wardenEmail    String?

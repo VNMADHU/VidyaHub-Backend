@@ -27,6 +27,8 @@ const createAdminSchema = z.object({
   modulePermissions: z.array(z.string()).nullable().optional(),
   mfaEmail: z.boolean().optional(),
   mfaPhone: z.boolean().optional(),
+  feeCanEdit: z.boolean().optional(),
+  feeCanDelete: z.boolean().optional(),
 })
 
 const updateAdminSchema = z.object({
@@ -37,6 +39,8 @@ const updateAdminSchema = z.object({
   modulePermissions: z.array(z.string()).nullable().optional(),
   mfaEmail: z.boolean().optional(),
   mfaPhone: z.boolean().optional(),
+  feeCanEdit: z.boolean().optional(),
+  feeCanDelete: z.boolean().optional(),
 })
 
 const updatePasswordSchema = z.object({
@@ -91,6 +95,8 @@ const formatAdmin = (u) => ({
   isPhoneVerified: u.isPhoneVerified,
   mfaEmail: u.mfaEmail ?? true,
   mfaPhone: u.mfaPhone ?? false,
+  feeCanEdit: u.feeCanEdit ?? false,
+  feeCanDelete: u.feeCanDelete ?? false,
   createdAt: u.createdAt,
 })
 
@@ -179,6 +185,8 @@ export const createAdmin = async (req, res, next) => {
             : null,
         mfaEmail: payload.mfaEmail ?? true,
         mfaPhone: payload.mfaPhone ?? false,
+        feeCanEdit: payload.feeCanEdit ?? false,
+        feeCanDelete: payload.feeCanDelete ?? false,
         profile: {
           create: {
             firstName: payload.firstName,
@@ -237,10 +245,24 @@ export const updateAdmin = async (req, res, next) => {
     }
 
     const userUpdateData = {}
-    if (payload.email !== undefined) userUpdateData.email = payload.email
-    if (payload.phone !== undefined) userUpdateData.phone = payload.phone
+    if (payload.email !== undefined) {
+      const emailConflict = await prisma.user.findFirst({
+        where: { email: payload.email, schoolId: user.schoolId, NOT: { id } },
+      })
+      if (emailConflict) return res.status(409).json({ message: 'An account with this email already exists in this school.' })
+      userUpdateData.email = payload.email
+    }
+    if (payload.phone !== undefined) {
+      const phoneConflict = await prisma.user.findFirst({
+        where: { phone: payload.phone, schoolId: user.schoolId, NOT: { id } },
+      })
+      if (phoneConflict) return res.status(409).json({ message: 'An account with this mobile number already exists in this school.' })
+      userUpdateData.phone = payload.phone
+    }
     if (typeof payload.mfaEmail === 'boolean') userUpdateData.mfaEmail = payload.mfaEmail
     if (typeof payload.mfaPhone === 'boolean') userUpdateData.mfaPhone = payload.mfaPhone
+    if (typeof payload.feeCanEdit === 'boolean') userUpdateData.feeCanEdit = payload.feeCanEdit
+    if (typeof payload.feeCanDelete === 'boolean') userUpdateData.feeCanDelete = payload.feeCanDelete
     if ('modulePermissions' in payload) {
       userUpdateData.modulePermissions =
         payload.modulePermissions != null

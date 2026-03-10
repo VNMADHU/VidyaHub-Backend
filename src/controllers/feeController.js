@@ -8,6 +8,7 @@ const feeSchema = z.object({
   feeType: z.string().min(1),
   description: z.string().optional(),
   amount: z.preprocess((val) => Number(val), z.number().positive()),
+  discount: z.preprocess((val) => (val === '' || val === null || val === undefined ? 0 : Number(val)), z.number().min(0).optional()),
   dueDate: z.string().min(1),
   status: z.enum(['pending', 'paid', 'overdue', 'partial']).optional(),
   paidAmount: z.preprocess((val) => (val === '' || val === null || val === undefined ? 0 : Number(val)), z.number().optional()),
@@ -90,13 +91,15 @@ export const createFee = async (req, res, next) => {
     const schoolId = req.schoolId
     const payload = feeSchema.parse(req.body)
 
+    const netAmount = payload.amount - (payload.discount || 0)
     const fee = await prisma.fee.create({
       data: {
         ...payload,
         schoolId: parseInt(schoolId),
+        discount: payload.discount || 0,
         dueDate: new Date(payload.dueDate),
         paidDate: payload.paidDate ? new Date(payload.paidDate) : null,
-        paidAmount: payload.paidAmount || 0,
+        paidAmount: payload.status === 'paid' ? netAmount : (payload.paidAmount || 0),
       },
     })
 
@@ -126,6 +129,22 @@ export const updateFee = async (req, res, next) => {
     const updateData = { ...payload }
     if (payload.dueDate) updateData.dueDate = new Date(payload.dueDate)
     if (payload.paidDate) updateData.paidDate = new Date(payload.paidDate)
+
+    // Auto-populate paidAmount when status is set to 'paid'
+    if (updateData.status === 'paid') {
+      const existing = await prisma.fee.findUnique({ where: { id: parseInt(feeId) } })
+      if (existing) {
+        const effectiveDiscount = updateData.discount ?? existing.discount ?? 0
+        const effectiveAmount = updateData.amount ?? existing.amount
+        const netAmount = effectiveAmount - effectiveDiscount
+        if (!updateData.paidAmount || updateData.paidAmount === 0) {
+          updateData.paidAmount = netAmount
+        }
+        if (!updateData.paidDate) {
+          updateData.paidDate = new Date()
+        }
+      }
+    }
 
     const fee = await prisma.fee.update({
       where: { id: parseInt(feeId) },
@@ -159,9 +178,10 @@ export const payFee = async (req, res, next) => {
       return res.status(404).json({ message: 'Fee record not found' })
     }
 
-    const amountToPay = paidAmount ? parseFloat(paidAmount) : fee.amount
+    const netAmount = fee.amount - (fee.discount || 0)
+    const amountToPay = paidAmount ? parseFloat(paidAmount) : netAmount - (fee.paidAmount || 0)
     const totalPaid = (fee.paidAmount || 0) + amountToPay
-    const newStatus = totalPaid >= fee.amount ? 'paid' : 'partial'
+    const newStatus = totalPaid >= netAmount ? 'paid' : 'partial'
 
     const updatedFee = await prisma.fee.update({
       where: { id: parseInt(feeId) },

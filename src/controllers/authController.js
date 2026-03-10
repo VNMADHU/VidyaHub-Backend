@@ -58,6 +58,8 @@ const buildUserResponse = (user) => ({
   schoolId: user.schoolId ? String(user.schoolId) : null,
   phone: user.phone ?? null,
   modulePermissions: parseModulePermissions(user.modulePermissions),
+  feeCanEdit: user.feeCanEdit ?? false,
+  feeCanDelete: user.feeCanDelete ?? false,
   profile: user.profile ?? null,
   isEmailVerified: user.isEmailVerified,
   isPhoneVerified: user.isPhoneVerified,
@@ -162,7 +164,7 @@ export const login = async (req, res, next) => {
 
     logInfo(`Login attempt: ${payload.email}`, { filename: 'authController.js', schoolId: 'system' })
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: { email: payload.email },
       include: { profile: true },
     })
@@ -321,7 +323,7 @@ export const forceLogin = async (req, res, next) => {
     const payload = loginSchema.parse(req.body)
     const clientIp = getClientIp(req)
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: { email: payload.email },
       include: { profile: true },
     })
@@ -402,7 +404,7 @@ export const verifyOtp = async (req, res, next) => {
   try {
     const payload = verifyOtpSchema.parse(req.body)
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: { email: payload.email },
       include: { profile: true },
     })
@@ -500,7 +502,7 @@ export const resendOtp = async (req, res, next) => {
   try {
     const { email } = z.object({ email: z.string().email() }).parse(req.body)
 
-    const user = await prisma.user.findUnique({ where: { email }, include: { profile: true } })
+    const user = await prisma.user.findFirst({ where: { email }, include: { profile: true } })
 
     if (!user || !['super-admin', 'school-admin'].includes(user.role)) {
       return res.json({ message: 'If this email exists, a new OTP has been sent.', otpSent: true })
@@ -671,7 +673,7 @@ export const register = async (req, res, next) => {
       schoolId: 'system',
     })
 
-    const existing = await prisma.user.findUnique({ where: { email: payload.email } })
+    const existing = await prisma.user.findFirst({ where: { email: payload.email } })
     if (existing) {
       return res.status(409).json({ message: 'An account with this email already exists.' })
     }
@@ -758,7 +760,7 @@ export const verifyEmail = async (req, res, next) => {
       code: z.string().length(6),
     }).parse(req.body)
 
-    const user = await prisma.user.findUnique({ where: { email } })
+    const user = await prisma.user.findFirst({ where: { email } })
     if (!user) return res.status(400).json({ message: 'Invalid request.' })
     if (user.isEmailVerified) return res.json({ message: 'Email already verified.', emailVerified: true })
 
@@ -794,7 +796,7 @@ export const verifyPhone = async (req, res, next) => {
       otp: z.string().length(6),
     }).parse(req.body)
 
-    const user = await prisma.user.findUnique({ where: { email } })
+    const user = await prisma.user.findFirst({ where: { email } })
     if (!user) return res.status(400).json({ message: 'Invalid request.' })
     if (user.isPhoneVerified) return res.json({ message: 'Phone already verified.', phoneVerified: true })
 
@@ -835,7 +837,7 @@ export const resendVerification = async (req, res, next) => {
       type: z.enum(['email', 'phone']),
     }).parse(req.body)
 
-    const user = await prisma.user.findUnique({ where: { email }, include: { profile: true } })
+    const user = await prisma.user.findFirst({ where: { email }, include: { profile: true } })
     if (!user) return res.json({ message: 'If this account exists, verification has been resent.' })
 
     const code = generateOtp()
@@ -893,7 +895,7 @@ export const forgotPassword = async (req, res, next) => {
   try {
     const { email } = z.object({ email: z.string().email() }).parse(req.body)
 
-    const user = await prisma.user.findUnique({ where: { email }, include: { profile: true } })
+    const user = await prisma.user.findFirst({ where: { email }, include: { profile: true } })
 
     const safeResponse = {
       message: 'If this email is registered, a reset code has been sent to your email and phone.',
@@ -948,7 +950,7 @@ export const resetPassword = async (req, res, next) => {
       newPassword: z.string().min(8, 'Password must be at least 8 characters'),
     }).parse(req.body)
 
-    const user = await prisma.user.findUnique({ where: { email } })
+    const user = await prisma.user.findFirst({ where: { email } })
     if (!user) return res.status(400).json({ message: 'Invalid request.' })
 
     if (!user.passwordResetCode || !user.passwordResetExpiry) {

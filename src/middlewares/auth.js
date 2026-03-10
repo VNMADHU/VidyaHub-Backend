@@ -29,7 +29,7 @@ const authenticate = async (req, res, next) => {
     // Verify the user still exists in DB (handles deleted / deactivated users)
     const user = await prisma.user.findUnique({
       where: { id: decoded.sub },
-      select: { id: true, email: true, role: true, schoolId: true, modulePermissions: true, activeSessionId: true },
+      select: { id: true, email: true, role: true, schoolId: true, modulePermissions: true, activeSessionId: true, feeCanEdit: true, feeCanDelete: true },
     })
 
     if (!user) {

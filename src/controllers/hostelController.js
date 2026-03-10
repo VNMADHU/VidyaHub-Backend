@@ -7,6 +7,7 @@ const hostelSchema = z.object({
   name: z.string().min(1),
   type: z.string().optional(),
   totalCapacity: z.number().int().min(0).optional(),
+  numberOfRooms: z.number().int().min(0).optional(),
   wardenName: z.string().optional().nullable(),
   wardenPhone: z.string().optional().nullable(),
   wardenEmail: z.string().email().optional().nullable().or(z.literal('')),

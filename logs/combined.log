@@ -1780,3 +1780,144 @@
 {"timestamp":"2026-03-06 15:15:00","level":"INFO","filename":"/login","line":328,"schoolId":"system","message":"[RESPONSE] POST /login - 429 (0ms)"}
 {"timestamp":"2026-03-06 15:18:14","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
 {"timestamp":"2026-03-06 15:20:31","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-03-07 23:21:52","level":"INFO","filename":"index.js","line":55,"schoolId":"system","message":"Vidya Hub API running on port 5001 [development]"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (32ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (40ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (41ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (58ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-03-07 23:22:00","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (2ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (12ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (9ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (9ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (26ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (5ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-07 23:24:15","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (120ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (147ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (2ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (143ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (143ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-03-08 04:42:47","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-03-08 08:18:52","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (491ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (474ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (477ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (502ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (32ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (28ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (7ms)"}
+{"timestamp":"2026-03-08 08:18:53","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (40ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (108ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (119ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (127ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (5ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (2ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (164ms)"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 14:38:04","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (102ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (106ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (1ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (3ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (152ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (134ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (1ms)"}
+{"timestamp":"2026-03-08 17:23:13","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (4ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (42ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/schools","line":328,"schoolId":"2","message":"[REQUEST] GET /api/schools"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (71ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"schoolController.js","line":16,"schoolId":"system","message":"Listing schools (role=super-admin)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (49ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (6ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/classes","line":328,"schoolId":"2","message":"[REQUEST] GET /api/classes"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (57ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/notifications/recipients-count","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications/recipients-count"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"classController.js","line":17,"schoolId":"2","message":"Listing all classes"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/api/notifications","line":328,"schoolId":"2","message":"[REQUEST] GET /api/notifications"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (5ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/recipients-count","line":328,"schoolId":"2","message":"[RESPONSE] GET /recipients-count - 200 (3ms)"}
+{"timestamp":"2026-03-08 17:35:59","level":"INFO","filename":"/","line":328,"schoolId":"2","message":"[RESPONSE] GET / - 200 (3ms)"}
