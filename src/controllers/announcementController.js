@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
+import { sendSMS } from '../services/smsService.js'
 
 
 const announcementSchema = z.object({
@@ -48,6 +49,37 @@ export const createAnnouncement = async (req, res, next) => {
       line: 48,
       schoolId,
     })
+
+    // Send SMS to all parents + staff + teachers on announcement (fire-and-forget)
+    setImmediate(async () => {
+      try {
+        const school = await prisma.school.findUnique({ where: { id: parseInt(schoolId) }, select: { name: true, smsEnabled: true, smsOnAnnouncement: true } })
+        if (school?.smsEnabled && school?.smsOnAnnouncement) {
+          const [students, teachers, staff] = await Promise.all([
+            prisma.student.findMany({ where: { schoolId: parseInt(schoolId) }, select: { fatherContact: true, motherContact: true, guardianContact: true } }),
+            prisma.teacher.findMany({ where: { schoolId: parseInt(schoolId) }, select: { phoneNumber: true } }),
+            prisma.staff.findMany({ where: { schoolId: parseInt(schoolId) }, select: { phoneNumber: true } }),
+          ])
+          const phonesSet = new Set()
+          for (const s of students) {
+            if (s.fatherContact) phonesSet.add(s.fatherContact.trim())
+            if (s.motherContact) phonesSet.add(s.motherContact.trim())
+            if (s.guardianContact) phonesSet.add(s.guardianContact.trim())
+          }
+          for (const t of teachers) { if (t.phoneNumber) phonesSet.add(t.phoneNumber.trim()) }
+          for (const st of staff) { if (st.phoneNumber) phonesSet.add(st.phoneNumber.trim()) }
+          const allPhones = [...phonesSet].filter(Boolean)
+          if (allPhones.length > 0) {
+            // Keep exact DLT template format: {#var#} Announcement: {#var#} - {#var#}
+            const msg = `${school.name} Announcement: ${payload.title} - ${payload.message}`
+            for (const phone of allPhones) {
+              await sendSMS({ to: phone, message: msg, templateId: process.env.SAPTELE_ANNOUNCEMENT_TEMPLATE_ID }).catch(() => {})
+            }
+          }
+        }
+      } catch (e) { /* SMS failure must not break the main response */ }
+    })
+
     res.status(201).json({ message: 'Announcement created', data: announcement })
   } catch (error) {
     logError(`Create announcement error: ${error.message}`, {

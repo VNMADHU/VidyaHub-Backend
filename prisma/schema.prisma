@@ -67,6 +67,12 @@ model School {
   logo         String?
   status       String  @default("pending") // pending, active, blocked
   isFreeTrail  Boolean @default(true)       // free trial or paid
+  // SMS Notification settings
+  smsEnabled              Boolean @default(false) // master SMS on/off switch
+  smsOnAbsent             Boolean @default(false) // notify parent when student absent
+  smsOnFeeAssigned        Boolean @default(false) // notify parent when fee assigned
+  smsOnLeaveApproved      Boolean @default(false) // notify employee when leave approved/rejected
+  smsOnAnnouncement       Boolean @default(false) // notify all parents+staff on new announcement
   users        User[]
   students     Student[]
   teachers     Teacher[]

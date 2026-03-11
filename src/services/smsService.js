@@ -21,10 +21,10 @@ export const buildOtpSms = (code) => {
 
 /**
  * Send an SMS.
- * @param {{ to: string|string[], message: string }} options
+ * @param {{ to: string|string[], message: string, templateId?: string }} options
  * @returns {Promise<{ success: boolean, messageId?: string, error?: string }>}
  */
-export const sendSMS = async ({ to, message }) => {
+export const sendSMS = async ({ to, message, templateId }) => {
   const provider = process.env.SMS_PROVIDER || ''
   const toList = Array.isArray(to) ? to : [to]
 
@@ -73,9 +73,13 @@ export const sendSMS = async ({ to, message }) => {
         const fetch = globalThis.fetch || (await import('node-fetch')).default
         const apiKey     = process.env.SAPTELE_API_KEY
         const sender     = process.env.SAPTELE_SENDER_NAME || 'INSTBE'
-        const templateId = process.env.SAPTELE_TRANSACTIONAL_TEMPLATE_ID || ''
+        // Use the per-call templateId if provided, else fall back to the default transactional one
+        const tid        = templateId || process.env.SAPTELE_TRANSACTIONAL_TEMPLATE_ID || ''
         const baseUrl    = process.env.SAPTELE_BASE_URL || 'https://sapteleservices.com/SMS_API/sendsms.php'
         if (!apiKey) throw new Error('SAPTELE_API_KEY not set in .env')
+
+        logInfo(`[SMS DISPATCH] Provider: saptele | Recipients: ${toList.join(', ')} | TemplateId: ${tid || '(none)'} | Message: ${message}`, { filename: 'smsService.js', schoolId: 'system' })
+
         const results = []
         for (const phone of toList) {
           const mobile = phone.replace(/^\+91/, '').replace(/\D/g, '').slice(-10)
@@ -85,12 +89,17 @@ export const sendSMS = async ({ to, message }) => {
           url.searchParams.set('sendername', sender)
           url.searchParams.set('message',    message)
           url.searchParams.set('routetype',  '1')
-          if (templateId) url.searchParams.set('tid', templateId)
+          if (tid) url.searchParams.set('tid', tid)
+
+          logInfo(`[SMS ATTEMPT] To: ${mobile} | TemplateId: ${tid || '(none)'} | Message: ${message}`, { filename: 'smsService.js', schoolId: 'system' })
+
           const res  = await fetch(url.toString())
           const text = await res.text()
           results.push(text.trim())
+
+          logInfo(`[SMS RESPONSE] To: ${mobile} | Response: ${text.trim()}`, { filename: 'smsService.js', schoolId: 'system' })
         }
-        logInfo(`SMS sent via Saptele: ${results.join(', ')}`, { filename: 'smsService.js', schoolId: 'system' })
+        logInfo(`[SMS DONE] Saptele results: ${results.join(' | ')}`, { filename: 'smsService.js', schoolId: 'system' })
         return { success: true, messageId: results.join(', ') }
       }
 

@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
+import { sendSMS } from '../services/smsService.js'
 
 
 const feeSchema = z.object({
@@ -100,7 +101,7 @@ export const createFee = async (req, res, next) => {
         schoolId: parseInt(schoolId),
         discount: payload.discount || 0,
         dueDate: new Date(payload.dueDate),
-        paidDate: payload.paidDate ? new Date(payload.paidDate) : null,
+        paidDate: payload.paidDate ? new Date(payload.paidDate) : (payload.status === 'paid' ? new Date() : null),
         paidAmount: payload.status === 'paid' ? netAmount : (payload.paidAmount || 0),
       },
     })
@@ -110,6 +111,28 @@ export const createFee = async (req, res, next) => {
       line: 95,
       schoolId,
     })
+
+    // Send SMS to parent when fee is assigned (fire-and-forget)
+    setImmediate(async () => {
+      try {
+        const school = await prisma.school.findUnique({ where: { id: parseInt(schoolId) }, select: { name: true, smsEnabled: true, smsOnFeeAssigned: true } })
+        if (school?.smsEnabled && school?.smsOnFeeAssigned) {
+          const student = await prisma.student.findUnique({
+            where: { id: payload.studentId },
+            select: { firstName: true, lastName: true, fatherContact: true, motherContact: true, guardianContact: true },
+          })
+          if (student) {
+            const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
+            if (phones.length > 0) {
+              const netAmount = payload.amount - (payload.discount || 0)
+              const msg = `Dear Parent, a fee of Rs.${netAmount} (${payload.feeType}) has been assigned for ${student.firstName} ${student.lastName}. Due date: ${payload.dueDate}. - ${school.name}`
+              await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_FEE_TEMPLATE_ID }).catch(() => {})
+            }
+          }
+        }
+      } catch (e) { /* SMS failure must not break the main response */ }
+    })
+
     res.status(201).json({ message: 'Fee record created', data: fee })
   } catch (error) {
     logError(`Create fee error: ${error.message}`, {
@@ -200,6 +223,28 @@ export const payFee = async (req, res, next) => {
       filename: 'feeController.js',
       line: 165,
     })
+
+    // Send SMS to parent when payment is recorded (fire-and-forget)
+    setImmediate(async () => {
+      try {
+        const schoolId = fee.schoolId
+        const school = await prisma.school.findUnique({ where: { id: schoolId }, select: { name: true, smsEnabled: true } })
+        if (school?.smsEnabled) {
+          const student = await prisma.student.findUnique({
+            where: { id: fee.studentId },
+            select: { firstName: true, lastName: true, fatherContact: true, motherContact: true, guardianContact: true },
+          })
+          if (student) {
+            const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
+            if (phones.length > 0) {
+              const msg = `Dear Parent, payment of Rs.${amountToPay} received for ${student.firstName} ${student.lastName} (${fee.feeType} fee). Status: ${newStatus.toUpperCase()}. Paid Date: ${new Date().toLocaleDateString('en-IN')}. - ${school.name}`
+              await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_FEE_TEMPLATE_ID }).catch(() => {})
+            }
+          }
+        }
+      } catch (e) { /* SMS failure must not break the main response */ }
+    })
+
     res.json({ message: 'Payment recorded successfully', data: updatedFee })
   } catch (error) {
     logError(`Pay fee error: ${error.message}`, {

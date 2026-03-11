@@ -101,3 +101,46 @@ export const deleteSchool = async (req, res, next) => {
     next(error)
   }
 }
+
+export const getSmsSettings = async (req, res, next) => {
+  try {
+    const schoolId = parseInt(req.params.schoolId)
+    const school = await prisma.school.findUnique({
+      where: { id: schoolId },
+      select: {
+        smsEnabled: true,
+        smsOnAbsent: true,
+        smsOnFeeAssigned: true,
+        smsOnLeaveApproved: true,
+        smsOnAnnouncement: true,
+      },
+    })
+    if (!school) return res.status(404).json({ message: 'School not found' })
+    res.json({ data: school })
+  } catch (error) {
+    logError(`Get SMS settings error: ${error.message}`, { filename: 'schoolController.js' })
+    next(error)
+  }
+}
+
+export const updateSmsSettings = async (req, res, next) => {
+  try {
+    const schoolId = parseInt(req.params.schoolId)
+    const { smsEnabled, smsOnAbsent, smsOnFeeAssigned, smsOnLeaveApproved, smsOnAnnouncement } = req.body
+    const school = await prisma.school.update({
+      where: { id: schoolId },
+      data: {
+        ...(smsEnabled !== undefined && { smsEnabled }),
+        ...(smsOnAbsent !== undefined && { smsOnAbsent }),
+        ...(smsOnFeeAssigned !== undefined && { smsOnFeeAssigned }),
+        ...(smsOnLeaveApproved !== undefined && { smsOnLeaveApproved }),
+        ...(smsOnAnnouncement !== undefined && { smsOnAnnouncement }),
+      },
+    })
+    logInfo(`SMS settings updated for school ${schoolId}`, { filename: 'schoolController.js' })
+    res.json({ data: school, message: 'SMS settings updated' })
+  } catch (error) {
+    logError(`Update SMS settings error: ${error.message}`, { filename: 'schoolController.js' })
+    next(error)
+  }
+}

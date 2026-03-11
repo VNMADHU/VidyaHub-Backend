@@ -14,7 +14,7 @@ const indianPhoneOptional = z.string()
 const studentSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Invalid email address').optional().or(z.literal('')),
   dateOfBirth: z.string()
     .refine((val) => !val || new Date(val) <= new Date(), {
       message: 'Date of birth cannot be a future date',
@@ -22,7 +22,7 @@ const studentSchema = z.object({
     .optional(),
   gender: z.preprocess((val) => (typeof val === 'string' ? val.toLowerCase() : val), z.enum(['male', 'female', 'other']).optional()),
   admissionNumber: z.string().min(1),
-  rollNumber: z.string().optional(),
+  rollNumber: z.string().min(1, 'Roll Number is required'),
   profilePic: z.string().optional(),
   classId: z.preprocess(
     (val) => (val === '' || val === null || val === undefined ? undefined : Number(val)),

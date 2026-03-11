@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
+import { sendSMS } from '../services/smsService.js'
 
 const leaveSchema = z.object({
   employeeType: z.enum(['teacher', 'driver', 'staff']),
@@ -67,6 +68,33 @@ export const updateLeave = async (req, res, next) => {
       where: { id: parseInt(leaveId) },
       data,
     })
+
+    // Send SMS to employee when leave is approved or rejected (fire-and-forget)
+    if (data.status === 'approved' || data.status === 'rejected') {
+      setImmediate(async () => {
+        try {
+          const school = await prisma.school.findUnique({ where: { id: leave.schoolId }, select: { name: true, smsEnabled: true, smsOnLeaveApproved: true } })
+          if (school?.smsEnabled && school?.smsOnLeaveApproved) {
+            let phone = null
+            if (leave.employeeType === 'teacher' && leave.employeeId) {
+              const teacher = await prisma.teacher.findUnique({ where: { id: leave.employeeId }, select: { phoneNumber: true } })
+              phone = teacher?.phoneNumber
+            } else if (leave.employeeType === 'staff' && leave.employeeId) {
+              const staff = await prisma.staff.findUnique({ where: { id: leave.employeeId }, select: { phoneNumber: true } })
+              phone = staff?.phoneNumber
+            } else if (leave.employeeType === 'driver' && leave.employeeId) {
+              const driver = await prisma.driver.findUnique({ where: { id: leave.employeeId }, select: { phone: true } })
+              phone = driver?.phone
+            }
+            if (phone) {
+              const msg = `Dear ${leave.employeeName}, your leave application from ${leave.fromDate.toISOString().split('T')[0]} to ${leave.toDate.toISOString().split('T')[0]} has been ${data.status}. - ${school.name}`
+              await sendSMS({ to: phone, message: msg, templateId: process.env.SAPTELE_LEAVE_TEMPLATE_ID }).catch(() => {})
+            }
+          }
+        } catch (e) { /* SMS failure must not break the main response */ }
+      })
+    }
+
     res.json({ data: leave, message: 'Leave updated' })
   } catch (error) {
     logError(`Update leave error: ${error.message}`, { filename: 'leaveController.js' })

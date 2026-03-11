@@ -17,7 +17,7 @@ const teacherSchema = z.object({
   subject: z.string().optional(),
   qualification: z.string().optional(),
   experience: z.string().optional(),
-  teacherId: z.string().optional(),
+  teacherId: z.string().min(1, 'Teacher ID is required'),
   profilePic: z.string().optional(),
   dateOfBirth: z.string().optional(),
   designation: z.string().optional(),

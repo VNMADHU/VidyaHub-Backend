@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
+import { sendSMS } from '../services/smsService.js'
 
 
 const attendanceSchema = z.object({
@@ -57,6 +58,29 @@ export const createAttendance = async (req, res, next) => {
       line: 48,
       schoolId,
     })
+
+    // Send SMS to parent if student is marked absent (fire-and-forget)
+    if (payload.status === 'absent') {
+      setImmediate(async () => {
+        try {
+          const school = await prisma.school.findUnique({ where: { id: parseInt(schoolId) }, select: { name: true, smsEnabled: true, smsOnAbsent: true } })
+          if (school?.smsEnabled && school?.smsOnAbsent) {
+            const student = await prisma.student.findUnique({
+              where: { id: payload.studentId },
+              select: { firstName: true, lastName: true, fatherContact: true, motherContact: true, guardianContact: true },
+            })
+            if (student) {
+              const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
+              if (phones.length > 0) {
+                const msg = `Dear Parent, your child ${student.firstName} ${student.lastName} was marked absent on ${payload.date}. - ${school.name}`
+                await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_ABSENT_TEMPLATE_ID }).catch(() => {})
+              }
+            }
+          }
+        } catch (e) { /* SMS failure must not break the main response */ }
+      })
+    }
+
     res.status(201).json({ message: 'Attendance recorded', data: attendance })
   } catch (error) {
     logError(`Create attendance error: ${error.message}`, {
@@ -84,6 +108,30 @@ export const updateAttendance = async (req, res, next) => {
       line: 72,
       schoolId,
     })
+
+    // Send SMS to parent if status changed to absent (fire-and-forget)
+    if (payload.status === 'absent') {
+      setImmediate(async () => {
+        try {
+          const school = await prisma.school.findUnique({ where: { id: parseInt(schoolId) }, select: { name: true, smsEnabled: true, smsOnAbsent: true } })
+          if (school?.smsEnabled && school?.smsOnAbsent) {
+            const student = await prisma.student.findUnique({
+              where: { id: attendance.studentId },
+              select: { firstName: true, lastName: true, fatherContact: true, motherContact: true, guardianContact: true },
+            })
+            if (student) {
+              const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
+              if (phones.length > 0) {
+                const dateStr = attendance.date ? new Date(attendance.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+                const msg = `Dear Parent, your child ${student.firstName} ${student.lastName} was marked absent on ${dateStr}. - ${school.name}`
+                await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_ABSENT_TEMPLATE_ID }).catch(() => {})
+              }
+            }
+          }
+        } catch (e) { /* SMS failure must not break the main response */ }
+      })
+    }
+
     res.json({ message: 'Attendance updated', data: attendance })
   } catch (error) {
     logError(`Update attendance error: ${error.message}`, {
@@ -162,6 +210,30 @@ export const bulkUpsertAttendance = async (req, res, next) => {
       filename: 'attendanceController.js',
       schoolId,
     })
+
+    // Send SMS to parents of absent students (fire-and-forget)
+    if (status === 'absent' && (createIds.length > 0 || updateIds.length > 0)) {
+      setImmediate(async () => {
+        try {
+          const school = await prisma.school.findUnique({ where: { id: parseInt(schoolId) }, select: { name: true, smsEnabled: true, smsOnAbsent: true } })
+          if (school?.smsEnabled && school?.smsOnAbsent) {
+            const absentIds = [...new Set([...createIds, ...updateIds])]
+            const students = await prisma.student.findMany({
+              where: { id: { in: absentIds }, schoolId: parseInt(schoolId) },
+              select: { firstName: true, lastName: true, fatherContact: true, motherContact: true, guardianContact: true },
+            })
+            for (const s of students) {
+              const phones = [s.fatherContact, s.motherContact, s.guardianContact].filter(p => p && p.trim())
+              if (phones.length > 0) {
+                const msg = `Dear Parent, your child ${s.firstName} ${s.lastName} was marked absent on ${date}. - ${school.name}`
+                await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_ABSENT_TEMPLATE_ID }).catch(() => {})
+              }
+            }
+          }
+        } catch (e) { /* SMS failure must not break the main response */ }
+      })
+    }
+
     res.json({ message: 'Bulk attendance updated', created: createIds.length, updated: updateIds.length })
   } catch (error) {
     logError(`Bulk attendance error: ${error.message}`, {
