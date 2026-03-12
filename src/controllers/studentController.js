@@ -21,7 +21,7 @@ const studentSchema = z.object({
     })
     .optional(),
   gender: z.preprocess((val) => (typeof val === 'string' ? val.toLowerCase() : val), z.enum(['male', 'female', 'other']).optional()),
-  admissionNumber: z.string().min(1),
+  admissionNumber: z.string().optional().or(z.literal('')),
   rollNumber: z.string().min(1, 'Roll Number is required'),
   profilePic: z.string().optional(),
   classId: z.preprocess(
