@@ -32,6 +32,11 @@ model User {
   lastLoginIp         String?
   lastLoginAt         DateTime?
   modulePermissions   String?   // JSON array: '["students","fees"]' — null means all modules
+  mfaEmail            Boolean   @default(true)  // send OTP to email on login
+  mfaPhone            Boolean   @default(false) // send OTP to phone on login
+  feeCanEdit          Boolean   @default(false) // allow admin to edit fee records
+  feeCanDelete        Boolean   @default(false) // allow admin to delete fee records
+  accountStatus       String    @default("active") // active, suspended
   schoolId            Int?
   school              School?   @relation(fields: [schoolId], references: [id])
   profile             Profile?
@@ -61,6 +66,12 @@ model School {
   logo         String?
   status       String  @default("pending") // pending, active, blocked
   isFreeTrail  Boolean @default(true)       // free trial or paid
+  // SMS Notification settings
+  smsEnabled              Boolean @default(false) // master SMS on/off switch
+  smsOnAbsent             Boolean @default(false) // notify parent when student absent
+  smsOnFeeAssigned        Boolean @default(false) // notify parent when fee assigned
+  smsOnLeaveApproved      Boolean @default(false) // notify employee when leave approved/rejected
+  smsOnAnnouncement       Boolean @default(false) // notify all parents+staff on new announcement
   users        User[]
   students     Student[]
   teachers     Teacher[]
@@ -84,6 +95,7 @@ model School {
   hostelRooms   HostelRoom[]
   hostelAllotments HostelAllotment[]
   admissions    Admission[]
+  masterData    MasterData[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -175,6 +187,7 @@ model Class {
   timetables Timetable[]
   exams      Exam[]
   homework   Homework[]
+  fees       Fee[]   @relation("FeeClass")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
@@ -189,6 +202,7 @@ model Section {
   students  Student[]
   exams     Exam[]
   homework  Homework[]
+  fees      Fee[]   @relation("FeeSection")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -276,7 +290,21 @@ model Achievement {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
+model MasterData {
+  id        Int      @id @default(autoincrement())
+  schoolId  Int
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  category  String
+  value     String
+  label     String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  @@unique([schoolId, category, value])
+  @@index([schoolId, category])
+}
 model Sport {
   id          Int     @id @default(autoincrement())
   schoolId    Int
@@ -298,6 +326,7 @@ model Fee {
   feeType     String   // tuition, exam, transport, library, sports, lab, other
   description String?
   amount      Float
+  discount    Float    @default(0)  // discount applied to this fee
   dueDate     DateTime
   status      String   @default("pending") // pending, paid, overdue, partial
   paidAmount  Float    @default(0)
@@ -306,6 +335,10 @@ model Fee {
   transactionId String?
   academicYear String?  // e.g., "2025-2026"
   term        String?  // e.g., "Term 1", "Term 2", "Annual"
+  classId     Int?     // class this fee belongs to
+  class       Class?   @relation("FeeClass", fields: [classId], references: [id])
+  sectionId   Int?     // section this fee belongs to
+  section     Section? @relation("FeeSection", fields: [sectionId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -557,9 +590,10 @@ model Hostel {
   id             Int       @id @default(autoincrement())
   schoolId       Int
   school         School    @relation(fields: [schoolId], references: [id])
-  name           String
+  name           String    // e.g., "Boys Hostel Block A"
   type           String    @default("boys") // boys, girls, mixed
   totalCapacity  Int       @default(0)
+  numberOfRooms  Int       @default(0)
   wardenName     String?
   wardenPhone    String?
   wardenEmail    String?

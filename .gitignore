@@ -27,6 +27,9 @@ prisma/dev.db-journal
 # Prisma generated client (can be regenerated)
 node_modules/.prisma/
 
+# Local utility scripts — not for version control
+scripts/
+
 # OS files
 .DS_Store
 Thumbs.db
