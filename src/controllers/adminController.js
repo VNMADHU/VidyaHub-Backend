@@ -29,6 +29,8 @@ const createAdminSchema = z.object({
   mfaPhone: z.boolean().optional(),
   feeCanEdit: z.boolean().optional(),
   feeCanDelete: z.boolean().optional(),
+  expenseCanEdit: z.boolean().optional(),
+  expenseCanDelete: z.boolean().optional(),
 })
 
 const updateAdminSchema = z.object({
@@ -41,6 +43,8 @@ const updateAdminSchema = z.object({
   mfaPhone: z.boolean().optional(),
   feeCanEdit: z.boolean().optional(),
   feeCanDelete: z.boolean().optional(),
+  expenseCanEdit: z.boolean().optional(),
+  expenseCanDelete: z.boolean().optional(),
 })
 
 const updatePasswordSchema = z.object({
@@ -97,6 +101,8 @@ const formatAdmin = (u) => ({
   mfaPhone: u.mfaPhone ?? false,
   feeCanEdit: u.feeCanEdit ?? false,
   feeCanDelete: u.feeCanDelete ?? false,
+  expenseCanEdit: u.expenseCanEdit ?? false,
+  expenseCanDelete: u.expenseCanDelete ?? false,
   createdAt: u.createdAt,
 })
 
@@ -187,6 +193,8 @@ export const createAdmin = async (req, res, next) => {
         mfaPhone: payload.mfaPhone ?? false,
         feeCanEdit: payload.feeCanEdit ?? false,
         feeCanDelete: payload.feeCanDelete ?? false,
+        expenseCanEdit: payload.expenseCanEdit ?? false,
+        expenseCanDelete: payload.expenseCanDelete ?? false,
         profile: {
           create: {
             firstName: payload.firstName,
@@ -263,6 +271,8 @@ export const updateAdmin = async (req, res, next) => {
     if (typeof payload.mfaPhone === 'boolean') userUpdateData.mfaPhone = payload.mfaPhone
     if (typeof payload.feeCanEdit === 'boolean') userUpdateData.feeCanEdit = payload.feeCanEdit
     if (typeof payload.feeCanDelete === 'boolean') userUpdateData.feeCanDelete = payload.feeCanDelete
+    if (typeof payload.expenseCanEdit === 'boolean') userUpdateData.expenseCanEdit = payload.expenseCanEdit
+    if (typeof payload.expenseCanDelete === 'boolean') userUpdateData.expenseCanDelete = payload.expenseCanDelete
     if ('modulePermissions' in payload) {
       userUpdateData.modulePermissions =
         payload.modulePermissions != null

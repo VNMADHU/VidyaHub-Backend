@@ -53,6 +53,12 @@ export const updateExpense = async (req, res, next) => {
   try {
     const { expenseId } = req.params
     const data = { ...req.body }
+
+    // Only super-admin can approve or reject an expense
+    if ((data.status === 'approved' || data.status === 'rejected') && req.user?.role !== 'super-admin') {
+      return res.status(403).json({ message: 'Only Super Admin can approve or reject expenses.' })
+    }
+
     if (data.date) data.date = new Date(data.date)
     logInfo('Updating expense', { filename: 'expenseController.js', expenseId })
     const expense = await prisma.expense.update({

@@ -1,0 +1,9 @@
+2026/03/14-01:37:15.084 3ccba6 Reusing MANIFEST /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/.wwebjs_auth/session-bulk-sender/Default/Local Storage/leveldb/MANIFEST-000001
+2026/03/14-01:37:15.086 3ccba6 Recovering log #3
+2026/03/14-01:37:15.087 3ccba6 Reusing old log /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/.wwebjs_auth/session-bulk-sender/Default/Local Storage/leveldb/000003.log 
+2026/03/14-01:38:15.107 3ccba9 Level-0 table #5: started
+2026/03/14-01:38:15.124 3ccba9 Level-0 table #5: 16544 bytes OK
+2026/03/14-01:38:15.134 3ccba9 Delete type=0 #3
+2026/03/14-08:11:28.336 3ccba9 Level-0 table #7: started
+2026/03/14-08:11:28.352 3ccba9 Level-0 table #7: 13567 bytes OK
+2026/03/14-08:11:28.358 3ccba9 Delete type=0 #4

@@ -36,6 +36,8 @@ model User {
   mfaPhone            Boolean   @default(false) // send OTP to phone on login
   feeCanEdit          Boolean   @default(false) // allow admin to edit fee records
   feeCanDelete        Boolean   @default(false) // allow admin to delete fee records
+  expenseCanEdit      Boolean   @default(false) // allow admin to edit expense records
+  expenseCanDelete    Boolean   @default(false) // allow admin to delete expense records
   accountStatus       String    @default("active") // active, suspended
   schoolId            Int?
   school              School?   @relation(fields: [schoolId], references: [id])

@@ -1,0 +1,25 @@
+2026/03/14-13:48:20.964 41622b Reusing MANIFEST /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/.wwebjs_auth/session-bulk-sender/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/14-13:48:20.965 41622b Recovering log #32
+2026/03/14-13:48:20.987 41622b Reusing old log /Users/venkatadirisala/Desktop/Vidya Hub/vidya-hub-backend/.wwebjs_auth/session-bulk-sender/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000032.log 
+2026/03/14-13:48:27.509 41623b Level-0 table #38: started
+2026/03/14-13:48:27.525 41623b Level-0 table #38: 1272829 bytes OK
+2026/03/14-13:48:27.528 41623b Delete type=0 #32
+2026/03/14-13:48:28.328 41622d Compacting 1@1 + 2@2 files
+2026/03/14-13:48:28.355 41622d Generated table #39@1: 46018 keys, 2210748 bytes
+2026/03/14-13:48:28.381 41622d Generated table #40@1: 68284 keys, 1540263 bytes
+2026/03/14-13:48:28.381 41622d Compacted 1@1 + 2@2 files => 3751011 bytes
+2026/03/14-13:48:28.393 41622d compacted to: files[ 0 0 2 0 0 0 0 ]
+2026/03/14-13:48:28.393 41622d Delete type=2 #38
+2026/03/14-13:48:28.393 41622d Delete type=2 #34
+2026/03/14-13:48:28.393 41622d Delete type=2 #35
+2026/03/14-13:50:02.859 41622d Level-0 table #42: started
+2026/03/14-13:50:02.899 41622d Level-0 table #42: 1321422 bytes OK
+2026/03/14-13:50:02.902 41622d Delete type=0 #37
+2026/03/14-13:53:22.881 41622d Compacting 1@1 + 2@2 files
+2026/03/14-13:53:22.938 41622d Generated table #43@1: 46113 keys, 2210970 bytes
+2026/03/14-13:53:22.972 41622d Generated table #44@1: 88395 keys, 2174327 bytes
+2026/03/14-13:53:22.972 41622d Compacted 1@1 + 2@2 files => 4385297 bytes
+2026/03/14-13:53:22.980 41622d compacted to: files[ 0 0 2 0 0 0 0 ]
+2026/03/14-13:53:22.980 41622d Delete type=2 #39
+2026/03/14-13:53:22.980 41622d Delete type=2 #42
+2026/03/14-13:53:22.980 41622d Delete type=2 #40

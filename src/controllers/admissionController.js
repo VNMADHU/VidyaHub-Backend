@@ -105,6 +105,11 @@ export const updateAdmission = async (req, res, next) => {
     const { admissionId } = req.params
     const parsed = admissionSchema.partial().parse(req.body)
 
+    // Only super-admin can approve or reject an admission
+    if ((parsed.status === 'approved' || parsed.status === 'rejected') && req.user?.role !== 'super-admin') {
+      return res.status(403).json({ message: 'Only Super Admin can approve or reject admission applications.' })
+    }
+
     logInfo('updateAdmission', { schoolId, admissionId })
 
     const existing = await prisma.admission.findFirst({

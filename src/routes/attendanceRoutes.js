@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import trialLimit from '../middlewares/trialLimit.js'
 import {
   listAttendance,
   createAttendance,
@@ -11,8 +12,8 @@ import {
 const router = Router()
 
 router.get('/', listAttendance)
-router.post('/', createAttendance)
-router.post('/bulk', bulkUpsertAttendance)
+router.post('/', trialLimit('attendance'), createAttendance)
+router.post('/bulk', trialLimit('attendance'), bulkUpsertAttendance)
 router.get('/summary', getAttendanceSummary)
 router.patch('/:attendanceId', updateAttendance)
 router.delete('/:attendanceId', deleteAttendance)

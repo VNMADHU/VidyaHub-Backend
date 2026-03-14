@@ -61,6 +61,12 @@ export const updateLeave = async (req, res, next) => {
   try {
     const { leaveId } = req.params
     const data = { ...req.body }
+
+    // Only super-admin can approve or reject a leave
+    if ((data.status === 'approved' || data.status === 'rejected') && req.user?.role !== 'super-admin') {
+      return res.status(403).json({ message: 'Only Super Admin can approve or reject leave applications.' })
+    }
+
     if (data.fromDate) data.fromDate = new Date(data.fromDate)
     if (data.toDate) data.toDate = new Date(data.toDate)
     logInfo('Updating leave', { filename: 'leaveController.js', leaveId })

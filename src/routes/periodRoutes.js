@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import trialLimit from '../middlewares/trialLimit.js'
 import {
   listPeriods,
   createPeriod,
@@ -9,7 +10,7 @@ import {
 const router = Router()
 
 router.get('/', listPeriods)
-router.post('/', createPeriod)
+router.post('/', trialLimit('period'), createPeriod)
 router.patch('/:id', updatePeriod)
 router.delete('/:id', deletePeriod)
 

@@ -21,7 +21,7 @@ router.delete('/books/:bookId', deleteBook)
 
 // Book Issues
 router.get('/issues', listBookIssues)
-router.post('/issues', issueBook)
+router.post('/issues', trialLimit('bookIssue'), issueBook)
 router.patch('/issues/:issueId/return', returnBook)
 router.delete('/issues/:issueId', deleteBookIssue)
 
