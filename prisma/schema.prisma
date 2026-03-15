@@ -37,6 +37,8 @@ model User {
   feeCanDelete        Boolean   @default(false) // allow admin to delete fee records
   expenseCanEdit      Boolean   @default(false) // allow admin to edit expense records
   expenseCanDelete    Boolean   @default(false) // allow admin to delete expense records
+  incomeCanEdit       Boolean   @default(false) // allow admin to edit income records
+  incomeCanDelete     Boolean   @default(false) // allow admin to delete income records
   accountStatus       String    @default("active") // active, suspended
   schoolId            Int?
   school              School?   @relation(fields: [schoolId], references: [id])
@@ -90,6 +92,7 @@ model School {
   vehicles      Vehicle[]
   drivers       Driver[]
   expenses      Expense[]
+  incomes       Income[]
   supportTickets SupportTicket[]
   leaves        Leave[]
   holidays      Holiday[]
@@ -174,6 +177,7 @@ model Teacher {
   panNumber     String?  // PAN card
   gender        String?  // male, female, other
   bloodGroup    String?  // A+, A-, B+, B-, AB+, AB-, O+, O-
+  salary        Float?   // monthly salary
   classes       Class[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -474,6 +478,7 @@ model Driver {
   badgeNumber       String?   // Conductor/Driver badge from RTO
   bloodGroup        String?
   emergencyContact  String?
+  salary            Float?    // monthly salary
   profilePic        String?
   status            String    @default("active") // active, on-leave, inactive
   vehicles          Vehicle[]
@@ -525,6 +530,24 @@ model Expense {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+// ── Income Tracking ─────────────────────────────────────────
+model Income {
+  id           Int      @id @default(autoincrement())
+  schoolId     Int
+  school       School   @relation(fields: [schoolId], references: [id])
+  title        String
+  category     String   // donation, grant, rental, sponsorship, other
+  amount       Float
+  date         DateTime
+  receivedFrom String?  // donor / source name
+  paymentMode  String?  // cash, online, cheque, upi
+  receiptNo    String?
+  description  String?
+  status       String   @default("received") // received, pending
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 // ── Leave Management ─────────────────────────────────────────
 model Leave {
   id            Int      @id @default(autoincrement())

@@ -26,6 +26,7 @@ import notificationRoutes from './notificationRoutes.js'
 import libraryRoutes from './libraryRoutes.js'
 import transportRoutes from './transportRoutes.js'
 import expenseRoutes from './expenseRoutes.js'
+import incomeRoutes from './incomeRoutes.js'
 import supportRoutes from './supportRoutes.js'
 import leaveRoutes from './leaveRoutes.js'
 import holidayRoutes from './holidayRoutes.js'
@@ -72,6 +73,7 @@ router.use('/notifications', authenticate, notificationRoutes)
 router.use('/library', authenticate, libraryRoutes)
 router.use('/transport', authenticate, transportRoutes)
 router.use('/expenses', authenticate, expenseRoutes)
+router.use('/incomes', authenticate, incomeRoutes)
 router.use('/support', authenticate, supportRoutes)
 router.use('/leaves', authenticate, leaveRoutes)
 router.use('/holidays', authenticate, holidayRoutes)

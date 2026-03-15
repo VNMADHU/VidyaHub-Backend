@@ -32,6 +32,7 @@ const teacherSchema = z.object({
   }).optional(),
   gender: z.preprocess((val) => (typeof val === 'string' ? val.toLowerCase() : val), z.enum(['male', 'female', 'other']).optional()),
   bloodGroup: z.preprocess((val) => (val === '' ? undefined : val), z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional()),
+  salary: z.preprocess((v) => (v === '' || v === null || v === undefined) ? undefined : Number(v), z.number().optional()),
 })
 
 export const listTeachers = async (req, res, next) => {

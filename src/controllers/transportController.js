@@ -32,6 +32,7 @@ const driverSchema = z.object({
   emergencyContact: z.string().optional(),
   profilePic: z.string().optional(),
   status: z.string().optional(),
+  salary: z.preprocess((v) => (v === '' || v === null || v === undefined) ? undefined : Number(v), z.number().optional()),
 })
 
 // ── Vehicles CRUD ─────────────────────────────────────────

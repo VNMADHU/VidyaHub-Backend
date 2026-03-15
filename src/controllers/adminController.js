@@ -31,6 +31,8 @@ const createAdminSchema = z.object({
   feeCanDelete: z.boolean().optional(),
   expenseCanEdit: z.boolean().optional(),
   expenseCanDelete: z.boolean().optional(),
+  incomeCanEdit: z.boolean().optional(),
+  incomeCanDelete: z.boolean().optional(),
 })
 
 const updateAdminSchema = z.object({
@@ -45,6 +47,8 @@ const updateAdminSchema = z.object({
   feeCanDelete: z.boolean().optional(),
   expenseCanEdit: z.boolean().optional(),
   expenseCanDelete: z.boolean().optional(),
+  incomeCanEdit: z.boolean().optional(),
+  incomeCanDelete: z.boolean().optional(),
 })
 
 const updatePasswordSchema = z.object({
@@ -103,6 +107,8 @@ const formatAdmin = (u) => ({
   feeCanDelete: u.feeCanDelete ?? false,
   expenseCanEdit: u.expenseCanEdit ?? false,
   expenseCanDelete: u.expenseCanDelete ?? false,
+  incomeCanEdit: u.incomeCanEdit ?? false,
+  incomeCanDelete: u.incomeCanDelete ?? false,
   createdAt: u.createdAt,
 })
 
@@ -195,6 +201,8 @@ export const createAdmin = async (req, res, next) => {
         feeCanDelete: payload.feeCanDelete ?? false,
         expenseCanEdit: payload.expenseCanEdit ?? false,
         expenseCanDelete: payload.expenseCanDelete ?? false,
+        incomeCanEdit: payload.incomeCanEdit ?? false,
+        incomeCanDelete: payload.incomeCanDelete ?? false,
         profile: {
           create: {
             firstName: payload.firstName,
@@ -273,6 +281,8 @@ export const updateAdmin = async (req, res, next) => {
     if (typeof payload.feeCanDelete === 'boolean') userUpdateData.feeCanDelete = payload.feeCanDelete
     if (typeof payload.expenseCanEdit === 'boolean') userUpdateData.expenseCanEdit = payload.expenseCanEdit
     if (typeof payload.expenseCanDelete === 'boolean') userUpdateData.expenseCanDelete = payload.expenseCanDelete
+    if (typeof payload.incomeCanEdit === 'boolean') userUpdateData.incomeCanEdit = payload.incomeCanEdit
+    if (typeof payload.incomeCanDelete === 'boolean') userUpdateData.incomeCanDelete = payload.incomeCanDelete
     if ('modulePermissions' in payload) {
       userUpdateData.modulePermissions =
         payload.modulePermissions != null
