@@ -3,6 +3,7 @@
 
 generator client {
   provider      = "prisma-client-js"
+  output        = "../node_modules/.prisma/client-sqlite"
   binaryTargets = ["native", "windows", "darwin", "darwin-arm64"]
 }
 
@@ -101,6 +102,10 @@ model School {
   hostelAllotments HostelAllotment[]
   admissions    Admission[]
   masterData    MasterData[]
+  payrolls      Payroll[]
+  gstInvoices   GstInvoice[]
+  ledgers       Ledger[]
+  vouchers      Voucher[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -676,11 +681,11 @@ model Admission {
   id               Int      @id @default(autoincrement())
   schoolId         Int
   school           School   @relation(fields: [schoolId], references: [id])
-  applicationNo    String   // auto-generated e.g. ADM-2026-001
+  applicationNo    String
   applicantName    String
   dateOfBirth      DateTime?
-  gender           String?  // Male, Female, Other
-  applyingForClass String   // "Class 1", "Class 6", etc.
+  gender           String?
+  applyingForClass String
   academicYear     String   @default("2025-26")
   guardianName     String
   guardianPhone    String
@@ -688,10 +693,126 @@ model Admission {
   address          String?
   previousSchool   String?
   previousClass    String?
-  category         String?  // General, OBC, SC, ST, EWS
-  status           String   @default("pending") // pending, shortlisted, approved, rejected, enrolled
+  category         String?
+  status           String   @default("pending")
   interviewDate    DateTime?
   remarks          String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+}
+
+// ── Payroll ─────────────────────────────────────────────────
+model Payroll {
+  id              Int      @id @default(autoincrement())
+  schoolId        Int
+  school          School   @relation(fields: [schoolId], references: [id])
+  employeeType    String
+  employeeId      Int
+  employeeName    String
+  designation     String?
+  month           Int
+  year            Int
+  basicSalary      Float
+  hra              Float    @default(0)
+  conveyance       Float    @default(0)
+  medicalAllowance Float    @default(0)
+  specialAllowance Float    @default(0)
+  allowances       Float    @default(0)
+  grossSalary      Float
+  pfDeduction      Float    @default(0)
+  esiDeduction     Float    @default(0)
+  professionalTax  Float    @default(0)
+  tdsDeduction     Float    @default(0)
+  otherDeductions  Float    @default(0)
+  totalDeductions  Float    @default(0)
+  netSalary        Float
+  employerPf       Float    @default(0)
+  employerEsi      Float    @default(0)
+  ctc              Float    @default(0)
+  paymentDate      DateTime?
+  paymentMode      String?
+  bankAccount      String?
+  status           String   @default("pending")
+  remarks         String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([schoolId, employeeType, employeeId, month, year])
+}
+
+// ── GST Invoices ───────────────────────────────────────────
+model GstInvoice {
+  id            Int      @id @default(autoincrement())
+  schoolId      Int
+  school        School   @relation(fields: [schoolId], references: [id])
+  invoiceNo     String
+  invoiceDate   DateTime @default(now())
+  invoiceType   String   @default("sales")
+  partyName     String
+  partyGstin    String?
+  partyAddress  String?
+  schoolGstin   String?
+  items         String
+  subtotal      Float    @default(0)
+  cgstAmount    Float    @default(0)
+  sgstAmount    Float    @default(0)
+  igstAmount    Float    @default(0)
+  totalTax      Float    @default(0)
+  totalAmount   Float    @default(0)
+  status        String   @default("draft")
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([schoolId, invoiceNo])
+}
+
+// ── Ledger (Tally-like chart of accounts) ─────────────────
+model Ledger {
+  id             Int            @id @default(autoincrement())
+  schoolId       Int
+  school         School         @relation(fields: [schoolId], references: [id])
+  name           String
+  type           String         // income, expense, asset, liability
+  group          String?        // Direct Income, Indirect Expense, Current Asset, etc.
+  openingBalance Float          @default(0)
+  isSystem       Boolean        @default(false)
+  description    String?
+  voucherEntries VoucherEntry[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([schoolId, name])
+}
+
+// ── Voucher (double-entry transactions) ───────────────────
+model Voucher {
+  id          Int            @id @default(autoincrement())
+  schoolId    Int
+  school      School         @relation(fields: [schoolId], references: [id])
+  voucherType String         // receipt, payment, journal, contra
+  voucherNo   String
+  date        DateTime
+  narration   String?
+  totalAmount Float          @default(0)
+  status      String         @default("posted") // draft, posted, cancelled
+  refType     String?        // fee, expense, payroll, manual
+  refId       Int?
+  createdBy   String?
+  entries     VoucherEntry[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@unique([schoolId, voucherNo])
+}
+
+model VoucherEntry {
+  id        Int      @id @default(autoincrement())
+  voucherId Int
+  voucher   Voucher  @relation(fields: [voucherId], references: [id], onDelete: Cascade)
+  ledgerId  Int
+  ledger    Ledger   @relation(fields: [ledgerId], references: [id])
+  type      String   // debit, credit
+  amount    Float
+  createdAt DateTime @default(now())
 }

@@ -37,6 +37,10 @@ import demoRequestRoutes from './demoRequestRoutes.js'
 import adminRoutes from './adminRoutes.js'
 import masterDataRoutes from './masterDataRoutes.js'
 import whatsappRoutes from './whatsappRoutes.js'
+import payrollRoutes from './payrollRoutes.js'
+import gstRoutes from './gstRoutes.js'
+import ledgerRoutes from './ledgerRoutes.js'
+import voucherRoutes from './voucherRoutes.js'
 
 const router = Router()
 
@@ -82,6 +86,10 @@ router.use('/hostel', authenticate, hostelRoutes)
 router.use('/admissions', authenticate, admissionRoutes)
 router.use('/master-data', authenticate, masterDataRoutes)
 router.use('/whatsapp', authenticate, whatsappRoutes)
+router.use('/payroll', authenticate, payrollRoutes)
+router.use('/gst-invoices', authenticate, gstRoutes)
+router.use('/ledgers', authenticate, ledgerRoutes)
+router.use('/vouchers', authenticate, voucherRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })
