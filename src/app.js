@@ -39,7 +39,7 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization', 'X-School-Id'],
   }),
 )
-app.use(express.json({ limit: '1mb' }))
+app.use(express.json({ limit: '10mb' }))
 
 // ── School ID extraction ────────────────────────────────────
 app.use(schoolIdMiddleware)

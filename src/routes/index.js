@@ -41,6 +41,9 @@ import payrollRoutes from './payrollRoutes.js'
 import gstRoutes from './gstRoutes.js'
 import ledgerRoutes from './ledgerRoutes.js'
 import voucherRoutes from './voucherRoutes.js'
+import chatRoutes from './chatRoutes.js'
+import assetRoutes from './assetRoutes.js'
+import staffAttendanceRoutes from './staffAttendanceRoutes.js'
 
 const router = Router()
 
@@ -90,6 +93,9 @@ router.use('/payroll', authenticate, payrollRoutes)
 router.use('/gst-invoices', authenticate, gstRoutes)
 router.use('/ledgers', authenticate, ledgerRoutes)
 router.use('/vouchers', authenticate, voucherRoutes)
+router.use('/chat', authenticate, chatRoutes)
+router.use('/assets', authenticate, assetRoutes)
+router.use('/staff-attendance', authenticate, staffAttendanceRoutes)
 
 router.get('/', (req, res) => {
   res.json({ message: 'Vidya Hub API v1' })

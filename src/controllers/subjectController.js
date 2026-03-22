@@ -9,7 +9,9 @@ const subjectSchema = z.object({
 
 export const listSubjects = async (req, res, next) => {
   try {
-    const subjects = await prisma.subject.findMany({ orderBy: { name: 'asc' } })
+    const sid = req.user?.schoolId ? parseInt(req.user.schoolId) : null
+    const where = sid ? { schoolId: sid } : {}
+    const subjects = await prisma.subject.findMany({ where, orderBy: { name: 'asc' } })
     logInfo('Listing subjects', { filename: 'subjectController.js' })
     res.json({ data: subjects, message: 'List of subjects' })
   } catch (error) {
@@ -20,13 +22,14 @@ export const listSubjects = async (req, res, next) => {
 
 export const createSubject = async (req, res, next) => {
   try {
+    const sid = req.user?.schoolId ? parseInt(req.user.schoolId) : null
     const payload = subjectSchema.parse(req.body)
-    const subject = await prisma.subject.create({ data: payload })
+    const subject = await prisma.subject.create({ data: { ...payload, schoolId: sid } })
     logInfo(`Subject created: ${payload.name}`, { filename: 'subjectController.js' })
     res.status(201).json({ message: 'Subject created', data: subject })
   } catch (error) {
     if (error.code === 'P2002') {
-      return res.status(409).json({ message: 'Subject name or code already exists' })
+      return res.status(409).json({ message: 'Subject name or code already exists for this school' })
     }
     logError(`Create subject error: ${error.message}`, { filename: 'subjectController.js' })
     next(error)
@@ -36,6 +39,11 @@ export const createSubject = async (req, res, next) => {
 export const updateSubject = async (req, res, next) => {
   try {
     const { id } = req.params
+    const sid = req.user?.schoolId ? parseInt(req.user.schoolId) : null
+    // Verify ownership
+    const existing = await prisma.subject.findUnique({ where: { id: parseInt(id) }, select: { schoolId: true } })
+    if (!existing) return res.status(404).json({ message: 'Subject not found' })
+    if (sid && existing.schoolId !== sid) return res.status(403).json({ message: 'Access denied' })
     const payload = subjectSchema.partial().parse(req.body)
     const subject = await prisma.subject.update({
       where: { id: parseInt(id) },
@@ -45,7 +53,7 @@ export const updateSubject = async (req, res, next) => {
     res.json({ message: 'Subject updated', data: subject })
   } catch (error) {
     if (error.code === 'P2002') {
-      return res.status(409).json({ message: 'Subject name or code already exists' })
+      return res.status(409).json({ message: 'Subject name or code already exists for this school' })
     }
     logError(`Update subject error: ${error.message}`, { filename: 'subjectController.js' })
     next(error)
@@ -55,6 +63,11 @@ export const updateSubject = async (req, res, next) => {
 export const deleteSubject = async (req, res, next) => {
   try {
     const { id } = req.params
+    const sid = req.user?.schoolId ? parseInt(req.user.schoolId) : null
+    // Verify ownership
+    const existing = await prisma.subject.findUnique({ where: { id: parseInt(id) }, select: { schoolId: true } })
+    if (!existing) return res.status(404).json({ message: 'Subject not found' })
+    if (sid && existing.schoolId !== sid) return res.status(403).json({ message: 'Access denied' })
     await prisma.subject.delete({ where: { id: parseInt(id) } })
     logInfo(`Subject deleted: id=${id}`, { filename: 'subjectController.js' })
     res.json({ message: 'Subject deleted' })

@@ -100,9 +100,14 @@ router.get('/recipients', async (req, res) => {
 router.post('/send', async (req, res) => {
   try {
     const schoolId = parseInt(req.headers['x-school-id'], 10)
-    const { audience, customNumbers, message, attachmentB64, attachmentMime, attachmentName } = req.body
+    const { audience, customNumbers, message, attachments, attachmentB64, attachmentMime, attachmentName } = req.body
 
-    if (!message) return res.status(400).json({ message: 'message is required' })
+    // Normalise: accept either new attachments[] array or old single-field format
+    const resolvedAttachments = Array.isArray(attachments) && attachments.length > 0
+      ? attachments
+      : (attachmentB64 && attachmentMime ? [{ b64: attachmentB64, mime: attachmentMime, name: attachmentName || 'attachment' }] : [])
+
+    if (!message && resolvedAttachments.length === 0) return res.status(400).json({ message: 'message or attachment is required' })
 
     // Resolve numbers
     let numbers = []
@@ -119,7 +124,7 @@ router.post('/send', async (req, res) => {
 
     if (numbers.length === 0) return res.status(400).json({ message: 'No recipients found' })
 
-    const result = await sendMessages({ numbers, message, attachmentB64, attachmentMime, attachmentName })
+    const result = await sendMessages({ numbers, message, attachments: resolvedAttachments })
     res.json({
       message: `WhatsApp messages sent: ${result.success} delivered, ${result.failed} failed`,
       ...result,

@@ -106,6 +106,9 @@ model School {
   gstInvoices   GstInvoice[]
   ledgers       Ledger[]
   vouchers      Voucher[]
+  subjects      Subject[]
+  assets        Asset[]
+  staffAttendances StaffAttendance[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -221,9 +224,16 @@ model Section {
 }
 
 model Subject {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  code  String @unique
+  id       Int     @id @default(autoincrement())
+  schoolId Int?
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  name     String
+  code     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([schoolId, name])
+  @@unique([schoolId, code])
 }
 
 model Attendance {
@@ -815,4 +825,47 @@ model VoucherEntry {
   type      String   // debit, credit
   amount    Float
   createdAt DateTime @default(now())
+}
+
+// ── Inventory / Asset Management ─────────────────────────
+model Asset {
+  id            Int       @id @default(autoincrement())
+  schoolId      Int
+  school        School    @relation(fields: [schoolId], references: [id])
+  name          String
+  assetCode     String?
+  category      String    // computer, furniture, lab-equipment, book, sports, vehicle-parts, other
+  quantity      Int       @default(1)
+  unit          String?
+  condition     String    @default("good") // good, fair, poor, damaged
+  location      String?
+  purchaseDate  DateTime?
+  purchasePrice Float?
+  vendor        String?
+  warrantyExpiry DateTime?
+  invoiceNo     String?
+  description   String?
+  status        String    @default("active") // active, under-repair, disposed, lost
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// ── Staff / Teacher Daily Attendance ─────────────────────
+model StaffAttendance {
+  id           Int      @id @default(autoincrement())
+  schoolId     Int
+  school       School   @relation(fields: [schoolId], references: [id])
+  employeeType String   // teacher, staff, driver
+  employeeId   Int
+  employeeName String
+  date         DateTime
+  status       String   // present, absent, late, half-day, on-leave
+  inTime       String?
+  outTime      String?
+  remarks      String?
+  markedBy     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([employeeType, employeeId, date])
 }
