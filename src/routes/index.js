@@ -50,6 +50,45 @@ const router = Router()
 // Global rate limiter for all API routes
 router.use(apiLimiter)
 
+// ── Health check (public, no auth, no rate limit) ───────────
+/**
+ * @swagger
+ * /api/health:
+ *   get:
+ *     summary: Service health check
+ *     description: Returns uptime and timestamp. Use this to verify the API is running.
+ *     tags: [Health]
+ *     security: []
+ *     responses:
+ *       200:
+ *         description: Service is healthy
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: ok
+ *                 service:
+ *                   type: string
+ *                   example: vidya-hub-backend
+ *                 uptime:
+ *                   type: number
+ *                   example: 3600
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ */
+router.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    service: 'vidya-hub-backend',
+    uptime: Math.floor(process.uptime()),
+    timestamp: new Date().toISOString(),
+  })
+})
+
 // ── Public routes (no auth required) ──────────────────────
 router.use('/auth', authRoutes)
 router.use('/admins', adminRoutes)

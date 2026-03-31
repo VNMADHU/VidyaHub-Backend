@@ -5,46 +5,21 @@ import { extendedToolDeclarations, executeExtendedTool } from './chatToolsExtend
 import { extendedToolDeclarations2 } from './chatToolsExtended2.js'
 import { extendedToolDeclarations3 } from './chatToolsExtended3.js'
 import { extendedToolDeclarations4 } from './chatToolsExtended4.js'
+import { extendedToolDeclarations5 } from './chatToolsExtended5.js'
 
-// ── Gemini API key pool (auto-rotates when a key hits free-tier quota) ───────
-const GEMINI_KEYS = [
-  process.env.GEMINI_API_KEY,          // env override (highest priority)
-  'AIzaSyDr1AZ_1hbTghWLNB3q481beWE0GWLB8Qo',
-  'AIzaSyAlYaj1n3cRTXu1DNyL-muSPAdNCzg7fQo',
-  'AIzaSyAJApux0fYdkPENIYKuIqVsLYZ51QypCkI',
-  'AIzaSyD9e5WgfZnS64V2FBU-SBkiTHsYK_CwhWQ',
-  'AIzaSyCtvq648sxOV04hB8xEBV9phhWVFyagTUY',
-  'AIzaSyBfR9CJwP7uYlnz-xuFDT2-9qpD6VIMhug',
-  'AIzaSyCxzCz_-OhK1M26VIEQnUTldzbYYqr59Ig',
-  'AIzaSyB6Q84eEryw8c1BN4UFbuf3-_PPqkKVRWI',
-  'AIzaSyDVmXImIcEje0KbynxvkFpvF1vyGhrp3_k',
-  'AIzaSyDUvdRosaV0jmM0KMB3Vaa-4G7cXTYlvD8',
-].filter(Boolean)
-
-let currentKeyIndex = 0
-
-const isQuotaError = (err) => {
-  const msg = (err?.message || '').toLowerCase()
-  return (
-    msg.includes('429') ||
-    msg.includes('503') ||
-    msg.includes('quota') ||
-    msg.includes('resource_exhausted') ||
-    msg.includes('rate limit') ||
-    msg.includes('too many requests') ||
-    msg.includes('service unavailable') ||
-    msg.includes('high demand') ||
-    msg.includes('overloaded') ||
-    err?.status === 429 ||
-    err?.status === 503
-  )
-}
-
-const getGenAI = () => new GoogleGenerativeAI(GEMINI_KEYS[currentKeyIndex])
-const rotateKey = () => {
-  const prev = currentKeyIndex
-  currentKeyIndex = (currentKeyIndex + 1) % GEMINI_KEYS.length
-  logInfo(`Rotating Gemini key: slot ${prev} → slot ${currentKeyIndex}`, { filename: 'chatController.js' })
+// ── Gemini API key resolution: DB first, then .env fallback ─────────────────
+// Priority: SchoolConfig.geminiApiKey (per-school) → GEMINI_API_KEY env var (global fallback)
+// Set GEMINI_API_KEY in your .env file as the global key.
+// Schools can override it with their own key in Settings → Configuration.
+const getGeminiKey = async (schoolId) => {
+  if (schoolId) {
+    const config = await prisma.schoolConfig.findUnique({
+      where: { schoolId: parseInt(schoolId) },
+      select: { geminiApiKey: true },
+    })
+    if (config?.geminiApiKey) return config.geminiApiKey
+  }
+  return process.env.GEMINI_API_KEY || null
 }
 
 // ── Tool definitions for Gemini function calling ─────────────────────────────
@@ -98,6 +73,9 @@ const tools = [
             busRoute:         { type: 'STRING', description: 'Bus route number/name (optional)' },
             previousSchool:   { type: 'STRING', description: 'Previous school name for transfer students (optional)' },
             tcNumber:         { type: 'STRING', description: 'Transfer Certificate number (optional)' },
+            siblingStudentId: { type: 'NUMBER', description: 'ID of a sibling already enrolled in this school (optional)' },
+            siblingNames:     { type: 'STRING', description: 'Names or admission numbers of siblings in this school, comma-separated (optional)' },
+            siblingRelation:  { type: 'STRING', description: 'Relation to sibling, e.g. Brother, Sister, Twin, Cousin (optional)' },
           },
           required: ['firstName', 'lastName', 'rollNumber'],
         },
@@ -134,6 +112,9 @@ const tools = [
             busRoute:         { type: 'STRING', description: 'Bus route number/name' },
             previousSchool:   { type: 'STRING', description: 'Previous school name' },
             tcNumber:         { type: 'STRING', description: 'Transfer Certificate number' },
+            siblingStudentId: { type: 'NUMBER', description: 'ID of a sibling already enrolled in this school' },
+            siblingNames:     { type: 'STRING', description: 'Names or admission numbers of siblings in this school, comma-separated' },
+            siblingRelation:  { type: 'STRING', description: 'Relation to sibling, e.g. Brother, Sister, Twin, Cousin' },
           },
           required: ['id'],
         },
@@ -549,7 +530,11 @@ const tools = [
       ...extendedToolDeclarations2,
       // ── Extended3 (subjects, periods, master data categories)
       ...extendedToolDeclarations3,
+      // ── Extended4 (staff attendance, inventory/assets)
       ...extendedToolDeclarations4,
+      // ── Extended5 (notifications, accounting, hostel CRUD, timetable CRUD,
+      //    delete_book, update/delete class, transfer certificate)
+      ...extendedToolDeclarations5,
     ],
   },
 ]
@@ -627,6 +612,9 @@ const executeTool = async (name, args, schoolId) => {
           busRoute:         args.busRoute        || null,
           previousSchool:   args.previousSchool  || null,
           tcNumber:         args.tcNumber        || null,
+          siblingStudentId: args.siblingStudentId ? parseInt(args.siblingStudentId) : null,
+          siblingNames:     args.siblingNames     || null,
+          siblingRelation:  args.siblingRelation  || null,
         },
       })
       return { success: true, message: `✅ Student **${student.firstName} ${student.lastName}** enrolled. Admission No: **${student.admissionNumber}** | ID: ${student.id}` }
@@ -659,6 +647,9 @@ const executeTool = async (name, args, schoolId) => {
       if (args.busRoute         !== undefined) data.busRoute         = args.busRoute
       if (args.previousSchool   !== undefined) data.previousSchool   = args.previousSchool
       if (args.tcNumber         !== undefined) data.tcNumber         = args.tcNumber
+      if (args.siblingStudentId !== undefined) data.siblingStudentId = args.siblingStudentId ? parseInt(args.siblingStudentId) : null
+      if (args.siblingNames     !== undefined) data.siblingNames     = args.siblingNames
+      if (args.siblingRelation  !== undefined) data.siblingRelation  = args.siblingRelation
       const s = await prisma.student.update({ where: { id: parseInt(args.id) }, data })
       return { success: true, message: `✅ Student **${s.firstName} ${s.lastName}** updated successfully` }
     }
@@ -1315,14 +1306,19 @@ You can help school administrators CREATE, VIEW and EDIT records across the enti
 - 🏆 **Achievements**: List, record student achievements
 - 📊 **Marks / Results**: Record marks, get exam results, get class results
 - 🏅 **Sports**: List sports, add new sport
-- 🏠 **Hostel**: List hostels, view room allotments
-- 📅 **Timetable**: Get class timetable by day
+- 🏠 **Hostel** (full CRUD): List hostels, view/create/update/delete hostels, add rooms, allot & vacate students
+- 📅 **Timetable** (full CRUD): Get class timetable, add/update/delete timetable entries for any class/day/period
 - 📈 **Financial Summary**: Full income vs expense vs fee overview
 - 📚 **Subjects**: List, add, update, delete school subjects (with code)
 - 🕐 **Periods**: List, add, update, delete school periods and breaks (with times)
 - 🗂️ **Master Data**: List, add, update, delete items in any category — teacher-designations, staff-designations, fee-types, expense-categories, leave-types, book-categories, staff-departments, event-categories
 - 🧑‍💼 **Staff Attendance**: View daily summary, list records by date/range/type, mark attendance (present/absent/late/half-day/on-leave), update existing records
 - 📦 **Inventory / Assets**: List all assets (filter by category/status/search), add new asset, update asset details (condition/location/status/quantity), delete asset
+- 🔔 **Notifications**: Send notifications by email or SMS to parents, students, or staff; list and delete notification history
+- 📒 **Accounting / Ledgers**: List ledgers (by type), create new ledger, view current debit/credit balances for all ledgers
+- 📒 **Accounting / Vouchers**: List vouchers (filter by type/date), create double-entry vouchers (receipt, payment, journal, contra)
+- 📋 **Transfer Certificate**: Get full TC details for any student — personal info, attendance record, academic summary
+- 🏫 **Classes**: List, create, rename, and delete classes
 
 Guidelines:
 - ALWAYS use tools to fetch real data — never guess or make up IDs or names
@@ -1392,25 +1388,36 @@ export const chat = async (req, res, next) => {
 
     const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
 
-    // Try each key in the pool; rotate automatically on quota errors
-    for (let attempt = 0; attempt < GEMINI_KEYS.length; attempt++) {
-      try {
-        logInfo(`Using Gemini key slot ${currentKeyIndex}`, { filename: 'chatController.js' })
-        const text = await runChatWithKey(getGenAI(), today, message, history, schoolId, image)
-        return res.json({ reply: text })
-      } catch (err) {
-        if (isQuotaError(err)) {
-          logError(`Key slot ${currentKeyIndex} quota exhausted — rotating to next key`, { filename: 'chatController.js' })
-          rotateKey()
-          continue
-        }
-        throw err  // non-quota error — let outer catch handle it
-      }
+    // Resolve API key: school-specific DB key first, then global .env fallback
+    const apiKey = await getGeminiKey(schoolId)
+    if (!apiKey) {
+      logError('No Gemini API key configured. Set GEMINI_API_KEY in .env or add a key in school Settings → Configuration.', { filename: 'chatController.js' })
+      return res.status(500).json({ message: '⚠️ AI service is not configured. Please contact your administrator.' })
     }
 
-    // All keys exhausted
-    logError('All Gemini API keys quota exhausted', { filename: 'chatController.js' })
-    return res.status(429).json({ message: '⚠️ All AI quota limits are currently exhausted. Please try again in a few minutes.' })
+    try {
+      const genAI = new GoogleGenerativeAI(apiKey)
+      const text = await runChatWithKey(genAI, today, message, history, schoolId, image)
+      // Non-blocking: track chat API usage in SchoolConfig
+      if (schoolId) {
+        prisma.schoolConfig.upsert({
+          where: { schoolId: parseInt(schoolId) },
+          update: { totalChatCalls: { increment: 1 } },
+          create: { schoolId: parseInt(schoolId), totalChatCalls: 1 },
+        }).catch(() => {})
+      }
+      return res.json({ reply: text })
+    } catch (err) {
+      logError(`Gemini API error — status=${err?.status} message="${err?.message}"`, { filename: 'chatController.js' })
+      const msg = (err?.message || '').toLowerCase()
+      if (msg.includes('api_key_invalid') || msg.includes('api key not valid') || msg.includes('revoked')) {
+        return res.status(500).json({ message: '⚠️ The Gemini API key is invalid or revoked. Please update it in Settings → Configuration.' })
+      }
+      if (err?.status === 429 || msg.includes('quota') || msg.includes('rate limit') || msg.includes('resource_exhausted')) {
+        return res.status(503).json({ message: '⚠️ AI service is over quota. Please try again later.' })
+      }
+      return res.status(503).json({ message: '⚠️ AI service is temporarily unavailable. Please try again in a moment.' })
+    }
 
   } catch (error) {
     logError(`Chat error: ${error.message}`, { filename: 'chatController.js' })

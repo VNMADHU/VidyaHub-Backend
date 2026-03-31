@@ -10,7 +10,7 @@
 
 import { Router } from 'express'
 import { PrismaClient } from '@prisma/client'
-import { getStatus, initialize, sendMessages, disconnectWA, autoConnectIfSession } from '../services/whatsappService.js'
+import { getStatus, initialize, sendMessages, disconnectWA, autoConnectIfSession, getWaContacts, saveWaContact, saveBulkWaContacts } from '../services/whatsappService.js'
 import { logError } from '../utils/logHelpers.js'
 
 const router = Router()
@@ -96,6 +96,49 @@ router.get('/recipients', async (req, res) => {
   }
 })
 
+// GET /whatsapp/contacts  — return all saved contacts from connected WhatsApp
+router.get('/contacts', async (req, res) => {
+  try {
+    const contacts = await getWaContacts()
+    res.json({ contacts, count: contacts.length })
+  } catch (err) {
+    logError('[WhatsApp] contacts error', err, LOG)
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// POST /whatsapp/contacts  — save a new contact to WhatsApp address book
+router.post('/contacts', async (req, res) => {
+  try {
+    const { name, number } = req.body
+    if (!name || !number) return res.status(400).json({ message: 'name and number are required' })
+    const saved = await saveWaContact(name, number)
+    res.json({ message: `Contact "${saved.name}" saved successfully`, contact: saved })
+  } catch (err) {
+    logError('[WhatsApp] save-contact error', err, LOG)
+    res.status(400).json({ message: err.message })
+  }
+})
+
+// POST /whatsapp/contacts/bulk  — import contacts from CSV rows
+router.post('/contacts/bulk', async (req, res) => {
+  try {
+    const { contacts } = req.body
+    if (!Array.isArray(contacts) || contacts.length === 0)
+      return res.status(400).json({ message: 'contacts array is required' })
+    if (contacts.length > 500)
+      return res.status(400).json({ message: 'Maximum 500 contacts per import' })
+    const result = await saveBulkWaContacts(contacts)
+    res.json({
+      message: `Import done: ${result.saved.length} saved, ${result.failed.length} failed`,
+      ...result,
+    })
+  } catch (err) {
+    logError('[WhatsApp] bulk-contacts error', err, LOG)
+    res.status(500).json({ message: err.message })
+  }
+})
+
 // POST /whatsapp/send
 router.post('/send', async (req, res) => {
   try {
@@ -109,22 +152,30 @@ router.post('/send', async (req, res) => {
 
     if (!message && resolvedAttachments.length === 0) return res.status(400).json({ message: 'message or attachment is required' })
 
-    // Resolve numbers
+    // Resolve numbers + names
     let numbers = []
+    let names = {}  // cleaned-number → display name for auto-save contact
     if (audience === 'custom') {
       // frontend sends customNumbers as an array already
       numbers = Array.isArray(customNumbers)
         ? customNumbers.map((n) => n.toString().trim()).filter(Boolean)
         : (customNumbers || '').split('\n').map((n) => n.trim()).filter(Boolean)
+      // No names available for custom numbers
     } else {
       const aud = audience === 'class' ? `class:${req.body.classId}` : audience
       const contacts = await resolveContacts(aud, schoolId)
-      numbers = contacts.map((c) => c.phone)
+      for (const c of contacts) {
+        if (!c.phone) continue
+        const cleaned = c.phone.toString().replace(/\D/g, '')
+        const normalized = cleaned.length === 10 ? '91' + cleaned : cleaned
+        numbers.push(c.phone)
+        names[normalized] = c.name  // map by normalized number so lookup matches sendMessages logic
+      }
     }
 
     if (numbers.length === 0) return res.status(400).json({ message: 'No recipients found' })
 
-    const result = await sendMessages({ numbers, message, attachments: resolvedAttachments })
+    const result = await sendMessages({ numbers, message, attachments: resolvedAttachments, names })
     res.json({
       message: `WhatsApp messages sent: ${result.success} delivered, ${result.failed} failed`,
       ...result,

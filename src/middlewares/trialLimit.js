@@ -38,13 +38,20 @@ const trialLimit = (model) => async (req, res, next) => {
     // Paid schools are never limited
     if (!school || school.isFreeTrail === false) return next()
 
+    // Use per-school freeTrialLimit if configured, otherwise fall back to env var
+    const schoolConfig = await prisma.schoolConfig.findUnique({
+      where: { schoolId },
+      select: { freeTrialLimit: true },
+    })
+    const effectiveLimit = (schoolConfig?.freeTrialLimit > 0) ? schoolConfig.freeTrialLimit : limit
+
     const count = await prisma[model].count({ where: { schoolId } })
 
-    if (count >= limit) {
+    if (count >= effectiveLimit) {
       return res.status(403).json({
         code: 'TRIAL_LIMIT_REACHED',
-        message: `Free trial limit of ${limit} records reached for this module. Please upgrade your plan to add more records.`,
-        limit,
+        message: `Free trial limit of ${effectiveLimit} records reached for this module. Please upgrade your plan to add more records.`,
+        limit: effectiveLimit,
         current: count,
         model,
       })

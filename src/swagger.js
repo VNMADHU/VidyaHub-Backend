@@ -21,7 +21,11 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5001',
+        url: 'https://vidyahub-api-gfgwbdcad4e7ewf7.centralindia-01.azurewebsites.net',
+        description: 'Production (Azure)',
+      },
+      {
+        url: 'http://localhost:5002',
         description: 'Local development',
       },
     ],

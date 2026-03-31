@@ -4,10 +4,10 @@ import { listAdmins, getModules, createAdmin, updateAdmin, updateAdminPassword, 
 
 const router = Router()
 
-// Both super-admin and school-admin can manage admins
+// Both super-admin, school-admin, and owner can manage admins
 // Controllers scope results to the requester's school for school-admins
 router.use(authenticate)
-router.use(authorize('super-admin', 'school-admin'))
+router.use(authorize('super-admin', 'school-admin', 'owner'))
 
 router.get('/', listAdmins)
 router.get('/modules', getModules)

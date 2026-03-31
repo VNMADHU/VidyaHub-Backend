@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
-import { sendSMS } from '../services/smsService.js'
+import { sendSMS, fillTemplate } from '../services/smsService.js'
 
 
 const feeSchema = z.object({
@@ -125,7 +125,8 @@ export const createFee = async (req, res, next) => {
             const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
             if (phones.length > 0) {
               const netAmount = payload.amount - (payload.discount || 0)
-              const msg = `Dear Parent, a fee of Rs.${netAmount} (${payload.feeType}) has been assigned for ${student.firstName} ${student.lastName}. Due date: ${payload.dueDate}. - ${school.name}`
+              const tpl = process.env.SAPTELE_FEE_TEMPLATE || 'Dear Parent, a fee of Rs.{netAmount} ({feeType}) has been assigned for {firstName} {lastName}. Due date: {dueDate}. - {schoolName}'
+              const msg = fillTemplate(tpl, { netAmount, feeType: payload.feeType, firstName: student.firstName, lastName: student.lastName, dueDate: payload.dueDate, schoolName: school.name })
               await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_FEE_TEMPLATE_ID }).catch(() => {})
             }
           }
@@ -237,8 +238,9 @@ export const payFee = async (req, res, next) => {
           if (student) {
             const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
             if (phones.length > 0) {
-              const msg = `Dear Parent, payment of Rs.${amountToPay} received for ${student.firstName} ${student.lastName} (${fee.feeType} fee). Status: ${newStatus.toUpperCase()}. Paid Date: ${new Date().toLocaleDateString('en-IN')}. - ${school.name}`
-              await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_FEE_TEMPLATE_ID }).catch(() => {})
+              const tpl = process.env.SAPTELE_FEE_PAYMENT_TEMPLATE || 'Dear Parent, payment of Rs.{amount} received for {firstName} {lastName} ({feeType} fee). Status: {status}. Paid Date: {paidDate}. - {schoolName}'
+              const msg = fillTemplate(tpl, { amount: amountToPay, firstName: student.firstName, lastName: student.lastName, feeType: fee.feeType, status: newStatus.toUpperCase(), paidDate: new Date().toLocaleDateString('en-IN'), schoolName: school.name })
+              await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_FEE_PAYMENT_TEMPLATE_ID }).catch(() => {})
             }
           }
         }

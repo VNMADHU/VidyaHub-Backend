@@ -1,12 +1,22 @@
 import { logInfo, logError } from '../utils/logHelpers.js'
 
 /**
+ * Replace {varName} placeholders in a template string with values from a data object.
+ * Any placeholder without a matching key is left unchanged.
+ * @param {string} template
+ * @param {Record<string,string|number>} data
+ * @returns {string}
+ */
+export const fillTemplate = (template, data) =>
+  template.replace(/\{(\w+)\}/g, (_, key) => (key in data ? data[key] : `{${key}}`))
+
+/**
  * Build the OTP SMS message from the template in .env.
  * SAPTELE_OTP_TEMPLATE must contain {code} as the placeholder.
  */
 export const buildOtpSms = (code) => {
-  const tpl = process.env.SAPTELE_OTP_TEMPLATE || 'Dear InstaBee user,  {code} is your verification code for availing InstaBee Services. Please contact us on +91 7793982828 for assistance.'
-  return tpl.replace('{code}', code)
+  const tpl = process.env.SAPTELE_OTP_TEMPLATE || 'Dear VidyaHub user, {code} is your verification code for VidyaHub. Please contact us for assistance.'
+  return fillTemplate(tpl, { code })
 }
 
 /**

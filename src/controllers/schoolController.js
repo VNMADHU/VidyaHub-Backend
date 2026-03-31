@@ -1,22 +1,50 @@
 import { z } from 'zod'
+import bcrypt from 'bcrypt'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
-
+const SALT_ROUNDS = 10
 const INDIAN_PHONE_REGEX = /^[6-9]\d{9}$/
 
+// Schema for update (all fields optional)
 const schoolSchema = z.object({
+  name: z.string().min(2).optional(),
+  address: z.string().min(5).optional(),
+  contact: z.string().regex(INDIAN_PHONE_REGEX, 'Must be a valid 10-digit Indian mobile number (starting with 6-9)').optional(),
+  principal: z.string().min(2).optional(),
+  boardType: z.string().min(2).optional(),
+  isFreeTrail: z.boolean().optional(),
+  status: z.string().optional(),
+})
+
+// Schema for atomic school creation (school + super-admin + config)
+const createSchoolSchema = z.object({
   name: z.string().min(2),
   address: z.string().min(5),
   contact: z.string().regex(INDIAN_PHONE_REGEX, 'Must be a valid 10-digit Indian mobile number (starting with 6-9)'),
   principal: z.string().min(2),
   boardType: z.string().min(2),
+  isFreeTrail: z.boolean().optional().default(true),
+  status: z.string().optional().default('active'),
+  admin: z.object({
+    firstName: z.string().min(1),
+    lastName: z.string().min(1),
+    email: z.string().email(),
+    password: z.string().min(8),
+    phone: z.string().regex(INDIAN_PHONE_REGEX, 'Must be a valid 10-digit Indian mobile number (starting with 6-9)'),
+    mfaPhone: z.boolean().optional().default(false),
+  }),
+  config: z.object({
+    smsLimit: z.number().int().nonnegative().optional().default(1000),
+    freeTrialLimit: z.number().int().nonnegative().optional().default(0),
+    geminiApiKey: z.string().optional().nullable(),
+  }).optional(),
 })
 
 export const listSchools = async (req, res, next) => {
   try {
-    // Super-admins see all schools; school-admins see only their own school
-    const isSuperAdmin = req.user?.role === 'super-admin'
+    // Super-admins and owner see all schools; school-admins see only their own school
+    const isSuperAdmin = req.user?.role === 'super-admin' || req.user?.role === 'owner'
     const where = isSuperAdmin ? {} : { id: parseInt(req.user?.schoolId) }
 
     logInfo(`Listing schools (role=${req.user?.role})`, {
@@ -36,22 +64,62 @@ export const listSchools = async (req, res, next) => {
 
 export const createSchool = async (req, res, next) => {
   try {
-    const payload = schoolSchema.parse(req.body)
-    
-    const school = await prisma.school.create({
-      data: payload,
+    const payload = createSchoolSchema.parse(req.body)
+    const { admin, config, ...schoolData } = payload
+
+    // Hash password before transaction to keep transaction fast
+    const hashedPassword = await bcrypt.hash(admin.password, SALT_ROUNDS)
+
+    const result = await prisma.$transaction(async (tx) => {
+      // 1. Create the school
+      const school = await tx.school.create({ data: schoolData })
+
+      // 2. Create the super-admin user for this school
+      const user = await tx.user.create({
+        data: {
+          email: admin.email,
+          password: hashedPassword,
+          role: 'super-admin',
+          phone: admin.phone,
+          schoolId: school.id,
+          accountStatus: 'active',
+          isEmailVerified: true,
+          mfaEmail: false,
+          mfaPhone: admin.mfaPhone ?? false,
+          profile: { create: { firstName: admin.firstName, lastName: admin.lastName } },
+        },
+        include: { profile: true },
+      })
+
+      // 3. Create the SchoolConfig
+      const schoolConfig = await tx.schoolConfig.create({
+        data: {
+          schoolId: school.id,
+          smsLimit: config?.smsLimit ?? 1000,
+          freeTrialLimit: config?.freeTrialLimit ?? 0,
+          ...(config?.geminiApiKey ? { geminiApiKey: config.geminiApiKey } : {}),
+        },
+      })
+
+      return { school, user, schoolConfig }
     })
-    
-    logInfo(`School created: ${payload.name}`, {
-      filename: 'schoolController.js',
-      line: 36,
+
+    logInfo(`School created atomically: ${payload.name}`, { filename: 'schoolController.js' })
+    res.status(201).json({
+      message: 'School created with admin account and configuration',
+      data: {
+        school: result.school,
+        admin: {
+          id: result.user.id,
+          email: result.user.email,
+          firstName: result.user.profile?.firstName,
+          lastName: result.user.profile?.lastName,
+        },
+        config: result.schoolConfig,
+      },
     })
-    res.status(201).json({ message: 'School created', data: school })
   } catch (error) {
-    logError(`Create school error: ${error.message}`, {
-      filename: 'schoolController.js',
-      line: 43,
-    })
+    logError(`Create school error: ${error.message}`, { filename: 'schoolController.js' })
     next(error)
   }
 }
@@ -59,7 +127,7 @@ export const createSchool = async (req, res, next) => {
 export const updateSchool = async (req, res, next) => {
   try {
     const { schoolId } = req.params
-    const payload = schoolSchema.partial().parse(req.body)
+    const payload = schoolSchema.parse(req.body)
     
     const school = await prisma.school.update({
       where: { id: parseInt(schoolId) },
@@ -141,6 +209,48 @@ export const updateSmsSettings = async (req, res, next) => {
     res.json({ data: school, message: 'SMS settings updated' })
   } catch (error) {
     logError(`Update SMS settings error: ${error.message}`, { filename: 'schoolController.js' })
+    next(error)
+  }
+}
+
+export const getSchoolConfig = async (req, res, next) => {
+  try {
+    const schoolId = parseInt(req.params.schoolId)
+    const config = await prisma.schoolConfig.upsert({
+      where: { schoolId },
+      update: {},
+      create: { schoolId },
+    })
+    logInfo(`School config fetched for school ${schoolId}`, { filename: 'schoolController.js' })
+    res.json({ data: config })
+  } catch (error) {
+    logError(`Get school config error: ${error.message}`, { filename: 'schoolController.js' })
+    next(error)
+  }
+}
+
+export const updateSchoolConfig = async (req, res, next) => {
+  try {
+    const schoolId = parseInt(req.params.schoolId)
+    const { geminiApiKey, smsLimit, freeTrialLimit } = req.body
+    const config = await prisma.schoolConfig.upsert({
+      where: { schoolId },
+      update: {
+        ...(geminiApiKey !== undefined && { geminiApiKey: geminiApiKey || null }),
+        ...(smsLimit !== undefined && { smsLimit: parseInt(smsLimit) }),
+        ...(freeTrialLimit !== undefined && { freeTrialLimit: parseInt(freeTrialLimit) }),
+      },
+      create: {
+        schoolId,
+        ...(geminiApiKey && { geminiApiKey }),
+        ...(smsLimit !== undefined && { smsLimit: parseInt(smsLimit) }),
+        ...(freeTrialLimit !== undefined && { freeTrialLimit: parseInt(freeTrialLimit) }),
+      },
+    })
+    logInfo(`School config updated for school ${schoolId}`, { filename: 'schoolController.js' })
+    res.json({ data: config, message: 'Configuration saved' })
+  } catch (error) {
+    logError(`Update school config error: ${error.message}`, { filename: 'schoolController.js' })
     next(error)
   }
 }

@@ -7,6 +7,7 @@ const marksSchema = z.object({
   studentId: z.number(),
   examId: z.number(),
   marks: z.number().min(0),
+  maxScore: z.number().min(1).optional().default(100),
   subject: z.string().min(1),
 })
 
@@ -47,6 +48,7 @@ export const createMarks = async (req, res, next) => {
         studentId: payload.studentId,
         examId: payload.examId,
         score: payload.marks,
+        maxScore: payload.maxScore ?? 100,
         subject: payload.subject,
       },
       include: { student: true, exam: true },
@@ -78,6 +80,7 @@ export const updateMarks = async (req, res, next) => {
     if (payload.studentId !== undefined) updateData.studentId = payload.studentId
     if (payload.examId !== undefined) updateData.examId = payload.examId
     if (payload.marks !== undefined) updateData.score = payload.marks
+    if (payload.maxScore !== undefined) updateData.maxScore = payload.maxScore
     if (payload.subject !== undefined) updateData.subject = payload.subject
     
     const mark = await prisma.mark.update({

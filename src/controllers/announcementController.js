@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
-import { sendSMS } from '../services/smsService.js'
+import { sendSMS, fillTemplate } from '../services/smsService.js'
 
 
 const announcementSchema = z.object({
@@ -70,8 +70,9 @@ export const createAnnouncement = async (req, res, next) => {
           for (const st of staff) { if (st.phoneNumber) phonesSet.add(st.phoneNumber.trim()) }
           const allPhones = [...phonesSet].filter(Boolean)
           if (allPhones.length > 0) {
-            // Keep exact DLT template format: {#var#} Announcement: {#var#} - {#var#}
-            const msg = `${school.name} Announcement: ${payload.title} - ${payload.message}`
+            // Keep exact DLT template format — text is read from SAPTELE_ANNOUNCEMENT_TEMPLATE
+            const tpl = process.env.SAPTELE_ANNOUNCEMENT_TEMPLATE || '{schoolName} Announcement: {title} - {message}'
+            const msg = fillTemplate(tpl, { schoolName: school.name, title: payload.title, message: payload.message })
             for (const phone of allPhones) {
               await sendSMS({ to: phone, message: msg, templateId: process.env.SAPTELE_ANNOUNCEMENT_TEMPLATE_ID }).catch(() => {})
             }

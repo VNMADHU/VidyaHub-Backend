@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
-import { sendEmail, sendBulkEmail } from '../services/emailService.js'
 import { sendSMS, sendBulkSMS } from '../services/smsService.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
 
@@ -10,51 +9,15 @@ const LOG = { filename: 'notificationController.js' }
 // ── Zod schemas ───────────────────────────────────────────
 const sendNotificationSchema = z.object({
   type: z.enum(['announcement', 'event', 'report', 'fee-reminder', 'homework', 'custom']),
-  channel: z.enum(['email', 'sms', 'both']),
+  channel: z.enum(['sms']),
   subject: z.string().min(1, 'Subject is required'),
   message: z.string().min(1, 'Message is required'),
   audience: z.string().min(1, 'Audience is required'), // all-parents, class:5, student:12, custom
   customRecipients: z
-    .array(z.object({ email: z.string().optional(), phone: z.string().optional(), name: z.string().optional() }))
+    .array(z.object({ phone: z.string().optional(), name: z.string().optional() }))
     .optional(),
 })
 
-// ── Helper: build nice HTML template ──────────────────────
-const buildHtmlEmail = (subject, message, schoolName) => `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background: #f4f6f8; }
-    .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-    .header { background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 24px 30px; text-align: center; }
-    .header h1 { color: #fff; margin: 0; font-size: 22px; }
-    .header p { color: rgba(255,255,255,0.8); margin: 6px 0 0; font-size: 13px; }
-    .body { padding: 30px; color: #334155; line-height: 1.7; font-size: 15px; }
-    .body h2 { color: #1e293b; margin: 0 0 16px; font-size: 18px; }
-    .footer { padding: 16px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; font-size: 12px; color: #94a3b8; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>🎓 ${schoolName || 'Vidya Hub'}</h1>
-      <p>School Communication</p>
-    </div>
-    <div class="body">
-      <h2>${subject}</h2>
-      <div>${message.replace(/\n/g, '<br>')}</div>
-    </div>
-    <div class="footer">
-      <p>This is an automated message from ${schoolName || 'Vidya Hub'}. Please do not reply.</p>
-      <p>Powered by Vidya Hub 🎓</p>
-    </div>
-  </div>
-</body>
-</html>
-`
 
 // ── Helper: gather recipients based on audience ───────────
 const gatherRecipients = async (audience, schoolId) => {
@@ -125,27 +88,15 @@ export const sendNotification = async (req, res, next) => {
         : await gatherRecipients(audience, schoolId)
 
     if (recipients.length === 0) {
-      return res.status(400).json({ message: 'No recipients found for the selected audience. Make sure students have parent email/phone saved.' })
+      return res.status(400).json({ message: 'No recipients found for the selected audience. Make sure students have parent phone numbers saved.' })
     }
 
     let totalSent = 0
     let totalFailed = 0
     let allErrors = []
 
-    // Send emails
-    if (channel === 'email' || channel === 'both') {
-      const emailRecipients = recipients.filter((r) => r.email)
-      if (emailRecipients.length > 0) {
-        const html = buildHtmlEmail(subject, message, school?.name)
-        const result = await sendBulkEmail({ recipients: emailRecipients, subject, text: message, html })
-        totalSent += result.sent
-        totalFailed += result.failed
-        allErrors = allErrors.concat(result.errors)
-      }
-    }
-
     // Send SMS
-    if (channel === 'sms' || channel === 'both') {
+    if (channel === 'sms') {
       const smsRecipients = recipients.filter((r) => r.phone)
       if (smsRecipients.length > 0) {
         const smsText = `${subject}\n\n${message}\n\n- ${school?.name || 'Vidya Hub'}`
@@ -154,6 +105,15 @@ export const sendNotification = async (req, res, next) => {
         totalFailed += result.failed
         allErrors = allErrors.concat(result.errors)
       }
+    }
+
+    // Non-blocking: track SMS usage in SchoolConfig
+    if (totalSent > 0) {
+      prisma.schoolConfig.upsert({
+        where: { schoolId },
+        update: { totalSmsUsed: { increment: totalSent } },
+        create: { schoolId, totalSmsUsed: totalSent },
+      }).catch(() => {})
     }
 
     // Determine overall status

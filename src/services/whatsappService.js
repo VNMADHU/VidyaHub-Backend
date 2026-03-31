@@ -250,7 +250,107 @@ export const disconnectWA = async () => {
   _status = 'disconnected'
   logInfo('[WhatsApp] Manually disconnected', { filename: 'whatsappService.js', schoolId: 'system' })
 }
+// ── Get saved WhatsApp contacts ───────────────────────
+/**
+ * Returns all contacts that are saved in the connected WhatsApp account.
+ * Filters to only real contacts (isMyContact = true, not groups, has name).
+ */
+export const getWaContacts = async () => {
+  if (_status !== 'ready' || !_client) {
+    throw new Error('WhatsApp is not connected.')
+  }
+  const all = await _client.getContacts()
+  return all
+    .filter((c) => c.isMyContact && !c.isGroup && c.id?.server === 'c.us')
+    .map((c) => ({
+      name:   c.pushname || c.name || c.verifiedName || c.id.user,
+      number: c.id.user,  // E.164 digits without '+', e.g. '919876543210'
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+}
 
+// ── Save a new contact to WhatsApp address book ───────────────
+/**
+ * Saves a new contact into the connected WhatsApp account.
+ * @param {string} name   — display name, e.g. "Ravi Kumar"
+ * @param {string} number — digits only, e.g. "919876543210" or "9876543210"
+ * @returns {{ number: string, name: string }} — the saved contact
+ */
+export const saveWaContact = async (name, number) => {
+  if (_status !== 'ready' || !_client) {
+    throw new Error('WhatsApp is not connected.')
+  }
+  if (!name?.trim()) throw new Error('Contact name is required.')
+  if (!number)        throw new Error('Phone number is required.')
+
+  // Normalise: strip non-digits, prepend 91 for 10-digit Indian numbers
+  let cleaned = number.toString().replace(/\D/g, '')
+  if (!cleaned || cleaned.length < 7) throw new Error('Invalid phone number.')
+  if (cleaned.length === 10) cleaned = '91' + cleaned
+
+  const waId = `${cleaned}@c.us`
+
+  // Verify the number is on WhatsApp before saving
+  const registered = await _client.isRegisteredUser(waId)
+  if (!registered) throw new Error(`+${cleaned} is not registered on WhatsApp.`)
+
+  // Save via WA Web internal API
+  await _client.pupPage.evaluate(async (contactId, contactName) => {
+    try {
+      const WA = window.Store
+      if (WA.AddressbookContact) {
+        await WA.AddressbookContact.add({ jid: contactId, name: contactName })
+      }
+      // Also mark the in-memory contact
+      const c = WA.Contact.get(contactId)
+      if (c) {
+        c.type = 'in'
+        c.name = contactName
+        if (WA.Contact.save) await WA.Contact.save(c)
+      }
+    } catch (e) {
+      throw new Error('WA internal API error: ' + e.message)
+    }
+  }, waId, name.trim())
+
+  logInfo(`[WhatsApp] 💾 New contact saved: ${name.trim()} (+${cleaned})`, { filename: 'whatsappService.js', schoolId: 'system' })
+  return { number: cleaned, name: name.trim() }
+}
+
+// ── Save bulk contacts from CSV import ───────────────────
+/**
+ * Saves multiple contacts at once.
+ * @param {{ name: string, number: string }[]} contacts
+ * @returns {{ saved: object[], failed: object[] }}
+ */
+export const saveBulkWaContacts = async (contacts) => {
+  if (_status !== 'ready' || !_client) {
+    throw new Error('WhatsApp is not connected.')
+  }
+  const saved  = []
+  const failed = []
+  const sleep  = (ms) => new Promise((r) => setTimeout(r, ms))
+
+  for (const row of contacts) {
+    const rawName   = (row.name   || '').toString().trim()
+    const rawNumber = (row.number || '').toString().trim()
+    if (!rawName || !rawNumber) {
+      failed.push({ name: rawName || '(empty)', number: rawNumber, reason: 'Name or number missing' })
+      continue
+    }
+    try {
+      const result = await saveWaContact(rawName, rawNumber)
+      saved.push(result)
+    } catch (e) {
+      failed.push({ name: rawName, number: rawNumber, reason: e.message })
+    }
+    // Small pause between saves — avoids hammering WA internal API
+    await sleep(300)
+  }
+
+  logInfo(`[WhatsApp] 📅 Bulk import done: ${saved.length} saved, ${failed.length} failed`, { filename: 'whatsappService.js', schoolId: 'system' })
+  return { saved, failed }
+}
 // ── Send Messages ──────────────────────────────────────────
 /**
  * @param {object} opts
@@ -277,7 +377,7 @@ const _isDeadPageError = (err) => {
 
 let _isSending = false  // prevents concurrent batches from hammering the same session
 
-export const sendMessages = async ({ numbers, message, attachments, attachmentB64, attachmentMime, attachmentName }) => {
+export const sendMessages = async ({ numbers, message, attachments, attachmentB64, attachmentMime, attachmentName, names = {} }) => {
   if (_status !== 'ready' || !_client) {
     throw new Error('WhatsApp is not connected. Please go to Notifications → WhatsApp and reconnect.')
   }
@@ -337,7 +437,35 @@ export const sendMessages = async ({ numbers, message, attachments, attachmentB6
         // Non-fatal: if the check fails for other reasons, proceed to send
       }
 
-      // ── 2. Typing simulation — mimics human behaviour before sending ────
+      // ── 2. Auto-save contact if not already in address book ────────────
+      try {
+        const contact = await _client.getContactById(waId)
+        const displayName = names[cleaned] || cleaned
+        if (contact && !contact.isMyContact) {
+          await _client.pupPage.evaluate(async (contactId, name) => {
+            try {
+              const WA = window.Store
+              const contact = WA.Contact.get(contactId)
+              if (contact) {
+                contact.type = 'in'
+                contact.name = name
+                contact.pushname = contact.pushname || name
+                // Try AddressbookContact.add (most reliable internal API)
+                if (WA.AddressbookContact) {
+                  try { await WA.AddressbookContact.add({ jid: contactId, name }) } catch { /* ignore */ }
+                }
+                // Fallback: direct save on the contact model
+                if (WA.Contact.save) {
+                  try { await WA.Contact.save(contact) } catch { /* ignore */ }
+                }
+              }
+            } catch { /* non-fatal — ignore all internal API errors */ }
+          }, waId, displayName)
+          logInfo(`[WhatsApp] 💾 Saved new contact: ${displayName} (${cleaned})`, { filename: 'whatsappService.js', schoolId: 'system' })
+        }
+      } catch { /* non-fatal — contact save errors must never block the send */ }
+
+      // ── 3. Typing simulation — mimics human behaviour before sending ────
       try {
         const chat = await _client.getChatById(waId)
         await chat.sendStateTyping()
@@ -371,7 +499,7 @@ export const sendMessages = async ({ numbers, message, attachments, attachmentB6
         logError(`[WhatsApp] ✗ Failed [${idx + 1}/${numbers.length}] → ${cleaned}`, err, { filename: 'whatsappService.js', schoolId: 'system' })
       }
 
-      // ── 3. Delay AFTER sending (mirrors POC structure) ─────────────────
+      // ── 4. Delay AFTER sending (mirrors POC structure) ─────────────────
       // Applying delay after send (not before) creates a consistent rhythm:
       // send → wait → send → wait — identical to how a human would message.
       if (idx < numbers.length - 1) {

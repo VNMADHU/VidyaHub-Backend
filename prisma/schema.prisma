@@ -109,8 +109,22 @@ model School {
   subjects      Subject[]
   assets        Asset[]
   staffAttendances StaffAttendance[]
+  config        SchoolConfig?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model SchoolConfig {
+  id              Int      @id @default(autoincrement())
+  schoolId        Int      @unique
+  school          School   @relation(fields: [schoolId], references: [id])
+  geminiApiKey    String?  // school-specific Gemini API key (overrides global env keys)
+  smsLimit        Int      @default(1000) // monthly SMS quota for this school
+  freeTrialLimit  Int      @default(0)    // max records per model on free trial (0 = use env TRIAL_RECORD_LIMIT)
+  totalSmsUsed    Int      @default(0)    // cumulative SMS sent
+  totalChatCalls  Int      @default(0)    // cumulative Gemini API calls
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Student {
@@ -149,6 +163,10 @@ model Student {
   motherContact String?
   guardianContact String?
   parentEmail String?
+  // Sibling / Family Relation
+  siblingStudentId Int?     // ID of the related student in this school
+  siblingNames    String?  // Names or admission nos. of siblings in this school (comma-separated)
+  siblingRelation String?  // e.g. Brother, Sister, Twin, Cousin
   attendance  Attendance[]
   marks       Mark[]
   achievements Achievement[]
@@ -694,6 +712,7 @@ model Admission {
   status           String   @default("pending") // pending, shortlisted, approved, rejected, enrolled
   interviewDate    DateTime?
   remarks          String?
+  linkedStudentId  Int?     // set when approved — references the auto-created Student record
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }

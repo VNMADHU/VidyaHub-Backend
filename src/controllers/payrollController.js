@@ -23,10 +23,10 @@ export const listPayroll = async (req, res, next) => {
 export const generatePayroll = async (req, res, next) => {
   try {
     const schoolId = req.schoolId
-    const { month, year } = req.body
+    const { month, year, employees } = req.body
     if (!month || !year) return res.status(400).json({ message: 'month and year are required' })
 
-    logInfo('Generating payroll', { filename: 'payrollController.js', schoolId, month, year })
+    logInfo('Generating payroll', { filename: 'payrollController.js', schoolId, month, year, selective: !!(employees?.length) })
 
     // Fetch all employees with salary set
     const [teachers, staff, drivers] = await Promise.all([
@@ -34,6 +34,17 @@ export const generatePayroll = async (req, res, next) => {
       prisma.staff.findMany({ where: { schoolId: parseInt(schoolId), salary: { not: null, gt: 0 } } }),
       prisma.driver.findMany({ where: { schoolId: parseInt(schoolId), salary: { not: null, gt: 0 } } }),
     ])
+
+    // Optional: filter to specific employees if requested
+    let filteredTeachers = teachers
+    let filteredStaff    = staff
+    let filteredDrivers  = drivers
+    if (employees && employees.length > 0) {
+      const empSet = new Set(employees.map(e => `${e.type}_${e.id}`))
+      filteredTeachers = teachers.filter(t => empSet.has(`teacher_${t.id}`))
+      filteredStaff    = staff.filter(s => empSet.has(`staff_${s.id}`))
+      filteredDrivers  = drivers.filter(d => empSet.has(`driver_${d.id}`))
+    }
 
     const buildEntry = (emp, type) => {
       const basic = emp.salary || 0
@@ -114,9 +125,9 @@ export const generatePayroll = async (req, res, next) => {
     }
 
     const entries = [
-      ...teachers.map(e => buildEntry(e, 'teacher')),
-      ...staff.map(e => buildEntry(e, 'staff')),
-      ...drivers.map(e => buildEntry(e, 'driver')),
+      ...filteredTeachers.map(e => buildEntry(e, 'teacher')),
+      ...filteredStaff.map(e => buildEntry(e, 'staff')),
+      ...filteredDrivers.map(e => buildEntry(e, 'driver')),
     ]
 
     const results = await Promise.all(

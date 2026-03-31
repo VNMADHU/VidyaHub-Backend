@@ -40,3 +40,12 @@ Thumbs.db
 .idea/
 *.suo
 *.sw?
+
+# WhatsApp web session data
+.wwebjs_auth/
+.wwebjs_cache/
+.wwebjs_chrome_profile/
+
+# Misc
+*.db
+backend.zip

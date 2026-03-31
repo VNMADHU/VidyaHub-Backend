@@ -4,7 +4,6 @@ import { randomUUID } from 'crypto'
 import prisma from '../utils/prisma.js'
 import { signToken } from '../utils/jwt.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
-import { sendEmail } from '../services/emailService.js'
 import { sendSMS, buildOtpSms } from '../services/smsService.js'
 
 const SALT_ROUNDS = 12
@@ -97,63 +96,8 @@ const updateProfileSchema = z.object({
   phone: z.string().optional(),
 })
 
-// ── OTP email template ────────────────────────────────────────
-
-const otpEmailHtml = (name, otp, purpose = 'Secure Login') => `
-  <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px;">
-    <div style="background: #1e40af; padding: 16px 24px; border-radius: 8px 8px 0 0;">
-      <h2 style="color: white; margin: 0;">&#127891; Vidya Hub &mdash; ${purpose}</h2>
-    </div>
-    <div style="border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px; padding: 24px;">
-      <p style="color: #374151;">Hello <strong>${name}</strong>,</p>
-      <p style="color: #374151;">Your one-time password (OTP) for ${purpose} is:</p>
-      <div style="background: #f0f9ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
-        <span style="font-size: 40px; font-weight: bold; letter-spacing: 10px; color: #1e40af;">${otp}</span>
-      </div>
-      <p style="color: #374151;">This OTP is valid for <strong>${OTP_EXPIRY_MINUTES} minutes</strong>.</p>
-      <p style="color: #ef4444;"><strong>&#9888;&#65039; Do not share this OTP with anyone.</strong></p>
-      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-      <p style="color: #9ca3af; font-size: 12px;">If you did not attempt to log in, please ignore this email.</p>
-    </div>
-  </div>
-`
-
-const verifyEmailHtml = (name, code) => `
-  <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px;">
-    <div style="background: #059669; padding: 16px 24px; border-radius: 8px 8px 0 0;">
-      <h2 style="color: white; margin: 0;">&#9989; Vidya Hub &mdash; Verify Your Email</h2>
-    </div>
-    <div style="border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px; padding: 24px;">
-      <p style="color: #374151;">Hello <strong>${name}</strong>,</p>
-      <p style="color: #374151;">Welcome to Vidya Hub! Please verify your email with this code:</p>
-      <div style="background: #ecfdf5; border: 2px solid #059669; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
-        <span style="font-size: 40px; font-weight: bold; letter-spacing: 10px; color: #065f46;">${code}</span>
-      </div>
-      <p style="color: #374151;">This code is valid for <strong>30 minutes</strong>.</p>
-      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-      <p style="color: #9ca3af; font-size: 12px;">If you did not register with Vidya Hub, please ignore this email.</p>
-    </div>
-  </div>
-`
-
-const resetPasswordEmailHtml = (name, code) => `
-  <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px;">
-    <div style="background: #dc2626; padding: 16px 24px; border-radius: 8px 8px 0 0;">
-      <h2 style="color: white; margin: 0;">&#128274; Vidya Hub &mdash; Reset Your Password</h2>
-    </div>
-    <div style="border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px; padding: 24px;">
-      <p style="color: #374151;">Hello <strong>${name}</strong>,</p>
-      <p style="color: #374151;">Your password reset code is:</p>
-      <div style="background: #fef2f2; border: 2px solid #dc2626; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
-        <span style="font-size: 40px; font-weight: bold; letter-spacing: 10px; color: #991b1b;">${code}</span>
-      </div>
-      <p style="color: #374151;">This code is valid for <strong>15 minutes</strong>.</p>
-      <p style="color: #ef4444;"><strong>&#9888;&#65039; Do not share this code with anyone.</strong></p>
-      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-      <p style="color: #9ca3af; font-size: 12px;">If you did not request a password reset, please ignore this email.</p>
-    </div>
-  </div>
-`
+// ── Step 1: Verify credentials → generate and send OTP ───────
+// (Email templates removed — SMS-only mode)
 
 // ── Step 1: Verify credentials → generate and send OTP ───────
 
@@ -173,7 +117,7 @@ export const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Invalid email or password' })
     }
 
-    if (!['super-admin', 'school-admin'].includes(user.role)) {
+    if (!['super-admin', 'school-admin', 'owner'].includes(user.role)) {
       return res.status(403).json({
         message: 'This login is for administrators only. Please use the portal login.',
       })
@@ -197,31 +141,6 @@ export const login = async (req, res, next) => {
     }
 
     const displayName = user.profile?.firstName || 'Admin'
-
-    // ── Email not verified → send fresh code and prompt ──────
-    if (!user.isEmailVerified) {
-      const emailCode = generateOtp()
-      const verifyExpiry = new Date(Date.now() + VERIFY_EXPIRY_MINUTES * 60 * 1000)
-      await prisma.user.update({
-        where: { id: user.id },
-        data: { emailVerifyCode: emailCode, emailVerifyExpiry: verifyExpiry },
-      })
-      try {
-        await sendEmail({
-          to: user.email,
-          subject: 'Verify Your Vidya Hub Email',
-          html: verifyEmailHtml(displayName, emailCode),
-        })
-      } catch (emailErr) {
-        logError(`Verify email send failed: ${emailErr.message}`, { filename: 'authController.js' })
-      }
-      return res.status(403).json({
-        message: 'Please verify your email before logging in. A new verification code has been sent.',
-        needsEmailVerification: true,
-        email: user.email,
-        maskedEmail: maskEmail(user.email),
-      })
-    }
 
     // ── Phone not verified → send fresh OTP and prompt ───────
     if (user.phone && !user.isPhoneVerified) {
@@ -255,7 +174,7 @@ export const login = async (req, res, next) => {
     }
 
     // ── MFA disabled → issue token immediately ────────────────
-    if (!user.mfaEmail && !user.mfaPhone) {
+    if (!user.mfaPhone) {
       const sessionId = randomUUID()
       await prisma.user.update({
         where: { id: user.id },
@@ -275,18 +194,6 @@ export const login = async (req, res, next) => {
       data: { otpCode: otp, otpExpiry, otpAttempts: 0, otpResendCount: 0, accountLockedUntil: null, lastLoginIp: clientIp, lastLoginAt: new Date() },
     })
 
-    if (user.mfaEmail) {
-      try {
-        await sendEmail({
-          to: user.email,
-          subject: 'Your Vidya Hub Login OTP',
-          html: otpEmailHtml(displayName, otp, 'Secure Login'),
-        })
-      } catch (emailErr) {
-        logError(`OTP email failed: ${emailErr.message}`, { filename: 'authController.js' })
-      }
-    }
-
     if (user.mfaPhone && user.phone) {
       try {
         await sendSMS({
@@ -303,11 +210,9 @@ export const login = async (req, res, next) => {
       schoolId: String(user.schoolId || 'system'),
     })
 
-    const sentTo = [user.mfaEmail && 'email', user.mfaPhone && user.phone && 'phone'].filter(Boolean)
     res.json({
-      message: `OTP sent to your registered ${sentTo.join(' and ')}`,
+      message: 'OTP sent to your registered phone',
       otpSent: true,
-      maskedEmail: user.mfaEmail ? maskEmail(user.email) : null,
       maskedPhone: user.mfaPhone ? maskPhone(user.phone) : null,
     })
   } catch (error) {
@@ -328,7 +233,7 @@ export const forceLogin = async (req, res, next) => {
       include: { profile: true },
     })
 
-    if (!user || !['super-admin', 'school-admin'].includes(user.role)) {
+    if (!user || !['super-admin', 'school-admin', 'owner'].includes(user.role)) {
       return res.status(401).json({ message: 'Invalid credentials' })
     }
 
@@ -346,7 +251,7 @@ export const forceLogin = async (req, res, next) => {
     const displayName = user.profile?.firstName || 'Admin'
 
     // ── MFA disabled → terminate old session and issue token immediately ──
-    if (!user.mfaEmail && !user.mfaPhone) {
+    if (!user.mfaPhone) {
       const sessionId = randomUUID()
       await prisma.user.update({
         where: { id: user.id },
@@ -365,16 +270,6 @@ export const forceLogin = async (req, res, next) => {
       data: { activeSessionId: null, otpCode: otp, otpExpiry, otpAttempts: 0, otpResendCount: 0, accountLockedUntil: null, lastLoginIp: clientIp, lastLoginAt: new Date() },
     })
 
-    if (user.mfaEmail) {
-      try {
-        await sendEmail({
-          to: user.email,
-          subject: 'Your Vidya Hub Login OTP',
-          html: otpEmailHtml(displayName, otp, 'Secure Login'),
-        })
-      } catch { /* ignore */ }
-    }
-
     if (user.mfaPhone && user.phone) {
       try {
         await sendSMS({
@@ -387,9 +282,8 @@ export const forceLogin = async (req, res, next) => {
     logInfo(`Force-login OTP sent: ${payload.email} | IP: ${clientIp}`, { filename: 'authController.js' })
 
     res.json({
-      message: 'Previous session terminated. OTP sent.',
+      message: 'Previous session terminated. OTP sent to your phone.',
       otpSent: true,
-      maskedEmail: user.mfaEmail ? maskEmail(user.email) : null,
       maskedPhone: user.mfaPhone && user.phone ? maskPhone(user.phone) : null,
     })
   } catch (error) {
@@ -504,7 +398,7 @@ export const resendOtp = async (req, res, next) => {
 
     const user = await prisma.user.findFirst({ where: { email }, include: { profile: true } })
 
-    if (!user || !['super-admin', 'school-admin'].includes(user.role)) {
+    if (!user || !['super-admin', 'school-admin', 'owner'].includes(user.role)) {
       return res.json({ message: 'If this email exists, a new OTP has been sent.', otpSent: true })
     }
 
@@ -541,18 +435,6 @@ export const resendOtp = async (req, res, next) => {
 
     await prisma.user.update({ where: { id: user.id }, data: { otpCode: otp, otpExpiry, otpAttempts: 0, otpResendCount: currentResends + 1 } })
 
-    const displayName = user.profile?.firstName || 'Admin'
-
-    try {
-      await sendEmail({
-        to: user.email,
-        subject: 'Your Vidya Hub Login OTP (Resent)',
-        html: otpEmailHtml(displayName, otp),
-      })
-    } catch (emailErr) {
-      logError(`Resend OTP email failed: ${emailErr.message}`, { filename: 'authController.js' })
-    }
-
     if (user.phone) {
       try {
         await sendSMS({
@@ -563,7 +445,7 @@ export const resendOtp = async (req, res, next) => {
     }
 
     logInfo(`OTP resent for: ${email}`, { filename: 'authController.js' })
-    res.json({ message: 'New OTP sent to your registered email and phone.', otpSent: true })
+    res.json({ message: 'New OTP sent to your registered phone.', otpSent: true })
   } catch (error) {
     logError(`Resend OTP error: ${error.message}`, { filename: 'authController.js' })
     next(error)
@@ -680,7 +562,6 @@ export const register = async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(payload.password, SALT_ROUNDS)
 
-    const emailVerifyCode = generateOtp()
     const phoneVerifyCode = generateOtp()
     const verifyExpiry = new Date(Date.now() + VERIFY_EXPIRY_MINUTES * 60 * 1000)
 
@@ -704,10 +585,8 @@ export const register = async (req, res, next) => {
           role: 'school-admin',
           phone: payload.phone,
           schoolId: school.id,
-          isEmailVerified: false,
+          isEmailVerified: true,
           isPhoneVerified: false,
-          emailVerifyCode,
-          emailVerifyExpiry: verifyExpiry,
           otpCode: phoneVerifyCode,
           otpExpiry: verifyExpiry,
           profile: { create: { firstName: 'Admin', lastName: 'User' } },
@@ -716,16 +595,6 @@ export const register = async (req, res, next) => {
 
       return { school, user }
     })
-
-    try {
-      await sendEmail({
-        to: payload.email,
-        subject: 'Verify Your Vidya Hub Email',
-        html: verifyEmailHtml('Admin', emailVerifyCode),
-      })
-    } catch (emailErr) {
-      logError(`Verify email send failed: ${emailErr.message}`, { filename: 'authController.js' })
-    }
 
     try {
       await sendSMS({
@@ -739,9 +608,8 @@ export const register = async (req, res, next) => {
     logInfo(`School registered: ${payload.schoolName} (${payload.email})`, { filename: 'authController.js' })
 
     res.status(201).json({
-      message: 'Registration successful. Please verify your email and mobile number.',
+      message: 'Registration successful. Please verify your mobile number.',
       email: payload.email,
-      maskedEmail: maskEmail(payload.email),
       maskedPhone: maskPhone(payload.phone),
       needsVerification: true,
     })
@@ -815,8 +683,8 @@ export const verifyPhone = async (req, res, next) => {
       data: { isPhoneVerified: true, otpCode: null, otpExpiry: null },
     })
 
-    // Activate school when both email + phone are verified
-    if (user.schoolId && user.isEmailVerified) {
+    // Activate school when phone is verified (email auto-verified)
+    if (user.schoolId) {
       await prisma.school.update({ where: { id: user.schoolId }, data: { status: 'active' } })
     }
 
@@ -834,30 +702,23 @@ export const resendVerification = async (req, res, next) => {
   try {
     const { email, type } = z.object({
       email: z.string().email(),
-      type: z.enum(['email', 'phone']),
+      type: z.enum(['phone']),
     }).parse(req.body)
 
     const user = await prisma.user.findFirst({ where: { email }, include: { profile: true } })
     if (!user) return res.json({ message: 'If this account exists, verification has been resent.' })
 
+    if (!user.phone) return res.status(400).json({ message: 'No phone number on file.' })
+
     const code = generateOtp()
     const expiry = new Date(Date.now() + VERIFY_EXPIRY_MINUTES * 60 * 1000)
-    const displayName = user.profile?.firstName || 'Admin'
 
-    if (type === 'email') {
-      await prisma.user.update({ where: { id: user.id }, data: { emailVerifyCode: code, emailVerifyExpiry: expiry } })
-      try {
-        await sendEmail({ to: email, subject: 'Verify Your Vidya Hub Email', html: verifyEmailHtml(displayName, code) })
-      } catch { /* ignore */ }
-    } else {
-      if (!user.phone) return res.status(400).json({ message: 'No phone number on file.' })
-      await prisma.user.update({ where: { id: user.id }, data: { otpCode: code, otpExpiry: expiry } })
-      try {
-        await sendSMS({ to: user.phone, message: buildOtpSms(code) })
-      } catch { /* ignore */ }
-    }
+    await prisma.user.update({ where: { id: user.id }, data: { otpCode: code, otpExpiry: expiry } })
+    try {
+      await sendSMS({ to: user.phone, message: buildOtpSms(code) })
+    } catch { /* ignore */ }
 
-    res.json({ message: `Verification ${type === 'email' ? 'email' : 'SMS'} resent.` })
+    res.json({ message: 'Verification SMS resent.' })
   } catch (error) {
     logError(`Resend verification error: ${error.message}`, { filename: 'authController.js' })
     next(error)
@@ -898,8 +759,7 @@ export const forgotPassword = async (req, res, next) => {
     const user = await prisma.user.findFirst({ where: { email }, include: { profile: true } })
 
     const safeResponse = {
-      message: 'If this email is registered, a reset code has been sent to your email and phone.',
-      maskedEmail: maskEmail(email),
+      message: 'If this account is registered, a reset code has been sent to your phone.',
       maskedPhone: null,
     }
 
@@ -912,16 +772,6 @@ export const forgotPassword = async (req, res, next) => {
       where: { id: user.id },
       data: { passwordResetCode: resetCode, passwordResetExpiry: resetExpiry },
     })
-
-    const displayName = user.profile?.firstName || 'Admin'
-
-    try {
-      await sendEmail({
-        to: user.email,
-        subject: 'Vidya Hub — Password Reset Code',
-        html: resetPasswordEmailHtml(displayName, resetCode),
-      })
-    } catch { /* ignore */ }
 
     if (user.phone) {
       try {

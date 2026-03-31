@@ -11,6 +11,7 @@
 
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
+import { executeExtendedTool5 } from './chatToolsExtended5.js'
 
 // ─── Tool Declarations ────────────────────────────────────────────────────────
 
@@ -392,7 +393,7 @@ export const executeExtendedTool4 = async (name, args, schoolId) => {
       }
 
       default:
-        return { error: `Unknown tool: ${name}` }
+        return executeExtendedTool5(name, args, schoolId)
     }
   } catch (err) {
     logError(`executeExtendedTool4 [${name}] error: ${err.message}`, { filename: 'chatToolsExtended4.js' })

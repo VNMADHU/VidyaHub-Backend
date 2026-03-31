@@ -2,7 +2,6 @@ import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
-import { sendEmail } from '../services/emailService.js'
 import { sendSMS, buildOtpSms } from '../services/smsService.js'
 
 const SALT_ROUNDS = 12
@@ -40,6 +39,8 @@ const updateAdminSchema = z.object({
   firstName: z.string().min(1).optional(),
   lastName: z.string().min(1).optional(),
   phone: z.string().min(10, 'Mobile number must be at least 10 digits').optional(),
+  role: z.enum(['school-admin', 'super-admin']).optional(),
+  isPhoneVerified: z.boolean().optional(),
   modulePermissions: z.array(z.string()).nullable().optional(),
   mfaEmail: z.boolean().optional(),
   mfaPhone: z.boolean().optional(),
@@ -59,34 +60,6 @@ const parseModulePermissions = (raw) => {
   if (!raw) return null
   try { return JSON.parse(raw) } catch { return null }
 }
-
-// ── Welcome email template ────────────────────────────────────
-const welcomeEmailHtml = (name, email, password, emailCode, schoolName) => `
-  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-    <div style="background: #1e40af; padding: 16px 24px; border-radius: 8px 8px 0 0;">
-      <h2 style="color: white; margin: 0;">🎓 Vidya Hub — Your Account is Ready</h2>
-    </div>
-    <div style="border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px; padding: 24px;">
-      <p style="color: #374151;">Hello <strong>${name}</strong>,</p>
-      <p style="color: #374151;">Your admin account for <strong>${schoolName || 'Vidya Hub'}</strong> has been created.</p>
-      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 16px 0;">
-        <table style="width:100%; border-collapse:collapse;">
-          <tr><td style="color:#64748b; padding: 4px 8px;">Email</td><td style="font-weight:600; padding: 4px 8px;">${email}</td></tr>
-          <tr><td style="color:#64748b; padding: 4px 8px;">Password</td><td style="font-weight:600; padding: 4px 8px;">${password}</td></tr>
-        </table>
-      </div>
-      <p style="color: #374151;">Before your first login, verify your email with this code:</p>
-      <div style="background: #ecfdf5; border: 2px solid #059669; border-radius: 8px; padding: 20px; text-align: center; margin: 16px 0;">
-        <span style="font-size: 36px; font-weight: bold; letter-spacing: 10px; color: #065f46;">${emailCode}</span>
-      </div>
-      <p style="color: #374151;">This code is valid for <strong>${VERIFY_EXPIRY_MINUTES} minutes</strong>.</p>
-      <p style="color: #ef4444;"><strong>⚠ Do not share these credentials with anyone.</strong></p>
-      <p style="color: #374151;">Login at: <a href="${process.env.APP_URL || 'http://localhost:5173'}/login" style="color:#1e40af;">${process.env.APP_URL || 'http://localhost:5173'}/login</a></p>
-      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-      <p style="color: #9ca3af; font-size: 12px;">If you did not expect this email, please contact your administrator.</p>
-    </div>
-  </div>
-`
 
 // ── Helper: format admin response ──────────────────────────
 const formatAdmin = (u) => ({
@@ -116,9 +89,10 @@ const formatAdmin = (u) => ({
 
 export const listAdmins = async (req, res, next) => {
   try {
-    const schoolId = req.user?.schoolId ?? null
+    const isOwner = req.user?.role === 'owner'
+    const schoolId = isOwner ? null : (req.user?.schoolId ?? null)
     const where = {
-      role: 'school-admin',
+      role: { in: ['school-admin', 'super-admin'] },
       ...(schoolId ? { schoolId } : {}),
     }
 
@@ -150,9 +124,12 @@ export const createAdmin = async (req, res, next) => {
   try {
     const payload = createAdminSchema.parse(req.body)
 
-    const effectiveSchoolId = req.user.schoolId
+    const isOwner = req.user?.role === 'owner'
+    const effectiveSchoolId = isOwner
+      ? (req.body.schoolId ? parseInt(req.body.schoolId) : null)
+      : req.user.schoolId
     if (!effectiveSchoolId) {
-      return res.status(400).json({ message: 'You must belong to a school to create admins.' })
+      return res.status(400).json({ message: 'A schoolId is required to create an admin.' })
     }
 
     const emailConflict = await prisma.user.findFirst({
@@ -173,7 +150,6 @@ export const createAdmin = async (req, res, next) => {
     if (school) schoolName = school.name
 
     const hashedPassword = await bcrypt.hash(payload.password, SALT_ROUNDS)
-    const emailVerifyCode = generateOtp()
     const phoneVerifyCode = generateOtp()
     const verifyExpiry = new Date(Date.now() + VERIFY_EXPIRY_MINUTES * 60 * 1000)
 
@@ -185,17 +161,15 @@ export const createAdmin = async (req, res, next) => {
         phone: payload.phone,
         schoolId: effectiveSchoolId,
         accountStatus: 'active',
-        isEmailVerified: false,
+        isEmailVerified: true,
         isPhoneVerified: false,
-        emailVerifyCode,
-        emailVerifyExpiry: verifyExpiry,
         otpCode: phoneVerifyCode,
         otpExpiry: verifyExpiry,
         modulePermissions:
           payload.modulePermissions != null
             ? JSON.stringify(payload.modulePermissions)
             : null,
-        mfaEmail: payload.mfaEmail ?? true,
+        mfaEmail: false,
         mfaPhone: payload.mfaPhone ?? false,
         feeCanEdit: payload.feeCanEdit ?? false,
         feeCanDelete: payload.feeCanDelete ?? false,
@@ -214,16 +188,6 @@ export const createAdmin = async (req, res, next) => {
     })
 
     const displayName = `${payload.firstName} ${payload.lastName}`
-
-    try {
-      await sendEmail({
-        to: payload.email,
-        subject: `Your Vidya Hub Admin Account — ${schoolName}`,
-        html: welcomeEmailHtml(displayName, payload.email, payload.password, emailVerifyCode, schoolName),
-      })
-    } catch (emailErr) {
-      logError(`Welcome email failed: ${emailErr.message}`, { filename: 'adminController.js' })
-    }
 
     try {
       await sendSMS({ to: payload.phone, message: buildOtpSms(phoneVerifyCode) })
@@ -253,11 +217,19 @@ export const updateAdmin = async (req, res, next) => {
     const payload = updateAdminSchema.parse(req.body)
 
     const user = await prisma.user.findUnique({ where: { id } })
-    if (!user || user.role !== 'school-admin') {
+    if (!user || !['school-admin', 'super-admin'].includes(user.role)) {
       return res.status(404).json({ message: 'Admin not found' })
     }
-    if (user.schoolId !== req.user.schoolId) {
+    const isOwnerReq = req.user?.role === 'owner'
+    if (!isOwnerReq && user.schoolId !== req.user.schoolId) {
       return res.status(403).json({ message: 'Access denied.' })
+    }
+    // Only owner can change a user's role or phone verification
+    if (payload.role && !isOwnerReq) {
+      return res.status(403).json({ message: 'Only the owner can change user roles.' })
+    }
+    if (typeof payload.isPhoneVerified === 'boolean' && !isOwnerReq) {
+      return res.status(403).json({ message: 'Only the owner can update phone verification status.' })
     }
 
     const userUpdateData = {}
@@ -275,6 +247,8 @@ export const updateAdmin = async (req, res, next) => {
       if (phoneConflict) return res.status(409).json({ message: 'An account with this mobile number already exists in this school.' })
       userUpdateData.phone = payload.phone
     }
+    if (payload.role) userUpdateData.role = payload.role
+    if (typeof payload.isPhoneVerified === 'boolean') userUpdateData.isPhoneVerified = payload.isPhoneVerified
     if (typeof payload.mfaEmail === 'boolean') userUpdateData.mfaEmail = payload.mfaEmail
     if (typeof payload.mfaPhone === 'boolean') userUpdateData.mfaPhone = payload.mfaPhone
     if (typeof payload.feeCanEdit === 'boolean') userUpdateData.feeCanEdit = payload.feeCanEdit
@@ -330,10 +304,11 @@ export const toggleAdminStatus = async (req, res, next) => {
     if (isNaN(id)) return res.status(400).json({ message: 'Invalid admin ID' })
 
     const user = await prisma.user.findUnique({ where: { id } })
-    if (!user || user.role !== 'school-admin') {
+    if (!user || !['school-admin', 'super-admin'].includes(user.role)) {
       return res.status(404).json({ message: 'Admin not found' })
     }
-    if (user.schoolId !== req.user.schoolId) {
+    const isOwnerT = req.user?.role === 'owner'
+    if (!isOwnerT && user.schoolId !== req.user.schoolId) {
       return res.status(403).json({ message: 'Access denied.' })
     }
 
@@ -365,10 +340,11 @@ export const updateAdminPassword = async (req, res, next) => {
     const { password } = updatePasswordSchema.parse(req.body)
 
     const user = await prisma.user.findUnique({ where: { id } })
-    if (!user || user.role !== 'school-admin') {
+    if (!user || !['school-admin', 'super-admin'].includes(user.role)) {
       return res.status(404).json({ message: 'Admin not found' })
     }
-    if (user.schoolId !== req.user.schoolId) {
+    const isOwnerP = req.user?.role === 'owner'
+    if (!isOwnerP && user.schoolId !== req.user.schoolId) {
       return res.status(403).json({ message: 'Access denied.' })
     }
 
@@ -395,10 +371,11 @@ export const deleteAdmin = async (req, res, next) => {
     if (isNaN(id)) return res.status(400).json({ message: 'Invalid admin ID' })
 
     const user = await prisma.user.findUnique({ where: { id }, include: { profile: true } })
-    if (!user || user.role !== 'school-admin') {
+    if (!user || !['school-admin', 'super-admin'].includes(user.role)) {
       return res.status(404).json({ message: 'Admin not found' })
     }
-    if (user.schoolId !== req.user.schoolId) {
+    const isOwnerD = req.user?.role === 'owner'
+    if (!isOwnerD && user.schoolId !== req.user.schoolId) {
       return res.status(403).json({ message: 'Access denied.' })
     }
 

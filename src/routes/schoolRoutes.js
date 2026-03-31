@@ -6,6 +6,8 @@ import {
   deleteSchool,
   getSmsSettings,
   updateSmsSettings,
+  getSchoolConfig,
+  updateSchoolConfig,
 } from '../controllers/schoolController.js'
 
 const router = Router()
@@ -16,5 +18,7 @@ router.patch('/:schoolId', updateSchool)
 router.delete('/:schoolId', deleteSchool)
 router.get('/:schoolId/sms-settings', getSmsSettings)
 router.patch('/:schoolId/sms-settings', updateSmsSettings)
+router.get('/:schoolId/config', getSchoolConfig)
+router.patch('/:schoolId/config', updateSchoolConfig)
 
 export default router

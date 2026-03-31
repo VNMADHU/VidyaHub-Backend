@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
-import { sendSMS } from '../services/smsService.js'
+import { sendSMS, fillTemplate } from '../services/smsService.js'
 
 
 const attendanceSchema = z.object({
@@ -72,7 +72,8 @@ export const createAttendance = async (req, res, next) => {
             if (student) {
               const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
               if (phones.length > 0) {
-                const msg = `Dear Parent, your child ${student.firstName} ${student.lastName} was marked absent on ${payload.date}. - ${school.name}`
+                const tpl = process.env.SAPTELE_ABSENT_TEMPLATE || 'Dear Parent, your child {firstName} {lastName} was marked absent on {date}. - {schoolName}'
+                const msg = fillTemplate(tpl, { firstName: student.firstName, lastName: student.lastName, date: payload.date, schoolName: school.name })
                 await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_ABSENT_TEMPLATE_ID }).catch(() => {})
               }
             }
@@ -123,7 +124,8 @@ export const updateAttendance = async (req, res, next) => {
               const phones = [student.fatherContact, student.motherContact, student.guardianContact].filter(p => p && p.trim())
               if (phones.length > 0) {
                 const dateStr = attendance.date ? new Date(attendance.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
-                const msg = `Dear Parent, your child ${student.firstName} ${student.lastName} was marked absent on ${dateStr}. - ${school.name}`
+                const tpl = process.env.SAPTELE_ABSENT_TEMPLATE || 'Dear Parent, your child {firstName} {lastName} was marked absent on {date}. - {schoolName}'
+                const msg = fillTemplate(tpl, { firstName: student.firstName, lastName: student.lastName, date: dateStr, schoolName: school.name })
                 await sendSMS({ to: phones[0], message: msg, templateId: process.env.SAPTELE_ABSENT_TEMPLATE_ID }).catch(() => {})
               }
             }

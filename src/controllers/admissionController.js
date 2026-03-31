@@ -140,6 +140,65 @@ export const updateAdmission = async (req, res, next) => {
       data: updateData,
     })
 
+    // ── Auto-create Student when approved ──────────────────────────────────
+    if (parsed.status === 'approved' && existing.status !== 'approved' && !existing.linkedStudentId) {
+      try {
+        const nameParts   = existing.applicantName.trim().split(' ')
+        const firstName   = nameParts[0] || existing.applicantName
+        const lastName    = nameParts.slice(1).join(' ') || ''
+        const admCount    = await prisma.student.count({ where: { schoolId } })
+        const admNumber   = existing.applicationNo || `ADM-${schoolId}-${Date.now()}`
+        const rollNumber  = String(admCount + 1).padStart(5, '0')
+        const email       = `${firstName.toLowerCase()}.${rollNumber}@school.local`
+
+        // Find matching class if applyingForClass matches a class name
+        const matchedClass = await prisma.class.findFirst({
+          where: { schoolId, name: { equals: existing.applyingForClass, mode: 'insensitive' } },
+        })
+
+        const student = await prisma.student.create({
+          data: {
+            schoolId,
+            firstName,
+            lastName,
+            email,
+            admissionNumber:  admNumber,
+            rollNumber,
+            gender:           existing.gender           || null,
+            dateOfBirth:      existing.dateOfBirth      || null,
+            category:         existing.category         || null,
+            address:          existing.address          || null,
+            previousSchool:   existing.previousSchool   || null,
+            guardianName:     existing.guardianName     || null,
+            guardianContact:  existing.guardianPhone    || null,
+            parentEmail:      existing.guardianEmail    || null,
+            classId:          matchedClass?.id          || null,
+          },
+        })
+
+        // Link the new student back to the admission
+        await prisma.admission.update({
+          where: { id: parseInt(admissionId) },
+          data: { linkedStudentId: student.id, status: 'enrolled' },
+        })
+
+        logInfo(`Auto-created Student #${student.id} from Admission #${admissionId}`, { schoolId })
+
+        return res.json({
+          data: { ...admission, status: 'enrolled', linkedStudentId: student.id },
+          student,
+          message: `Admission approved and student "${student.firstName} ${student.lastName}" added to the student portal (Admission No: ${admNumber}).`,
+        })
+      } catch (studentErr) {
+        logError(`Auto-create student failed for admission #${admissionId}: ${studentErr.message}`, { schoolId })
+        // Return the admission update success even if student creation failed
+        return res.json({
+          data: admission,
+          message: 'Admission approved but student portal record could not be created automatically. Please add the student manually.',
+        })
+      }
+    }
+
     res.json({ data: admission })
   } catch (error) {
     logError('updateAdmission', error)

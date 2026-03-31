@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import prisma from '../utils/prisma.js'
 import { logInfo, logError } from '../utils/logHelpers.js'
-import { sendSMS } from '../services/smsService.js'
+import { sendSMS, fillTemplate } from '../services/smsService.js'
 
 const leaveSchema = z.object({
   employeeType: z.enum(['teacher', 'driver', 'staff']),
@@ -93,7 +93,8 @@ export const updateLeave = async (req, res, next) => {
               phone = driver?.phone
             }
             if (phone) {
-              const msg = `Dear ${leave.employeeName}, your leave application from ${leave.fromDate.toISOString().split('T')[0]} to ${leave.toDate.toISOString().split('T')[0]} has been ${data.status}. - ${school.name}`
+              const tpl = process.env.SAPTELE_LEAVE_TEMPLATE || 'Dear {employeeName}, your leave application from {fromDate} to {toDate} has been {status}. - {schoolName}'
+              const msg = fillTemplate(tpl, { employeeName: leave.employeeName, fromDate: leave.fromDate.toISOString().split('T')[0], toDate: leave.toDate.toISOString().split('T')[0], status: data.status, schoolName: school.name })
               await sendSMS({ to: phone, message: msg, templateId: process.env.SAPTELE_LEAVE_TEMPLATE_ID }).catch(() => {})
             }
           }

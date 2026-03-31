@@ -54,6 +54,13 @@ const studentSchema = z.object({
   motherContact: indianPhoneOptional,
   guardianContact: indianPhoneOptional,
   parentEmail: z.string().email('Invalid parent email address').optional().or(z.literal('')),
+  // Sibling / Family Relation
+  siblingStudentId: z.preprocess(
+    (val) => (val === '' || val === null || val === undefined ? undefined : Number(val)),
+    z.number().int().optional(),
+  ),
+  siblingNames:    z.string().optional(),
+  siblingRelation: z.string().optional(),
 })
 
 export const listStudents = async (req, res, next) => {
